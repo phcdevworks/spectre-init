@@ -44,11 +44,11 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "fs-extra": "^11.3.3"
+    "fs-extra": "^11.3.4"
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
-    "@types/node": "^24.1.0",
-    "typescript": "^5.9.3"
+    "@types/node": "^25.6.0",
+    "typescript": "^6.0.2"
   }
 }

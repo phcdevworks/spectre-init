@@ -1,25 +1,21 @@
-# Logs
-logs
+# Dependencies
+node_modules/
+
+# Build artifacts
+dist/
+dist-ssr/
+spectre-theme/dist/
+
+# Local files
+*.local
+
+# Logs and caches
 *.log
+.eslintcache
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
-lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
-spectre-theme/dist
-
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
+# OS files
 .DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
