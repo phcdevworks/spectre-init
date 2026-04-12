@@ -1,56 +1,114 @@
-# @phcdevworks/spectre-init
+# @phcdevworks/spectre-init [![GitHub issues](https://img.shields.io/github/issues/phcdevworks/spectre-init)](https://github.com/phcdevworks/spectre-init/issues) [![GitHub pull requests](https://img.shields.io/github/issues-pr/phcdevworks/spectre-init)](https://github.com/phcdevworks/spectre-init/pulls) [![License](https://img.shields.io/github/license/phcdevworks/spectre-init)](LICENSE)
 
-### **The Factory (Layer 7 of the Spectre 8-Layer Arsenal)**
+`@phcdevworks/spectre-init` is the Factory layer of the Spectre suite. It scaffolds new projects from opinionated templates that start with the Spectre hierarchy in place, wire generated apps to `@phcdevworks/spectre-tokens` and `@phcdevworks/spectre-ui`, and keep Zero-Hex enforcement as part of the package contract.
 
-`@phcdevworks/spectre-init` is the scaffolding and developer experience engine for the Spectre design system. It acts as the "Factory," providing CLI tools to quickly spin up new projects, components, and adapters that follow the official Spectre architecture.
+Maintained by PHCDevworks, this package is intentionally focused on project creation and template discipline. It should help teams start cleanly, not become a catch-all runtime or application framework. This package is published as `@phcdevworks/spectre-init`.
 
-🤝 **[Contributing Guide](CONTRIBUTING.md)** | 🏛️ **[Spectre Arsenal](https://github.com/phcdevworks)**
+Its source repository is hosted at [`phcdevworks/spectre-init`](https://github.com/phcdevworks/spectre-init).
 
----
+## Key capabilities
 
-## 🏗️ Core Architecture
+- Scaffold a new Spectre-ready application from the bundled vanilla template
+- Preserve the Spectre layer contract from the first generated file
+- Generate starter projects that already depend on `@phcdevworks/spectre-tokens` and `@phcdevworks/spectre-ui`
+- Apply opinionated defaults for TypeScript-based setup and package structure
+- Keep scaffolding logic separate from the template files it provisions
 
-This package is the **DX/Scaffolding Layer**. It ensures that every new project starts with the correct hierarchy, types, and "Zero-Hex Enforcement" as standard.
+## Installation
 
-- 🏗️ **Project Scaffolding**: CLI commands to initialize Layers 3-6.
-- 📐 **Template Library**: Curated blueprints for Astro, WordPress, and Vanilla TS apps.
-- 🛠️ **Dev Experience**: Pre-configured linting, formatting, and build scripts.
-- 📐 **Standards Enforcement**: Automatically generates AGENTS.md and README.md boilerplate.
-
----
-
-## 🚀 Quick Start
-
-### Installation
+Run the package directly with `npx`:
 
 ```bash
-npx @phcdevworks/spectre-init
+npx @phcdevworks/spectre-init my-app
 ```
 
-### 1. Initialize a new project
+You can also install it globally and use the CLI name:
 
 ```bash
-npx @phcdevworks/spectre-init create my-awesome-app
+npm install -g @phcdevworks/spectre-init
+spectre-init my-app
 ```
 
----
+## Quick start
 
-## 🏛️ The Spectre Suite Hierarchy
+Create a project:
 
-Spectre is built on a non-negotiable hierarchy to prevent style leakage and duplication:
+```bash
+npx @phcdevworks/spectre-init my-app
+```
 
-1.  **Layer 1: DNA** ([@phcdevworks/spectre-tokens](https://github.com/phcdevworks/spectre-tokens)) – Design values.
-2.  **Layer 2: Blueprint** ([@phcdevworks/spectre-ui](https://github.com/phcdevworks/spectre-ui)) – Structure & Recipes.
-3.  **Layer 7: Factory (This Package)** – Scaffolding & CLI tools.
+Then move into the generated directory and start development:
 
-> **The Golden Rule**: The Factory ensures the Hierarchy is respected from Day 1.
+```bash
+cd my-app
+npm run dev
+```
 
----
+Current CLI behavior:
+
+- Accepts a single required `<project-name>` argument
+- Copies the bundled `templates/vanilla` starter into the target directory
+- Renames the generated package to match the project directory
+- Runs `npm install` automatically after scaffolding
+
+## What this package owns
+
+- CLI-driven project scaffolding
+- Bundled starter templates under `templates/`
+- Opinionated bootstrap defaults for Spectre projects
+- Early enforcement of the Spectre architecture and Zero-Hex expectations
+- A narrow DX layer for creating projects, not running them
+
+This package should stay at the Factory layer.
+
+## What this package does not own
+
+- Design tokens, semantic values, or visual language definitions
+- UI recipes, structural primitives, or styling system concerns
+- Application runtime behavior, routing, or shell orchestration
+- Business logic, feature modules, or app-level state architecture
+- General-purpose project generators unrelated to the Spectre contract
+
+If a concern is not directly about scaffolding Spectre-compliant projects, it likely does not belong here.
+
+## Relationship to the rest of Spectre
+
+Spectre keeps responsibilities separate:
+
+- `@phcdevworks/spectre-tokens` owns design values and token contracts
+- `@phcdevworks/spectre-ui` owns structure, recipes, and token-driven styling
+- `@phcdevworks/spectre-init` owns scaffolding and template enforcement
+
+That separation keeps generated projects aligned with the system without turning this package into a UI layer or runtime dependency.
+
+## Development
+
+Install dependencies, then build the CLI:
+
+```bash
+npm install
+npm run build
+```
+
+Key source areas:
+
+- `src/index.ts`
+- `templates/vanilla/package.json`
+- `templates/vanilla/src/main.ts`
+- `templates/vanilla/vite.config.ts`
+
+## Contributing
+
+When contributing:
+
+- keep templates aligned with the Spectre hierarchy
+- do not introduce hardcoded hex values or spacing literals into generated output
+- prefer TypeScript-first templates unless a layer requires otherwise
+- update the README when commands, template coverage, or generated behavior changes
+- run `npm run build` before opening a pull request
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the full contributor guide.
 
 ## License
 
-MIT © PHCDevworks — See **[LICENSE](LICENSE)** for details.
-
----
-
-
+MIT © PHCDevworks. See [LICENSE](LICENSE).
