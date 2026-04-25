@@ -50,13 +50,12 @@ We appreciate responsible disclosure and will work with you to:
 
 ## Security Best Practices
 
-When using the Spectre Arsenal:
+When using `spectre-init`:
 
 1. **Keep dependencies updated** to the latest versions.
 2. **Monitor dependencies** for known vulnerabilities (`npm audit`).
-3. **Use HTTPS** for all production sites.
-4. **Sanitize user input** when using classes or components dynamically.
-5. **Follow framework security best practices** (WordPress, Astro, React, etc.).
+3. **Review generated project templates** before committing scaffolded output.
+4. **Avoid running scaffolding tools** as root or with elevated privileges.
 
 ## Contact
 
