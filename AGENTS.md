@@ -23,7 +23,7 @@ You are an autonomous agent responsible for Layer 7 of the Spectre 8-Layer Arsen
 3. **Zero-Hex Scan**: Run static analysis on generated templates to ensure no literal hex codes are present.
 
 ## Workflow
-1. READ: `skills/ai-implementation/SKILL.md` -> LAYER 7: PENDING FACTORY UPDATES.
+1. Review open items in `TODO.md` and `ROADMAP.md` for current priorities.
 2. Update templates or CLI logic in `src/`.
-3. Run `npm run build` and integration tests.
-4. SUCCESS: Clear the "PENDING" block in `SKILL.md` when done.
+3. Run `npm run build` and `npm run lint`.
+4. Update `TODO.md` and `CHANGELOG.md` when work is complete.

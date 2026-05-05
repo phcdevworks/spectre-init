@@ -25,7 +25,6 @@ correctly, not to implement Spectre features itself.
   selection.
 - No validation of scaffolded output — the CLI does not confirm that the
   generated project is structurally correct.
-- No eslint config — the source code has no linting.
 - No CI pipeline for automated build validation.
 - No integration with `spectre-manifest` — scaffolded projects are not
   registered against the contract system automatically.
@@ -35,23 +34,11 @@ correctly, not to implement Spectre features itself.
 
 ## P0: Template Coverage and CLI Completeness / Must-Do
 
-### P0.1 Lint Configuration
+### ~~P0.1 Lint Configuration~~ ✓ Done
 
-Objective Add an eslint config so the source code is held to the same standard
-as other Spectre packages.
-
-Why it matters `spectre-init` is the entry point for the entire Spectre
-ecosystem — its source quality matters more, not less.
-
-Suggested deliverables
-
-- Add `eslint.config.ts` using `tseslint.config()`
-- Add `eslint` and `typescript-eslint` to devDependencies
-- Add `"lint"` and `"format"` scripts to `package.json`
-
-Dependency notes
-
-- No blocking dependencies; can be done immediately
+ESLint flat config (`eslint.config.ts`) with `typescript-eslint` is in place.
+`jiti` is installed as a devDependency so the TypeScript config loads correctly.
+`npm run lint` and `npm run format` are wired in `package.json`.
 
 ### P0.2 Interactive Project Type Selection
 
@@ -189,7 +176,7 @@ Suggested deliverables
 
 ## 4. Recommended Execution Order
 
-1. Add lint config
+1. ~~Add lint config~~ ✓ Done
 2. Add interactive prompts
 3. Add WordPress theme template
 4. Add CI pipeline

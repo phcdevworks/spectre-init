@@ -6,13 +6,8 @@ coverage, and CI.
 
 ## P0: Template Coverage and CLI Completeness / Must-Do
 
-- Add eslint configuration File targets:
-  - `eslint.config.ts` (new file)
-  - `package.json` (add eslint devDependencies and lint/format scripts) Acceptance
-    criteria:
-  - `eslint.config.ts` uses `tseslint.config()` pattern
-  - `npm run lint` runs without errors
-  - `npm run format` runs without errors
+- [x] Add eslint configuration — `eslint.config.ts` with `tseslint.config()`, `jiti` installed,
+  `npm run lint` and `npm run format` working.
 
 - Add interactive prompts for project type selection File targets:
   - `src/index.ts`
@@ -84,7 +79,7 @@ coverage, and CI.
 
 ## Recommended Execution Order
 
-1. Lint config
+1. ~~Lint config~~ ✓ Done
 2. Interactive prompts
 3. WordPress theme template
 4. CI pipeline
