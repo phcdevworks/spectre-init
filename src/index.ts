@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
-import { execSync } from "child_process"
-import { existsSync, readFileSync } from "fs"
-import { copy, readJson, writeJson } from "fs-extra"
-import path from "path"
-import { fileURLToPath } from "url"
+import { execSync } from 'child_process'
+import { existsSync, readFileSync } from 'fs'
+import { copy, readJson, writeJson } from 'fs-extra'
+import path from 'path'
+import { fileURLToPath } from 'url'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -27,9 +27,9 @@ Options:
 }
 
 function getVersion(): string {
-  const pkg = JSON.parse(
-    readFileSync(path.join(__dirname, "../package.json"), "utf-8")
-  ) as { version: string }
+  const pkg = JSON.parse(readFileSync(path.join(__dirname, '../package.json'), 'utf-8')) as {
+    version: string
+  }
   return pkg.version
 }
 
@@ -44,12 +44,12 @@ function validateProjectName(name: string): string | null {
   return null
 }
 
-if (args.includes("-h") || args.includes("--help")) {
+if (args.includes('-h') || args.includes('--help')) {
   showHelp()
   process.exit(0)
 }
 
-if (args.includes("-v") || args.includes("--version")) {
+if (args.includes('-v') || args.includes('--version')) {
   console.log(getVersion())
   process.exit(0)
 }
@@ -57,7 +57,7 @@ if (args.includes("-v") || args.includes("--version")) {
 const projectName = args[0]
 
 if (!projectName) {
-  console.error("Error: a project name is required.\n")
+  console.error('Error: a project name is required.\n')
   showHelp()
   process.exit(1)
 }
@@ -68,7 +68,7 @@ if (nameError) {
   process.exit(1)
 }
 
-const templateDir = path.join(__dirname, "../templates/vanilla")
+const templateDir = path.join(__dirname, '../templates/vanilla')
 const targetDir = path.join(process.cwd(), projectName)
 
 async function main(): Promise<void> {
@@ -81,13 +81,13 @@ async function main(): Promise<void> {
 
   await copy(templateDir, targetDir)
 
-  const pkgPath = path.join(targetDir, "package.json")
+  const pkgPath = path.join(targetDir, 'package.json')
   const pkg = (await readJson(pkgPath)) as Record<string, unknown>
   pkg.name = projectName
   await writeJson(pkgPath, pkg, { spaces: 2 })
 
-  console.log("Installing dependencies...")
-  execSync("npm install", { cwd: targetDir, stdio: "inherit" })
+  console.log('Installing dependencies...')
+  execSync('npm install', { cwd: targetDir, stdio: 'inherit' })
 
   console.log(`\nDone! Next steps:\n  cd ${projectName}\n  npm run dev`)
 }

@@ -1,114 +1,72 @@
-# @phcdevworks/spectre-init [![GitHub issues](https://img.shields.io/github/issues/phcdevworks/spectre-init)](https://github.com/phcdevworks/spectre-init/issues) [![GitHub pull requests](https://img.shields.io/github/issues-pr/phcdevworks/spectre-init)](https://github.com/phcdevworks/spectre-init/pulls) [![License](https://img.shields.io/github/license/phcdevworks/spectre-init)](LICENSE)
+# @phcdevworks/spectre-init
 
-`@phcdevworks/spectre-init` is the Factory layer of the Spectre suite. It scaffolds new projects from opinionated templates that start with the Spectre hierarchy in place, wire generated apps to `@phcdevworks/spectre-tokens` and `@phcdevworks/spectre-ui`, and keep Zero-Hex enforcement as part of the package contract.
+CLI scaffolding for Spectre-ready applications. `spectre-init` creates a small vanilla TypeScript app with Spectre dependencies, local project guidance, and a predictable starter structure.
 
-Maintained by PHCDevworks, this package is intentionally focused on project creation and template discipline. It should help teams start cleanly, not become a catch-all runtime or application framework. This package is published as `@phcdevworks/spectre-init`.
+[Issues](https://github.com/phcdevworks/spectre-init/issues) | [Pull requests](https://github.com/phcdevworks/spectre-init/pulls) | [Security](./SECURITY.md) | [Contributing](./CONTRIBUTING.md)
 
-Its source repository is hosted at [`phcdevworks/spectre-init`](https://github.com/phcdevworks/spectre-init).
+## Capabilities
 
-## Key capabilities
+- Scaffolds a Spectre-ready vanilla TypeScript application.
+- Copies the bundled `templates/vanilla` starter into a new project directory.
+- Validates project names before writing files.
+- Updates the generated package name to match the requested project.
+- Runs `npm install` after scaffolding so the app is ready to start.
 
-- Scaffold a new Spectre-ready application from the bundled vanilla template
-- Preserve the Spectre layer contract from the first generated file
-- Generate starter projects that already depend on `@phcdevworks/spectre-tokens` and `@phcdevworks/spectre-ui`
-- Apply opinionated defaults for TypeScript-based setup and package structure
-- Keep scaffolding logic separate from the template files it provisions
+## Install
 
-## Installation
-
-Run the package directly with `npx`:
+Run once with `npx`:
 
 ```bash
 npx @phcdevworks/spectre-init my-app
 ```
 
-You can also install it globally and use the CLI name:
+Or install globally:
 
 ```bash
 npm install -g @phcdevworks/spectre-init
 spectre-init my-app
 ```
 
-## Quick start
-
-Create a project:
+## Quick Start
 
 ```bash
 npx @phcdevworks/spectre-init my-app
-```
-
-Then move into the generated directory and start development:
-
-```bash
 cd my-app
 npm run dev
 ```
 
-Current CLI behavior:
+## API
 
-- Accepts a single required `<project-name>` argument
-- Copies the bundled `templates/vanilla` starter into the target directory
-- Renames the generated package to match the project directory
-- Runs `npm install` automatically after scaffolding
+This package exposes the `spectre-init` binary.
 
-## What this package owns
+```bash
+spectre-init <project-name>
+spectre-init --help
+spectre-init --version
+```
 
-- CLI-driven project scaffolding
-- Bundled starter templates under `templates/`
-- Opinionated bootstrap defaults for Spectre projects
-- Early enforcement of the Spectre architecture and Zero-Hex expectations
-- A narrow DX layer for creating projects, not running them
+## Boundaries
 
-This package should stay at the Factory layer.
-
-## What this package does not own
-
-- Design tokens, semantic values, or visual language definitions
-- UI recipes, structural primitives, or styling system concerns
-- Application runtime behavior, routing, or shell orchestration
-- Business logic, feature modules, or app-level state architecture
-- General-purpose project generators unrelated to the Spectre contract
-
-If a concern is not directly about scaffolding Spectre-compliant projects, it likely does not belong here.
-
-## Relationship to the rest of Spectre
-
-Spectre keeps responsibilities separate:
-
-- `@phcdevworks/spectre-tokens` owns design values and token contracts
-- `@phcdevworks/spectre-ui` owns structure, recipes, and token-driven styling
-- `@phcdevworks/spectre-init` owns scaffolding and template enforcement
-
-That separation keeps generated projects aligned with the system without turning this package into a UI layer or runtime dependency.
+This package owns project scaffolding and starter templates. It does not own runtime routing, reactive state, design tokens, UI components, or framework adapters.
 
 ## Development
 
-Install dependencies, then build the CLI:
-
 ```bash
 npm install
-npm run build
+npm run check
 ```
 
-Key source areas:
+Useful scripts:
 
-- `src/index.ts`
-- `templates/vanilla/package.json`
-- `templates/vanilla/src/main.ts`
-- `templates/vanilla/vite.config.ts`
+- `npm run typecheck` validates TypeScript without emitting files.
+- `npm run lint` runs ESLint.
+- `npm run build` emits the CLI to `dist`.
+- `npm run check` runs the standard package verification flow.
 
-## Contributing
+## Release Notes
 
-When contributing:
-
-- keep templates aligned with the Spectre hierarchy
-- do not introduce hardcoded hex values or spacing literals into generated output
-- prefer TypeScript-first templates unless a layer requires otherwise
-- update the README when commands, template coverage, or generated behavior changes
-- run `npm run build` before opening a pull request
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for the full contributor guide.
+See [CHANGELOG.md](./CHANGELOG.md).
 
 ## License
 
-MIT © PHCDevworks. See [LICENSE](LICENSE).
+MIT. See [LICENSE](./LICENSE).
