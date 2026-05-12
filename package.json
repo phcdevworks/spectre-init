@@ -48,15 +48,15 @@
     "prepublishOnly": "npm run check"
   },
   "dependencies": {
-    "fs-extra": "^11.3.4"
+    "fs-extra": "^11.3.5"
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
-    "@types/node": "^25.6.0",
+    "@types/node": "^25.7.0",
     "eslint": "^10.3.0",
     "jiti": "^2.7.0",
     "prettier": "^3.8.3",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.59.2"
+    "typescript-eslint": "^8.59.3"
   }
 }
