@@ -27,9 +27,9 @@ coverage, and CI.
     `spectre-theme/` skeleton, and `package.json` with correct dependencies
   - Documented in README
 
-- Add GitHub Actions CI pipeline File targets:
+- [x] Add GitHub Actions CI pipeline File targets:
   - `.github/workflows/ci.yml` Acceptance criteria:
-  - CI runs `npm run build` on push and PR
+  - CI runs `npm run build` on push and PR (via `npm run check` matrix on Node 22/24)
   - Optional: smoke test runs CLI against each template and validates output
     structure
 
@@ -82,7 +82,7 @@ coverage, and CI.
 1. ~~Lint config~~ ✓ Done
 2. Interactive prompts
 3. WordPress theme template
-4. CI pipeline
+4. ~~CI pipeline~~ ✓ Done
 5. Shell system template
 6. Manifest integration
 7. Output validation
