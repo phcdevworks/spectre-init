@@ -1,5 +1,14 @@
 # CLAUDE.md — spectre-init
 
+Primary AI maintainer: **Claude Code** (claude-sonnet-4-6, Anthropic)
+Human owner: PHCDevworks / brad.potts@coastdigitalgroup.com
+
+## Commit Policy
+
+Claude Code does **not** create git commits, push branches, or create tags in this repository. Changes are prepared and validated but left for human review and commit.
+
+---
+
 `@phcdevworks/spectre-init` is **Layer 7** of the Spectre 8-Layer Arsenal. It is the CLI scaffolding tool ("The Factory") that creates new Spectre-ready projects from opinionated templates.
 
 ## What This Package Does
