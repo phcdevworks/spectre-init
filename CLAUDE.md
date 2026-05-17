@@ -72,15 +72,21 @@ There are no tests yet. `npm run check` is the full verification gate.
 1. Run `npm run check` — must be clean.
 2. Bump `version` in `package.json`.
 3. Add a dated entry to `CHANGELOG.md` under a new version heading.
-4. Commit, tag, `npm publish`.
+4. Hand off to Codex for release review and sign-off.
+5. Brad commits, tags, and publishes after Codex sign-off.
 
-## Roadmap Priorities
+## Current Work Queue
 
-See `ROADMAP.md` and `TODO.md`. Current P0 items:
-1. Interactive prompts (`@clack/prompts` or similar)
-2. WordPress theme template (`templates/wordpress-theme/`)
-3. CI smoke test (scaffold + validate output)
+See `TODO.md` for the current P0/P1/P2 task queue and completion status.
+See `ROADMAP.md` for the full strategic roadmap with context and acceptance criteria.
 
-## Agent Guidance
+## Agent Handoffs
 
-See `AGENTS.md` for layer-specific guardrails and workflow directives.
+- **Codex** — hand off when work is ready for release review, changelog
+  finalization, production-safety sign-off, repo hygiene, or config cleanup.
+  Codex may make scoped documentation, configuration, and stabilization changes
+  but does not lead feature implementation.
+- **Jules** — handles automated small fixes, dependency bumps, and
+  micro-maintenance autonomously. Do not duplicate that work.
+- **Copilot** — inline support assistant. Not a coordination target.
+- **Brad** — all commits, tags, and publishes require human review and action.

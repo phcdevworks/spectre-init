@@ -88,20 +88,11 @@ Risk if skipped
 
 - WordPress adopters must hand-assemble the theme project manually
 
-### P0.4 CI Pipeline
+### ~~P0.4 CI Pipeline~~ ✓ Done
 
-Objective Add a CI pipeline that builds the CLI and validates templates on every
-push.
-
-Suggested deliverables
-
-- GitHub Actions workflow running `npm run build`
-- Optional: smoke test that runs `spectre-init` against each template and
-  validates the output structure
-
-Risk if skipped
-
-- Build regressions and broken templates ship undetected
+GitHub Actions CI workflow running `npm run check` against Node 22 and 24 matrix
+is in place at `.github/workflows/ci.yml`. Smoke test (scaffold + validate
+output) remains an open enhancement tracked in `TODO.md` under P0.
 
 ## P1: Template Completeness
 
@@ -179,7 +170,7 @@ Suggested deliverables
 1. ~~Add lint config~~ ✓ Done
 2. Add interactive prompts
 3. Add WordPress theme template
-4. Add CI pipeline
+4. ~~Add CI pipeline~~ ✓ Done
 5. Add shell system template
 6. Add manifest integration
 7. Add scaffolded output validation

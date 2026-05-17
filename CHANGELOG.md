@@ -4,6 +4,19 @@ All notable changes to this project will be documented here. The format follows 
 
 ## [Unreleased]
 
+### Added
+
+- `CODEX.md` documenting OpenAI Codex's secondary release-agent role, startup checklist, guardrails, and handoff format.
+- README link to the repository AI development guidance files.
+- `.github/copilot-instructions.md` defining GitHub Copilot as a support assistant with repository-specific coding constraints.
+- AI-agent coordination guidance in `AGENTS.md` covering companion files, precedence, and handoff rules.
+
+### Changed
+
+- `AGENTS.md` now serves as the canonical cross-agent coordination document for Claude Code, Codex, Copilot, and Jules.
+- `CLAUDE.md`, `CODEX.md`, Copilot instructions, Claude permissions, CodeRabbit review config, and the pull request template now align on AI-agent roles and release handoffs.
+- README AI guidance reference now points to `AGENTS.md` first.
+
 ## [0.0.1-post] — Changes since initial release
 
 ### Added

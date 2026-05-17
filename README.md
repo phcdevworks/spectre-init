@@ -63,6 +63,8 @@ Useful scripts:
 - `npm run build` emits the CLI to `dist`.
 - `npm run check` runs the standard package verification flow.
 
+AI-agent coordination starts in [AGENTS.md](./AGENTS.md), with companion guidance in [CLAUDE.md](./CLAUDE.md), [CODEX.md](./CODEX.md), and [.github/copilot-instructions.md](./.github/copilot-instructions.md).
+
 ## Release Notes
 
 See [CHANGELOG.md](./CHANGELOG.md).
