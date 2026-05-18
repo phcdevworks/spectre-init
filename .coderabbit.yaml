@@ -1,12 +1,12 @@
 # yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
-language: "en-US"
+language: 'en-US'
 early_access: false
 reviews:
-  profile: "assertive"
+  profile: 'assertive'
   request_changes_workflow: false
   high_level_summary: true
-  high_level_summary_placeholder: "@coderabbitai summary"
-  auto_title_placeholder: "@coderabbitai"
+  high_level_summary_placeholder: '@coderabbitai summary'
+  auto_title_placeholder: '@coderabbitai'
   review_status: true
   commit_status: true
   collapse_walkthrough: false
@@ -45,24 +45,26 @@ reviews:
     actionlint:
       enabled: true
   path_instructions:
-    - path: "AGENTS.md"
-      instructions: "AI-agent instructions must preserve the role map: Claude Code leads implementation; OpenAI Codex owns documentation, releases, production stabilization, repo hygiene, and config standardization; GitHub Copilot provides general development assistance only; Google Jules handles small automated maintenance only."
-    - path: "CLAUDE.md"
-      instructions: "AI-agent instructions must preserve the role map: Claude Code leads implementation; OpenAI Codex owns documentation, releases, production stabilization, repo hygiene, and config standardization; GitHub Copilot provides general development assistance only; Google Jules handles small automated maintenance only."
-    - path: "CODEX.md"
-      instructions: "AI-agent instructions must preserve the role map: Claude Code leads implementation; OpenAI Codex owns documentation, releases, production stabilization, repo hygiene, and config standardization; GitHub Copilot provides general development assistance only; Google Jules handles small automated maintenance only."
-    - path: ".github/copilot-instructions.md"
-      instructions: "AI-agent instructions must preserve the role map: Claude Code leads implementation; OpenAI Codex owns documentation, releases, production stabilization, repo hygiene, and config standardization; GitHub Copilot provides general development assistance only; Google Jules handles small automated maintenance only."
-    - path: "**/*.ts"
-      instructions: "Enforce strict TypeScript: flag missing type annotations, any usage, non-null assertions without justification, and unhandled promise rejections."
-    - path: "src/**"
-      instructions: "Review initialization logic for idempotency — init commands should be safe to run multiple times. Flag any destructive file operations that lack confirmation prompts or dry-run support."
-    - path: "templates/**"
-      instructions: "Template files are copied verbatim into new projects. Verify placeholders are consistent, no hardcoded project-specific values remain, and generated code follows the same coding standards as the rest of the codebase."
-    - path: "package.json"
-      instructions: "Review dependency additions carefully. Flag unpinned major versions and any new packages that duplicate existing functionality."
-    - path: "CHANGELOG.md"
-      instructions: "Verify entries follow Keep a Changelog format with correct categorization (Added/Changed/Fixed/Removed) and link to a version tag."
+    - path: 'AGENTS.md'
+      instructions: 'AI-agent instructions must preserve the role map: Claude Code leads implementation; OpenAI Codex owns documentation, releases, production stabilization, repo hygiene, and config standardization; GitHub Copilot provides general development assistance only; Google Jules handles small automated maintenance only.'
+    - path: 'CLAUDE.md'
+      instructions: 'AI-agent instructions must preserve the role map: Claude Code leads implementation; OpenAI Codex owns documentation, releases, production stabilization, repo hygiene, and config standardization; GitHub Copilot provides general development assistance only; Google Jules handles small automated maintenance only.'
+    - path: 'CODEX.md'
+      instructions: 'AI-agent instructions must preserve the role map: Claude Code leads implementation; OpenAI Codex owns documentation, releases, production stabilization, repo hygiene, and config standardization; GitHub Copilot provides general development assistance only; Google Jules handles small automated maintenance only.'
+    - path: 'JULES.md'
+      instructions: 'Verify Jules remains limited to bounded automated maintenance, dependency micro-updates, small docs fixes, and mechanical config cleanup with the repository validation gate passing.'
+    - path: '.github/copilot-instructions.md'
+      instructions: 'AI-agent instructions must preserve the role map: Claude Code leads implementation; OpenAI Codex owns documentation, releases, production stabilization, repo hygiene, and config standardization; GitHub Copilot provides general development assistance only; Google Jules handles small automated maintenance only.'
+    - path: '**/*.ts'
+      instructions: 'Enforce strict TypeScript: flag missing type annotations, any usage, non-null assertions without justification, and unhandled promise rejections.'
+    - path: 'src/**'
+      instructions: 'Review initialization logic for idempotency — init commands should be safe to run multiple times. Flag any destructive file operations that lack confirmation prompts or dry-run support.'
+    - path: 'templates/**'
+      instructions: 'Template files are copied verbatim into new projects. Verify placeholders are consistent, no hardcoded project-specific values remain, and generated code follows the same coding standards as the rest of the codebase.'
+    - path: 'package.json'
+      instructions: 'Review dependency additions carefully. Flag unpinned major versions and any new packages that duplicate existing functionality.'
+    - path: 'CHANGELOG.md'
+      instructions: 'Verify entries follow Keep a Changelog format with correct categorization (Added/Changed/Fixed/Removed) and link to a version tag.'
 chat:
   auto_reply: true
 knowledge_base:

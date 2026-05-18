@@ -71,8 +71,7 @@ Before a release handoff, Codex should verify:
 - Keep `CODEX.md` focused on Codex responsibilities instead of duplicating the
   full project guide from `CLAUDE.md`.
 - Keep `.github/copilot-instructions.md` concise and support-oriented.
-- Keep Jules guidance in root `AGENTS.md` unless a project-supported Jules config
-  file is added later.
+- Keep Jules guidance aligned between root `AGENTS.md` and `JULES.md`.
 - Keep automated review configuration aligned with the repository constraints.
 
 ## Standard Handoff Format

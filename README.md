@@ -1,11 +1,14 @@
 # @phcdevworks/spectre-init
 
-[![CI](https://github.com/phcdevworks/spectre-init/actions/workflows/ci.yml/badge.svg)](https://github.com/phcdevworks/spectre-init/actions/workflows/ci.yml)
 [![npm version](https://img.shields.io/npm/v/@phcdevworks/spectre-init.svg)](https://www.npmjs.com/package/@phcdevworks/spectre-init)
+[![CI](https://img.shields.io/github/actions/workflow/status/phcdevworks/spectre-init/ci.yml?branch=main&label=CI)](https://github.com/phcdevworks/spectre-init/actions/workflows/ci.yml)
+[![License](https://img.shields.io/github/license/phcdevworks/spectre-init)](LICENSE)
+[![Node](https://img.shields.io/node/v/@phcdevworks/spectre-init)](https://nodejs.org)
 
 CLI scaffolding for Spectre-ready applications. `spectre-init` creates a small vanilla TypeScript app with Spectre dependencies, local project guidance, and a predictable starter structure.
 
-[Issues](https://github.com/phcdevworks/spectre-init/issues) | [Pull requests](https://github.com/phcdevworks/spectre-init/pulls) | [Security](./SECURITY.md) | [Contributing](./CONTRIBUTING.md)
+[Contributing](CONTRIBUTING.md) | [Changelog](CHANGELOG.md) |
+[Roadmap](ROADMAP.md) | [Security Policy](SECURITY.md)
 
 ## When to use this package
 
@@ -78,16 +81,19 @@ Useful scripts:
 - `npm run build` emits the CLI to `dist`.
 - `npm run check` runs the standard package verification flow.
 
-AI-agent coordination starts in [AGENTS.md](./AGENTS.md), with companion guidance in [CLAUDE.md](./CLAUDE.md), [CODEX.md](./CODEX.md), and [.github/copilot-instructions.md](./.github/copilot-instructions.md).
+AI-agent coordination starts in [AGENTS.md](./AGENTS.md), with companion
+guidance in [CLAUDE.md](./CLAUDE.md), [CODEX.md](./CODEX.md),
+[COPILOT.md](./COPILOT.md), [JULES.md](./JULES.md), and
+[.github/copilot-instructions.md](./.github/copilot-instructions.md).
 
 ### Troubleshooting
 
-| Problem | Likely cause | Fix |
-|---|---|---|
-| `npm run check` fails | Type or lint error | Run `npm run typecheck` or `npm run lint` to isolate |
-| Scaffolded app fails `npm install` | Network or registry issue | Run `npm install` manually inside the generated directory |
-| Project name rejected | Name contains uppercase, spaces, or invalid characters | Use lowercase letters, numbers, hyphens, and dots only |
-| `spectre-init --version` shows wrong version | Stale global install | Run `npm install -g @phcdevworks/spectre-init` to update |
+| Problem                                      | Likely cause                                           | Fix                                                       |
+| -------------------------------------------- | ------------------------------------------------------ | --------------------------------------------------------- |
+| `npm run check` fails                        | Type or lint error                                     | Run `npm run typecheck` or `npm run lint` to isolate      |
+| Scaffolded app fails `npm install`           | Network or registry issue                              | Run `npm install` manually inside the generated directory |
+| Project name rejected                        | Name contains uppercase, spaces, or invalid characters | Use lowercase letters, numbers, hyphens, and dots only    |
+| `spectre-init --version` shows wrong version | Stale global install                                   | Run `npm install -g @phcdevworks/spectre-init` to update  |
 
 ## Contributing
 

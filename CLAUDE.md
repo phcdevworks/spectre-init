@@ -22,11 +22,13 @@ Spectre-ready projects from opinionated templates.
 ## Architecture Constraints
 
 This package **only scaffolds**. It must not:
+
 - Implement any Spectre runtime features
 - Import or re-export runtime code that generated projects consume
 - Add UI components, framework logic, or design tokens
 
 Every generated template must:
+
 - Reference `@phcdevworks/spectre-tokens` for all visual values (`--sp-*` CSS variables — no hardcoded hex or spacing literals)
 - Use `@phcdevworks/spectre-ui` for UI structure
 - Bootstrap via `@phcdevworks/spectre-shell`'s `bootstrapApp()`

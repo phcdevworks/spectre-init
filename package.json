@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Spectre initialization and project scaffolding tool",
   "type": "module",
+  "packageManager": "npm@11.14.1",
   "bin": {
     "spectre-init": "dist/index.js"
   },
@@ -25,22 +26,18 @@
     {
       "type": "github",
       "url": "https://github.com/sponsors/phcdevworks"
-    },
-    {
-      "type": "buymeacoffee",
-      "url": "https://buymeacoffee.com/phcdevworks"
     }
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/phcdevworks/spectre-init.git"
+    "url": "git+https://github.com/phcdevworks/spectre-init.git"
   },
   "bugs": {
     "url": "https://github.com/phcdevworks/spectre-init/issues"
   },
-  "homepage": "https://go.phcdev.co",
+  "homepage": "https://github.com/phcdevworks/spectre-init#readme",
   "engines": {
-    "node": ">=22"
+    "node": "^22.12.0 || >=24.0.0"
   },
   "publishConfig": {
     "access": "public"
