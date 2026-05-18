@@ -1,8 +1,23 @@
 # @phcdevworks/spectre-init
 
+[![CI](https://github.com/phcdevworks/spectre-init/actions/workflows/ci.yml/badge.svg)](https://github.com/phcdevworks/spectre-init/actions/workflows/ci.yml)
+[![npm version](https://img.shields.io/npm/v/@phcdevworks/spectre-init.svg)](https://www.npmjs.com/package/@phcdevworks/spectre-init)
+
 CLI scaffolding for Spectre-ready applications. `spectre-init` creates a small vanilla TypeScript app with Spectre dependencies, local project guidance, and a predictable starter structure.
 
 [Issues](https://github.com/phcdevworks/spectre-init/issues) | [Pull requests](https://github.com/phcdevworks/spectre-init/pulls) | [Security](./SECURITY.md) | [Contributing](./CONTRIBUTING.md)
+
+## When to use this package
+
+- You are starting a new Spectre-based application from scratch.
+- You want a working starter with `@phcdevworks/spectre-shell`, `@phcdevworks/spectre-tokens`, and the router wired up from the first commit.
+- You want project files, `AGENTS.md`, and AI-agent guidance pre-populated for the Spectre ecosystem.
+
+## When not to use this package
+
+- You are adding Spectre to an existing project — install packages individually instead.
+- You need a non-TypeScript or non-vanilla-JS template — this scaffold is TypeScript-only.
+- You need a framework-specific template (React, Vue, etc.) — those are out of scope.
 
 ## Capabilities
 
@@ -64,6 +79,19 @@ Useful scripts:
 - `npm run check` runs the standard package verification flow.
 
 AI-agent coordination starts in [AGENTS.md](./AGENTS.md), with companion guidance in [CLAUDE.md](./CLAUDE.md), [CODEX.md](./CODEX.md), and [.github/copilot-instructions.md](./.github/copilot-instructions.md).
+
+### Troubleshooting
+
+| Problem | Likely cause | Fix |
+|---|---|---|
+| `npm run check` fails | Type or lint error | Run `npm run typecheck` or `npm run lint` to isolate |
+| Scaffolded app fails `npm install` | Network or registry issue | Run `npm install` manually inside the generated directory |
+| Project name rejected | Name contains uppercase, spaces, or invalid characters | Use lowercase letters, numbers, hyphens, and dots only |
+| `spectre-init --version` shows wrong version | Stale global install | Run `npm install -g @phcdevworks/spectre-init` to update |
+
+## Contributing
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md). The gate is `npm run check`. Template changes must preserve the token-driven constraints — no hardcoded hex colors or spacing literals. See [AGENTS.md](./AGENTS.md) for boundaries.
 
 ## Release Notes
 

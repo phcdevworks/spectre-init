@@ -39,6 +39,12 @@
     "url": "https://github.com/phcdevworks/spectre-init/issues"
   },
   "homepage": "https://go.phcdev.co",
+  "engines": {
+    "node": ">=22"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
