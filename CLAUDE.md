@@ -9,7 +9,8 @@ Claude Code does **not** create git commits, push branches, or create tags in th
 
 ---
 
-`@phcdevworks/spectre-init` is **Layer 7** of the Spectre 8-Layer Arsenal. It is the CLI scaffolding tool ("The Factory") that creates new Spectre-ready projects from opinionated templates.
+`@phcdevworks/spectre-init` is the Spectre CLI scaffolding tool. It creates new
+Spectre-ready projects from opinionated templates.
 
 ## What This Package Does
 

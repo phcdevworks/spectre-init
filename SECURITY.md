@@ -4,7 +4,7 @@
 
 We aim to support the latest published version of the project. Security updates are applied to the current major version only.
 
-**Please ensure you are using the most recent versions** of the Spectre Arsenal packages. Older releases may not receive security fixes.
+**Please ensure you are using the most recent versions** of the Spectre packages. Older releases may not receive security fixes.
 
 ## Reporting a Vulnerability
 

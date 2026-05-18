@@ -1,53 +1,129 @@
-# AGENTS.md — spectre-init
+# AGENTS.md - spectre-init
 
-This is the canonical AI-agent coordination file for the repository. It follows
-the shared `AGENTS.md` style so Claude Code, OpenAI Codex, GitHub Copilot, Google
-Jules, and other coding agents can read one consistent operating model.
+## AI Operating Model
 
-## Primary AI Developer
+This is the central AI coordination document for the repository. Agent-specific
+files may add tool-local guidance, but they must not override the role
+boundaries below.
+
+This repository uses a four-agent AI operating model with defined,
+non-overlapping roles:
+
+| Agent              | Role                                                                   |
+| ------------------ | ---------------------------------------------------------------------- |
+| **Claude Code**    | Lead developer - primary implementation, architecture, tests           |
+| **OpenAI Codex**   | Documentation, releases, production stabilization, repo hygiene        |
+| **GitHub Copilot** | General development assistance (in-editor suggestions)                 |
+| **Google Jules**   | Automated maintenance - small fixes, dependency updates, micro-patches |
+
+Human commit and release authority rests with Bradley Potts
+(brad.potts@coastdigitalgroup.com). No AI agent creates git commits, pushes
+branches, creates tags, merges pull requests, publishes packages, or creates
+releases.
+
+## Instruction Map
+
+| File                              | Audience                     | Purpose                                                            |
+| --------------------------------- | ---------------------------- | ------------------------------------------------------------------ |
+| `AGENTS.md`                       | All agents, especially Codex | Central role model, coordination rules, verification gate          |
+| `CLAUDE.md`                       | Claude Code                  | Lead-development guide for implementation, architecture, and tests |
+| `CODEX.md`                        | OpenAI Codex                 | Release-readiness, production stabilization, and config posture    |
+| `.github/copilot-instructions.md` | GitHub Copilot               | In-editor suggestion boundaries                                    |
+| `.claude/settings.json`           | Claude Code runtime          | Local command denies for commit, push, tag, merge, and publish     |
+| `.coderabbit.yaml`                | CodeRabbit                   | Automated review checks aligned with package boundaries            |
+| `.github/dependabot.yml`          | Dependabot / Jules handoff   | Dependency-update cadence for automated maintenance                |
+
+## Claude Code - Lead Developer
 
 **Claude Code** (`claude-sonnet-4-6`) is the designated primary AI developer for
 this repository, maintained on behalf of Bradley Potts
 (brad.potts@coastdigitalgroup.com) at PHCDevworks. All development is driven
 through Claude Code operating from `CLAUDE.md` as the authoritative working
-guide. Human final review and commit authority rests with Bradley Potts.
+guide.
 
-Claude Code does not create git commits. Changes are prepared and validated,
-then handed off for human review and commit.
+**Owns:**
 
-## AI Role Boundaries
+- CLI implementation in `src/index.ts`
+- Template implementation in `templates/`
+- Scaffolding architecture and validation behavior
+- Test coverage when tests are added
+- Final implementation validation before handoff (`npm run check` must pass)
 
-- Claude Code: lead developer and primary implementation owner.
-- OpenAI Codex: documentation, releases, production stabilization, repo hygiene, and config standardization owner.
-- GitHub Copilot: general development support (inline suggestions, refactors, TypeScript and API hints).
-- Google Jules: automated small fixes, dependency updates, and micro-maintenance.
+**Does not own:** documentation publishing, release versioning, changelog
+authorship, dependency bump PRs, or repo-wide AI governance.
 
-Do not change these roles without explicit human direction from Bradley Potts.
-When instructions conflict, follow this order: direct human instruction, this
-file, the nearest nested `AGENTS.md`, then agent-specific companion files.
+## OpenAI Codex - Documentation & Releases
 
-## Agent-Specific Companion Files
+Codex handles documentation quality, release preparation, production
+stabilization, repo hygiene, config standardization, and release-readiness
+checks. Codex operates from `AGENTS.md` and `CODEX.md`.
 
-- `CLAUDE.md`: authoritative lead-developer guide for implementation, project
-  structure, commands, and release handoff expectations.
-- `CODEX.md`: Codex release-readiness, documentation, stabilization, repo
-  hygiene, changelog, and config-cleanup playbook.
-- `.github/copilot-instructions.md`: GitHub Copilot inline-assistance rules.
-- `.claude/settings.json`: Claude Code permission guardrails.
-- `.coderabbit.yaml`: automated pull-request review configuration.
+**Owns:**
 
-Google Jules reads this root `AGENTS.md`; keep Jules tasks limited to small
-fixes, dependency updates, and micro-maintenance. Do not assign Jules large
-features, architecture ownership, or release decisions.
+- `README.md`, `CHANGELOG.md`, `ROADMAP.md`, `TODO.md`, `CONTRIBUTING.md`, and
+  other root documentation
+- Release preparation: semver review, package metadata checks, changelog
+  entries, and release notes
+- Production stabilization: reviewing release readiness, flagging regressions,
+  and ensuring the verification gate passes
+- Repo hygiene: stale documentation cleanup, formatting consistency, config
+  standardization, PR and issue template maintenance
+- AI-agent instruction alignment across `AGENTS.md`, `CLAUDE.md`, `CODEX.md`,
+  Copilot guidance, and automated review config
+
+**Does not own:** primary feature implementation, template architecture, large
+refactors, dependency-update ownership, deployment, publishing, or release
+execution.
+
+Codex may make small, bounded documentation, config, release metadata, and
+stabilization fixes when they reduce drift or release risk. Implementation
+changes remain Claude Code-owned unless Bradley explicitly asks Codex to make a
+small stabilization fix.
+
+## GitHub Copilot - Development Assistance
+
+Copilot provides in-editor code suggestions and assists developers during active
+coding sessions. See `.github/copilot-instructions.md` for Copilot-specific
+guidance.
+
+**Supports:** inline completions, small code suggestions, TypeScript/API hints,
+test suggestions, refactor suggestions, and developer productivity inside the
+IDE.
+
+**Owns:** nothing directly. Suggestions are advisory and must follow the owning
+agent or human reviewer.
+
+**Does not own:** lead implementation decisions, architecture direction, release
+coordination, production stabilization ownership, repo-wide AI governance,
+automated maintenance workflows, config standardization ownership, or commit
+authority.
+
+## Google Jules - Automated Maintenance
+
+Jules handles small, automated maintenance tasks that do not require
+architectural judgment.
+
+**Owns:**
+
+- Dependency version bumps coordinated with `.github/dependabot.yml`
+- Small config corrections such as whitespace, key ordering, and obvious typos
+- Mechanical documentation fixes such as broken links or markdown formatting
+
+**Does not own:** feature work, new templates, architecture changes, public CLI
+contract changes, large refactors, release decisions, or publishing.
 
 ## Mission
 
-This is the Spectre scaffolding CLI — Layer 7 of the 8-Layer Arsenal. Read
-`CLAUDE.md` first for project overview, structure, and commands.
+This is the Spectre scaffolding CLI. It creates new Spectre-ready projects from
+opinionated templates. Read `CLAUDE.md` first for project overview, structure,
+and commands.
 
 ## The Golden Rule
 
-**The Factory enforces the contract.** Never generate or modify code that violates the 8-layer hierarchy. Every template must reference `@phcdevworks/spectre-tokens` for values and `@phcdevworks/spectre-ui` for structure. Zero hardcoded hex colors or spacing literals in any template file.
+**The factory enforces the contract.** Never generate or modify code that
+violates Spectre package boundaries. Every template must reference
+`@phcdevworks/spectre-tokens` for values and `@phcdevworks/spectre-ui` for
+structure. Zero hardcoded hex colors or spacing literals in any template file.
 
 ## Core Directives
 
@@ -56,6 +132,23 @@ This is the Spectre scaffolding CLI — Layer 7 of the 8-Layer Arsenal. Read
 3. **Fail fast on bad names** — `validateProjectName()` must reject anything that would be an invalid npm package name.
 4. **TypeScript preferred** — all generated templates must use TypeScript unless there is a specific documented reason not to.
 5. **No new runtime deps** — do not add dependencies to this package's `package.json` that would be imported at runtime inside scaffolded projects.
+
+## Coordination Rules
+
+- When instructions conflict, follow this priority: direct human request,
+  `AGENTS.md`, the nearest nested `AGENTS.md`, agent-specific file, then tool
+  suggestions.
+- Claude Code leads changes to CLI behavior, template architecture, scaffolding
+  output, project-name validation, and tests.
+- Codex leads documentation, release notes, release preparation, stabilization
+  review, repo hygiene, and AI/config cleanup.
+- Copilot output is advisory only; accepted suggestions still follow the owning
+  agent or human reviewer.
+- Jules and Dependabot changes should stay mechanical and easy to review.
+  Escalate behavior changes to Claude Code and release/changelog questions to
+  Codex.
+- Keep handoffs short: summarize changed files, validation status,
+  public-behavior impact, and unresolved risk.
 
 ## Workflow
 
@@ -74,7 +167,8 @@ This is the Spectre scaffolding CLI — Layer 7 of the 8-Layer Arsenal. Read
 - Copilot provides local suggestions only. Copilot does not own architecture,
   roadmap decisions, release readiness, or repository coordination.
 - Jules handles small automated maintenance. Jules should not create new
-  templates, change project architecture, or make publishing decisions.
+  templates, change project architecture, own release decisions, or make
+  publishing decisions.
 - Bradley Potts remains the final reviewer and the only release authority.
 
 ## What Requires Human Review
@@ -91,4 +185,4 @@ If any of the following are encountered, output a `🛑 CONSTRAINT TRIGGERED` bl
 - A template file would need a hardcoded color (`#`, `rgb(`, `hsl(`)
 - A template file would need a hardcoded spacing value (px/rem literals not from a token)
 - The CLI would need to write files outside the target project directory
-- A new Layer 3–6 template is requested but the upstream layer pattern is not yet proven/stable
+- A new upstream template is requested but the owning package pattern is not yet proven/stable

@@ -7,7 +7,7 @@ agent for this repository. Claude Code remains the primary AI developer and
 ## Operating Role
 
 - Keep Claude Code's implementation work aligned with `CLAUDE.md`, `AGENTS.md`,
-  `TODO.md`, and the Spectre 8-layer contract.
+  `TODO.md`, and the Spectre architecture contract.
 - Review changes for release risk, documentation drift, dependency creep, and
   template contract violations.
 - Refactor only when it reduces release risk, clarifies scaffolding behavior, or
