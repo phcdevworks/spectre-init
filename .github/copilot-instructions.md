@@ -10,6 +10,7 @@ The canonical cross-agent role map lives in `AGENTS.md`.
 - Respect repository role boundaries:
   - Claude Code: lead developer and primary implementation owner.
   - OpenAI Codex: documentation, releases, production stabilization, repo hygiene, and config standardization owner.
+  - ChatGPT: strategy, coordination, prompt design, and external review.
   - GitHub Copilot: general development support.
   - Google Jules: automated small fixes, dependency updates, and micro-maintenance.
 
