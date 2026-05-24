@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Spectre initialization and project scaffolding tool",
   "type": "module",
-  "packageManager": "npm@11.14.1",
+  "packageManager": "npm@11.15.0",
   "bin": {
     "spectre-init": "dist/index.js"
   },
@@ -45,6 +45,7 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
+    "release:propose": "node --experimental-strip-types scripts/propose-version.ts",
     "lint": "eslint .",
     "format": "prettier --write .",
     "check": "npm run typecheck && npm run lint && npm run build",
@@ -55,11 +56,11 @@
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
-    "@types/node": "^25.8.0",
+    "@types/node": "^25.9.1",
     "eslint": "^10.4.0",
     "jiti": "^2.7.0",
     "prettier": "^3.8.3",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.59.3"
+    "typescript-eslint": "^8.59.4"
   }
 }

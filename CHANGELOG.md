@@ -4,6 +4,8 @@ All notable changes to this project will be documented here. The format follows 
 
 ## [Unreleased]
 
+Contract change type: additive
+
 ### Added
 
 - `CODEX.md` documenting OpenAI Codex's secondary release-agent role, startup checklist, guardrails, and handoff format.
