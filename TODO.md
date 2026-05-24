@@ -1,90 +1,100 @@
 # Spectre Init Execution Todo
 
 This todo list is aligned to the current repository and the roadmap in
-`ROADMAP.md`. It is scoped to lint configuration, interactive CLI, template
+`ROADMAP.md`. It is scoped to CLI completeness, interactive prompts, template
 coverage, and CI.
 
-## P0: Template Coverage and CLI Completeness / Must-Do
+---
 
-- [x] Add eslint configuration — `eslint.config.ts` with `tseslint.config()`, `jiti` installed,
-  `npm run lint` and `npm run format` working.
+## Phase 1 - Foundation: Completed
 
-- Add interactive prompts for project type selection File targets:
-  - `src/index.ts`
-  - `package.json` (prompt library dependency)
-  - `README.md` Acceptance criteria:
-  - User is prompted to choose a project type
-  - User is prompted for project name and output directory
-  - Confirmation summary displays before any files are written
-  - Prompts are clear and include descriptions of each project type
+All Phase 1 items have been delivered.
 
-- Add WordPress theme scaffolding template File targets:
-  - `templates/wordpress-theme/`
-  - `src/index.ts` (register template)
-  - `README.md` Acceptance criteria:
-  - Template generates a valid `spectre-wordpress-themes` project structure
-  - Generated project includes Vite config, TypeScript entry, Tailwind setup,
-    `spectre-theme/` skeleton, and `package.json` with correct dependencies
-  - Documented in README
+### P0: Tooling and CI
 
-- [x] Add GitHub Actions CI pipeline File targets:
-  - `.github/workflows/ci.yml` Acceptance criteria:
-  - CI runs `npm run build` on push and PR (via `npm run check` matrix on Node 22/24)
-  - Optional: smoke test runs CLI against each template and validates output
-    structure
+- [x] Add ESLint configuration -- `eslint.config.ts` with `tseslint.config()`,
+  `jiti` installed, `npm run lint` and `npm run format` working.
 
-## P1: Template Completeness
+- [x] Add GitHub Actions CI pipeline
+  - CI runs `npm run check` on push and PR against Node 22/24 matrix.
+  - Smoke test (scaffold + validate output) remains an open enhancement
+    tracked in Phase 2 under P1.
 
-- Add shell system scaffolding template File targets:
-  - `templates/shell-app/`
-  - `src/index.ts` (register template)
-  - `README.md` Acceptance criteria:
-  - Template generates a working shell app with shell + router + signals wired
-  - Generated project includes `bootstrapApp()` entry, route configuration,
-    and a signal usage example
-  - Documented in README
+---
 
-- Wire manifest integration into scaffolded output File targets:
-  - `src/index.ts`
-  - relevant template files
-  - `README.md` Acceptance criteria:
-  - Scaffolded projects include a starter manifest entry
-  - README documents how to register the project in `spectre-manifest`
+## Phase 2 - Active Development
 
-- Add post-scaffold output validation File targets:
-  - `src/index.ts` or validation module
-  - CI smoke test Acceptance criteria:
-  - Required files are confirmed present after scaffolding
-  - Missing or unexpected files are reported clearly
+### P0: CLI Completeness / Must-Do
 
-## P2: Later / Controlled Improvement
+- Add interactive prompts for project type selection
+  - File targets: `src/index.ts`, `package.json` (prompt library), `README.md`
+  - Acceptance criteria:
+    - User is prompted to choose a project type
+    - User is prompted for project name and output directory
+    - Confirmation summary displays before any files are written
+    - Prompts are clear and include descriptions of each project type
 
-- Add WordPress plugin scaffolding template File targets:
-  - `templates/wordpress-plugin/`
-  - `src/index.ts` (register template) Acceptance criteria:
-  - Template follows the `spectre-icons` plugin pattern
-  - Implement when the plugin pattern is proven and repeatable
+- Add WordPress theme scaffolding template
+  - File targets: `templates/wordpress-theme/`, `src/index.ts`, `README.md`
+  - Acceptance criteria:
+    - Template generates a valid `spectre-wordpress-themes` project structure
+    - Generated project includes Vite config, TypeScript entry, Tailwind setup,
+      `spectre-theme/` skeleton, and `package.json` with correct dependencies
+    - Documented in README
 
-- Add `spectre-init update` command File targets:
-  - `src/index.ts` or new command module Acceptance criteria:
-  - Updates config files in an existing Spectre project to latest template
-  - Does not overwrite custom application code
-  - Implement after templates are stable
+### P1: Template Completeness
+
+- Add shell system scaffolding template
+  - File targets: `templates/shell-app/`, `src/index.ts`, `README.md`
+  - Acceptance criteria:
+    - Template generates a working shell app with shell + router + signals wired
+    - Generated project includes `bootstrapApp()` entry, route configuration,
+      and a signal usage example
+    - Documented in README
+
+- Wire manifest integration into scaffolded output
+  - File targets: `src/index.ts`, relevant template files, `README.md`
+  - Acceptance criteria:
+    - Scaffolded projects include a starter manifest entry
+    - README documents how to register the project in `spectre-manifest`
+
+- Add post-scaffold output validation
+  - File targets: `src/index.ts` or validation module, CI smoke test
+  - Acceptance criteria:
+    - Required files are confirmed present after scaffolding
+    - Missing or unexpected files are reported clearly
+
+### P2: Later / Controlled Improvement
+
+- Add WordPress plugin scaffolding template
+  - File targets: `templates/wordpress-plugin/`, `src/index.ts`
+  - Acceptance criteria:
+    - Template follows the `spectre-icons` plugin pattern
+    - Implement when the plugin pattern is proven and repeatable
+
+- Add `spectre-init update` command
+  - File targets: `src/index.ts` or new command module
+  - Acceptance criteria:
+    - Updates config files in an existing Spectre project to latest template
+    - Does not overwrite custom application code
+    - Implement after templates are stable
+
+---
+
+## Recommended Execution Order
+
+1. ~~Lint config~~ - Done
+2. ~~CI pipeline~~ - Done
+3. Interactive prompts
+4. WordPress theme template
+5. Shell system template
+6. Manifest integration
+7. Output validation
+8. Plugin template (when pattern proven)
+9. Update command (after templates stable)
 
 ## Explicitly Out of Scope
 
 - Do not implement Spectre features in this package
 - Do not add runtime code imported by generated projects
 - Do not add framework logic or UI components
-
-## Recommended Execution Order
-
-1. ~~Lint config~~ ✓ Done
-2. Interactive prompts
-3. WordPress theme template
-4. ~~CI pipeline~~ ✓ Done
-5. Shell system template
-6. Manifest integration
-7. Output validation
-8. Plugin template (when pattern proven)
-9. Update command (after templates stable)

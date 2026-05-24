@@ -1,56 +1,40 @@
 # COPILOT.md - spectre-init
 
-## Copilot Role
+## Role Summary
 
-GitHub Copilot is a support assistant in this repository. Copilot helps with
-small and medium coding tasks, inline suggestions, test suggestions, and
-documentation support. Copilot does not own architecture, release authority, or
-implementation leadership.
+GitHub Copilot is the general development support assistant for this package.
+Copilot helps with targeted edits, inline suggestions, TypeScript assistance,
+test suggestions, and documentation synchronization.
 
-## Team Relationship
+Copilot does not own implementation direction, architecture, release
+coordination, production stabilization, repo-wide AI governance, or automated
+maintenance workflows.
 
-- Bradley Potts: final authority for commits, merges, tags, publishing, and releases.
-- Claude Code: lead implementation and architecture owner.
-- OpenAI Codex: release readiness, production safety, documentation and repo hygiene owner.
-- GitHub Copilot: supporting development assistant.
-- Google Jules: automated micro-maintenance only (`JULES.md`).
+## Authority Boundaries
 
-## Package Boundary
+- Claude Code remains lead implementation owner (`CLAUDE.md`).
+- Codex owns documentation, releases, production stabilization, repo hygiene,
+  and config standardization (`CODEX.md`).
+- Jules owns bounded automated maintenance (`JULES.md`).
 
-This package is scaffolding only. Keep suggestions limited to CLI scaffolding,
-template packaging, validation behavior, and related docs/tests.
+Shared agent roster, edit boundaries, PR requirements, and coordination rules
+live in `AGENTS.md`.
 
-Do not suggest runtime feature logic that belongs in downstream Spectre
-packages.
+## Practical Guardrails
 
-## Allowed Work
-
-- Small and medium implementation support tasks.
-- Localized refactors that improve clarity or correctness.
-- README and docs updates when behavior or exports change.
-- PR and issue template support.
-- Test and validation support.
-
-## Restricted Work
-
+- Keep suggestions scoped to CLI scaffolding, template packaging, validation
+  behavior, and related docs and tests.
+- Do not suggest runtime feature logic that belongs in downstream Spectre
+  packages.
 - Do not take ownership from Claude Code or Codex.
-- Do not make release decisions.
-- Do not publish, merge, or tag releases.
-- Do not broaden package scope.
+- Do not make release decisions, publish, merge, or tag.
 
-## Validation Expectations
+## Pull Request Creation
 
-Primary gate: `npm run check`.
+Follow the shared PR requirements in `AGENTS.md`. Include validation results
+and release impact notes for Codex handoff.
 
-If validation fails, report the failing command and likely cause, then suggest
-the smallest safe fix.
+## Source of Detailed Guidance
 
-## Documentation Expectations
-
-When public behavior changes, keep `README.md`, `CHANGELOG.md`, and relevant
-GitHub templates aligned.
-
-## PR and Issue Support
-
-Use repository templates and include package-boundary checks, validation
-results, and release impact notes for Codex handoff.
+Primary Copilot guidance lives in `.github/copilot-instructions.md`.
+Shared repo boundaries live in `AGENTS.md`.

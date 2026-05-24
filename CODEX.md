@@ -36,20 +36,9 @@ agent for this repository. Claude Code remains the primary AI developer and
 6. Confirm whether the work touches `src/index.ts`, `templates/`, docs, or
    release metadata.
 
-## Guardrails
+## Package Constraints
 
-- Scaffolding only: this package creates projects and must not implement Spectre
-  runtime features.
-- Templates must use TypeScript unless a documented exception exists.
-- Templates must reference `@phcdevworks/spectre-tokens` for values and
-  `@phcdevworks/spectre-ui` for structure.
-- Template files must not introduce hardcoded hex colors, `rgb(`, `hsl(`, or
-  spacing literals that bypass `--sp-*` tokens.
-- `validateProjectName()` is a release-sensitive contract. Any regex change
-  requires human review.
-- Do not add runtime dependencies unless the package itself imports them at CLI
-  runtime and the need is documented. Do not add dependencies that scaffolded
-  projects would rely on accidentally.
+Core non-negotiable rules live in `AGENTS.md` under "Core Directives" and "Constraint Triggers". The one constraint with release-specific implications: `validateProjectName()` is a public-facing contract -- any regex change is a breaking change and requires human review before merge.
 
 ## Release Review
 

@@ -7,6 +7,10 @@ Google Jules is the scheduled maintenance agent for
 the scaffolding CLI healthy without taking over implementation or release
 ownership.
 
+Read `AGENTS.md` before taking any action. It defines the agent roster,
+authority boundaries, edit permissions, and PR requirements that apply to all
+agents including Jules.
+
 Claude Code remains the lead implementation agent. Codex owns documentation,
 release readiness, production stabilization, repo hygiene, and config
 standardization. Bradley Potts remains the final release and merge authority.

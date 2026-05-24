@@ -7,17 +7,9 @@ Human owner: PHCDevworks / brad.potts@coastdigitalgroup.com
 
 Claude Code does **not** create git commits, push branches, or create tags in this repository. Changes are prepared and validated but left for human review and commit.
 
-## AI Team
+## Multi-Agent Team
 
-| Role                   | Agent          | Authority                                                     |
-| ---------------------- | -------------- | ------------------------------------------------------------- |
-| Human owner            | Bradley Potts  | Final authority — commits, tags, releases                     |
-| Lead developer         | Claude Code    | Implementation, architecture, tests, CI                       |
-| Release/docs oversight | OpenAI Codex   | Release readiness, changelog, production safety               |
-| Development support    | GitHub Copilot | Inline suggestions, IDE support                               |
-| Maintenance            | Google Jules   | Bounded micro-maintenance and dependency updates (`JULES.md`) |
-
-See [AGENTS.md](./AGENTS.md) for full role boundaries and per-agent handoff rules.
+[AGENTS.md](./AGENTS.md) is the shared source for the agent roster, authority map, edit boundaries, PR requirements, and handoff rules. Claude Code is the lead implementation authority; resolve implementation conflicts by referencing this file and `AGENTS.md`.
 
 ---
 
@@ -97,11 +89,4 @@ See `ROADMAP.md` for the full strategic roadmap with context and acceptance crit
 
 ## Agent Handoffs
 
-- **Codex** — hand off when work is ready for release review, changelog
-  finalization, production-safety sign-off, repo hygiene, or config cleanup.
-  Codex may make scoped documentation, configuration, and stabilization changes
-  but does not lead feature implementation.
-- **Jules** — handles automated small fixes, dependency bumps, and
-  micro-maintenance autonomously. Do not duplicate that work.
-- **Copilot** — inline support assistant. Not a coordination target.
-- **Brad** — all commits, tags, and publishes require human review and action.
+See [AGENTS.md](./AGENTS.md) for handoff rules, coordination priorities, and what requires human review before merge.
