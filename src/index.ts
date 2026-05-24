@@ -33,6 +33,18 @@ function getVersion(): string {
   return pkg.version
 }
 
+const REQUIRED_SCAFFOLD_FILES = [
+  'index.html',
+  'package.json',
+  'src/main.ts',
+  'tsconfig.json',
+  'vite.config.ts',
+]
+
+function validateScaffold(targetDir: string): string[] {
+  return REQUIRED_SCAFFOLD_FILES.filter((f) => !existsSync(path.join(targetDir, f)))
+}
+
 function validateProjectName(name: string): string | null {
   if (!/^[a-z0-9]([a-z0-9._-]*[a-z0-9])?$/.test(name)) {
     return (
@@ -85,6 +97,13 @@ async function main(): Promise<void> {
   const pkg = (await readJson(pkgPath)) as Record<string, unknown>
   pkg.name = projectName
   await writeJson(pkgPath, pkg, { spaces: 2 })
+
+  const missing = validateScaffold(targetDir)
+  if (missing.length > 0) {
+    console.error(`\nError: scaffolding incomplete. Missing files:`)
+    for (const f of missing) console.error(`  ${f}`)
+    process.exit(1)
+  }
 
   console.log('Installing dependencies...')
   execSync('npm install', { cwd: targetDir, stdio: 'inherit' })

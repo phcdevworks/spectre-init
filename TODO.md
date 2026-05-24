@@ -58,11 +58,10 @@ All Phase 1 items have been delivered.
     - Scaffolded projects include a starter manifest entry
     - README documents how to register the project in `spectre-manifest`
 
-- Add post-scaffold output validation
-  - File targets: `src/index.ts` or validation module, CI smoke test
-  - Acceptance criteria:
-    - Required files are confirmed present after scaffolding
-    - Missing or unexpected files are reported clearly
+- [x] Add post-scaffold output validation
+  - `validateScaffold()` in `src/index.ts` checks all required template files
+    exist in the target directory after copy. Missing files are reported and
+    the process exits before `npm install` runs.
 
 ### P2: Later / Controlled Improvement
 
@@ -89,7 +88,7 @@ All Phase 1 items have been delivered.
 4. WordPress theme template
 5. Shell system template
 6. Manifest integration
-7. Output validation
+7. ~~Output validation~~ - Done
 8. Plugin template (when pattern proven)
 9. Update command (after templates stable)
 
