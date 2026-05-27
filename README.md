@@ -25,9 +25,11 @@ CLI scaffolding for Spectre-ready applications. `spectre-init` creates a small v
 ## Capabilities
 
 - Scaffolds a Spectre-ready vanilla TypeScript application.
-- Copies the bundled `templates/vanilla` starter into a new project directory.
+- Interactive setup: prompts for project name, type, and output directory with a confirmation summary before any files are written.
+- Copies the bundled template starter into a new project directory.
 - Validates project names before writing files.
 - Updates the generated package name to match the requested project.
+- Validates scaffolded output before running `npm install`.
 - Runs `npm install` after scaffolding so the app is ready to start.
 
 ## Install
@@ -47,6 +49,14 @@ spectre-init my-app
 
 ## Quick Start
 
+Interactive (guided setup):
+
+```bash
+npx @phcdevworks/spectre-init
+```
+
+Non-interactive (name provided, no prompts):
+
 ```bash
 npx @phcdevworks/spectre-init my-app
 cd my-app
@@ -58,7 +68,8 @@ npm run dev
 This package exposes the `spectre-init` binary.
 
 ```bash
-spectre-init <project-name>
+spectre-init                  # interactive setup
+spectre-init <project-name>   # skip prompts, scaffold immediately
 spectre-init --help
 spectre-init --version
 ```
