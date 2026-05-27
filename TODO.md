@@ -26,13 +26,13 @@ All Phase 1 items have been delivered.
 
 ### P0: CLI Completeness / Must-Do
 
-- Add interactive prompts for project type selection
-  - File targets: `src/index.ts`, `package.json` (prompt library), `README.md`
-  - Acceptance criteria:
-    - User is prompted to choose a project type
-    - User is prompted for project name and output directory
-    - Confirmation summary displays before any files are written
-    - Prompts are clear and include descriptions of each project type
+- [x] Add interactive prompts for project type selection
+  - File targets: `src/index.ts`, `package.json` (prompt library)
+  - `@inquirer/prompts` installed; interactive flow: project name (validated),
+    type selection with descriptions, output directory (defaults `./`),
+    confirmation summary before any files are written.
+  - Non-interactive path (positional arg) preserved for CI compatibility.
+  - README update tracked separately when WordPress theme template lands.
 
 - Add WordPress theme scaffolding template
   - File targets: `templates/wordpress-theme/`, `src/index.ts`, `README.md`
@@ -84,7 +84,7 @@ All Phase 1 items have been delivered.
 
 1. ~~Lint config~~ - Done
 2. ~~CI pipeline~~ - Done
-3. Interactive prompts
+3. ~~Interactive prompts~~ - Done
 4. WordPress theme template
 5. Shell system template
 6. Manifest integration

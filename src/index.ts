@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import { confirm, input, select } from '@inquirer/prompts'
 import { execSync } from 'child_process'
 import { existsSync, readFileSync } from 'fs'
 import { copy, readJson, writeJson } from 'fs-extra'
@@ -11,14 +12,33 @@ const __dirname = path.dirname(__filename)
 
 const args = process.argv.slice(2)
 
+const PROJECT_TYPES = {
+  vanilla: {
+    label: 'Vanilla Spectre',
+    description: 'TypeScript starter with Vite, Tailwind, and Spectre UI.',
+    templateDir: 'vanilla',
+  },
+} as const
+
+type ProjectTypeKey = keyof typeof PROJECT_TYPES
+
+const REQUIRED_SCAFFOLD_FILES = [
+  'index.html',
+  'package.json',
+  'src/main.ts',
+  'tsconfig.json',
+  'vite.config.ts',
+]
+
 function showHelp(): void {
   console.log(`
-Usage: spectre-init <project-name>
+Usage: spectre-init [project-name]
 
 Scaffold a new Spectre-ready application from the bundled vanilla template.
+Run with no arguments to launch the interactive setup.
 
 Arguments:
-  project-name    Name of the new project directory
+  project-name    Name of the new project directory (skips interactive prompts)
 
 Options:
   -h, --help      Show this help message
@@ -33,18 +53,6 @@ function getVersion(): string {
   return pkg.version
 }
 
-const REQUIRED_SCAFFOLD_FILES = [
-  'index.html',
-  'package.json',
-  'src/main.ts',
-  'tsconfig.json',
-  'vite.config.ts',
-]
-
-function validateScaffold(targetDir: string): string[] {
-  return REQUIRED_SCAFFOLD_FILES.filter((f) => !existsSync(path.join(targetDir, f)))
-}
-
 function validateProjectName(name: string): string | null {
   if (!/^[a-z0-9]([a-z0-9._-]*[a-z0-9])?$/.test(name)) {
     return (
@@ -56,40 +64,86 @@ function validateProjectName(name: string): string | null {
   return null
 }
 
-if (args.includes('-h') || args.includes('--help')) {
-  showHelp()
-  process.exit(0)
+function validateScaffold(targetDir: string): string[] {
+  return REQUIRED_SCAFFOLD_FILES.filter((f) => !existsSync(path.join(targetDir, f)))
 }
 
-if (args.includes('-v') || args.includes('--version')) {
-  console.log(getVersion())
-  process.exit(0)
+async function promptUser(): Promise<{ projectName: string; typeKey: ProjectTypeKey; targetDir: string }> {
+  const projectName = await input({
+    message: 'Project name:',
+    validate: (value) => validateProjectName(value) ?? true,
+  })
+
+  const typeKey = await select<ProjectTypeKey>({
+    message: 'Project type:',
+    choices: Object.entries(PROJECT_TYPES).map(([key, meta]) => ({
+      value: key as ProjectTypeKey,
+      name: meta.label,
+      description: meta.description,
+    })),
+  })
+
+  const outputDir = await input({
+    message: 'Output directory:',
+    default: './',
+  })
+
+  const targetDir = path.resolve(process.cwd(), outputDir, projectName)
+
+  console.log(`
+  Project:   ${projectName}
+  Type:      ${PROJECT_TYPES[typeKey].label}
+  Location:  ${targetDir}
+`)
+
+  const confirmed = await confirm({
+    message: 'Scaffold this project?',
+    default: true,
+  })
+
+  if (!confirmed) {
+    console.log('Aborted.')
+    process.exit(0)
+  }
+
+  return { projectName, typeKey, targetDir }
 }
-
-const projectName = args[0]
-
-if (!projectName) {
-  console.error('Error: a project name is required.\n')
-  showHelp()
-  process.exit(1)
-}
-
-const nameError = validateProjectName(projectName)
-if (nameError) {
-  console.error(`Error: ${nameError}`)
-  process.exit(1)
-}
-
-const templateDir = path.join(__dirname, '../templates/vanilla')
-const targetDir = path.join(process.cwd(), projectName)
 
 async function main(): Promise<void> {
+  if (args.includes('-h') || args.includes('--help')) {
+    showHelp()
+    process.exit(0)
+  }
+
+  if (args.includes('-v') || args.includes('--version')) {
+    console.log(getVersion())
+    process.exit(0)
+  }
+
+  let projectName: string
+  let typeKey: ProjectTypeKey = 'vanilla'
+  let targetDir: string
+
+  if (args[0]) {
+    projectName = args[0]
+    const nameError = validateProjectName(projectName)
+    if (nameError) {
+      console.error(`Error: ${nameError}`)
+      process.exit(1)
+    }
+    targetDir = path.join(process.cwd(), projectName)
+  } else {
+    ;({ projectName, typeKey, targetDir } = await promptUser())
+  }
+
   if (existsSync(targetDir)) {
     console.error(`Error: directory "${projectName}" already exists.`)
     process.exit(1)
   }
 
-  console.log(`Scaffolding Spectre app: ${projectName}`)
+  const templateDir = path.join(__dirname, '../templates', PROJECT_TYPES[typeKey].templateDir)
+
+  console.log(`\nScaffolding Spectre app: ${projectName}`)
 
   await copy(templateDir, targetDir)
 

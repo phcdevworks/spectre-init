@@ -8,6 +8,16 @@ Contract change type: additive
 
 ### Added
 
+- Interactive prompts when `spectre-init` is run with no arguments: project name (with validation), project type selection (with descriptions), output directory (defaults to `./`), and a confirmation summary before any files are written.
+- `PROJECT_TYPES` registry in `src/index.ts` — extensible map used by both the interactive type selector and the template copy path. Adding a new template only requires a new entry here.
+- `@inquirer/prompts` dependency for interactive CLI prompts.
+- Help text updated to document the no-argument interactive mode.
+
+### Changed
+
+- `src/index.ts` refactored: all arg-dispatch logic moved inside `main()`, module top-level is now declarations only.
+- Non-interactive path (name passed as positional arg) is preserved unchanged for scripting and CI compatibility.
+
 - `CODEX.md` documenting OpenAI Codex's secondary release-agent role, startup checklist, guardrails, and handoff format.
 - README link to the repository AI development guidance files.
 - `.github/copilot-instructions.md` defining GitHub Copilot as a support assistant with repository-specific coding constraints.
