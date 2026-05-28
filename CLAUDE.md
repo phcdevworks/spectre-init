@@ -1,7 +1,7 @@
 # CLAUDE.md — spectre-init
 
 Primary AI maintainer: **Claude Code** (claude-sonnet-4-6, Anthropic)
-Human owner: PHCDevworks / brad.potts@coastdigitalgroup.com
+Human owner: PHCDevworks / <brad.potts@coastdigitalgroup.com>
 
 ## Commit Policy
 
@@ -25,21 +25,11 @@ Spectre-ready projects from opinionated templates.
 
 ## Architecture Constraints
 
-This package **only scaffolds**. It must not:
-
-- Implement any Spectre runtime features
-- Import or re-export runtime code that generated projects consume
-- Add UI components, framework logic, or design tokens
-
-Every generated template must:
-
-- Reference `@phcdevworks/spectre-tokens` for all visual values (`--sp-*` CSS variables — no hardcoded hex or spacing literals)
-- Use `@phcdevworks/spectre-ui` for UI structure
-- Bootstrap via `@phcdevworks/spectre-shell`'s `bootstrapApp()`
+Scaffolding-only scope, zero-hex enforcement, and template token rules are defined in `AGENTS.md` under "Core Directives", "Constraint Triggers", and "Working Boundaries". Those definitions are authoritative.
 
 ## Project Structure
 
-```
+```text
 src/
   index.ts          — CLI entry point (shebang, arg parsing, scaffold logic)
 templates/
