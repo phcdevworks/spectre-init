@@ -18,6 +18,11 @@ const PROJECT_TYPES = {
     description: 'TypeScript starter with Vite, Tailwind, and Spectre UI.',
     templateDir: 'vanilla',
   },
+  'shell-app': {
+    label: 'Shell App',
+    description: 'Full Spectre shell app with router and signals wired from the start.',
+    templateDir: 'shell-app',
+  },
 } as const
 
 type ProjectTypeKey = keyof typeof PROJECT_TYPES
@@ -34,7 +39,7 @@ function showHelp(): void {
   console.log(`
 Usage: spectre-init [project-name]
 
-Scaffold a new Spectre-ready application from the bundled vanilla template.
+Scaffold a new Spectre-ready application from a bundled template.
 Run with no arguments to launch the interactive setup.
 
 Arguments:

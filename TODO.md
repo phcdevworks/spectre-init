@@ -17,7 +17,7 @@ Scoped to TS/Vite/Vanilla structured app scaffolding. Aligned to `ROADMAP.md`.
 
 ### P1: Template Completeness
 
-- Add shell system scaffolding template
+- [x] Add shell system scaffolding template
   - File targets: `templates/shell-app/`, `src/index.ts`, `README.md`
   - Acceptance criteria:
     - Template generates a working shell app with shell + router + signals wired
@@ -49,7 +49,7 @@ Scoped to TS/Vite/Vanilla structured app scaffolding. Aligned to `ROADMAP.md`.
 2. ~~CI pipeline~~ - Done
 3. ~~Interactive prompts~~ - Done
 4. ~~Output validation~~ - Done
-5. Shell system template
+5. ~~Shell system template~~ - Done
 6. Manifest integration
 7. Update command (after templates stable)
 

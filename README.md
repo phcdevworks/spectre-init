@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/github/license/phcdevworks/spectre-init)](LICENSE)
 [![Node](https://img.shields.io/node/v/@phcdevworks/spectre-init)](https://nodejs.org)
 
-CLI scaffolding for Spectre-ready applications. `spectre-init` creates a small vanilla TypeScript app with Spectre dependencies, local project guidance, and a predictable starter structure.
+CLI scaffolding for Spectre-ready applications. `spectre-init` creates a new TypeScript app from a bundled template, wires Spectre dependencies, and provides a predictable starter structure.
 
 [Contributing](CONTRIBUTING.md) | [Changelog](CHANGELOG.md) |
 [Roadmap](ROADMAP.md) | [Security Policy](SECURITY.md)
@@ -22,9 +22,18 @@ CLI scaffolding for Spectre-ready applications. `spectre-init` creates a small v
 - You need a non-TypeScript or non-vanilla-JS template — this scaffold is TypeScript-only.
 - You need a framework-specific template (React, Vue, etc.) — those are out of scope.
 
+## Templates
+
+| Type | Description |
+| --- | --- |
+| `vanilla` | TypeScript starter with Vite, Tailwind, and Spectre UI. |
+| `shell-app` | Full shell app with `bootstrapApp`, router, and signals wired from the start. |
+
+The interactive setup prompts for project type. The non-interactive path (`spectre-init <name>`) defaults to `vanilla`.
+
 ## Capabilities
 
-- Scaffolds a Spectre-ready vanilla TypeScript application.
+- Scaffolds a Spectre-ready TypeScript application from a bundled template.
 - Interactive setup: prompts for project name, type, and output directory with a confirmation summary before any files are written.
 - Copies the bundled template starter into a new project directory.
 - Validates project names before writing files.
