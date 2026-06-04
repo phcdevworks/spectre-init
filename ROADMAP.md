@@ -5,105 +5,140 @@ ecosystem. It creates new Spectre-based TypeScript/Vite applications from
 opinionated templates — structured app development, no framework, no magic.
 Its job is to scaffold correctly, not to implement Spectre features itself.
 
-## 1. Current Repo Assessment
+## Ecosystem Context
 
-### Current strengths
+Templates scaffold against these published packages:
 
-- CLI in place with working build pipeline (TypeScript → NodeNext).
-- `templates/` directory provides the scaffolding source.
-- `fs-extra` handles file operations cleanly.
-- Package published and consumable via `npx @phcdevworks/spectre-init`.
-- Interactive prompts (name, type, output dir, confirmation) via `@inquirer/prompts`.
-- Post-scaffold output validation confirms required files before `npm install` runs.
+| Package | Version | Role |
+| --- | --- | --- |
+| `@phcdevworks/spectre-shell` | 1.1.1 | SPA bootstrap — `bootstrapApp`, lifecycle callbacks, readiness signal |
+| `@phcdevworks/spectre-shell-router` | 1.1.0 | Client-side router — route matching, named routes, `render`/`destroy` hooks |
+| `@phcdevworks/spectre-shell-signals` | 1.1.0 | Reactive primitives — signals, computed, effects |
+| `@phcdevworks/spectre-tokens` | 2.7.0 | Design tokens — CSS variables (`--sp-*`), JS objects, Tailwind theme |
+| `@phcdevworks/spectre-ui` | 1.7.0 | Styling layer — CSS bundles, recipe functions, Tailwind preset |
+| `@phcdevworks/spectre-ui-astro` | 2.5.0 | Astro adapter — SSR-safe components |
 
-### Current gaps to harden
+## Phase 0: CLI Foundation — Complete
 
-- Template coverage limited to `vanilla` — shell-app template not yet available.
-- No integration with `spectre-manifest` — scaffolded projects are not
-  registered against the contract system automatically.
-- README does not fully document available templates and CLI flags.
+All complete:
 
-## 2. Roadmap
+- ESLint flat config with `typescript-eslint`, `jiti`, lint and format scripts
+- GitHub Actions CI pipeline — Node 22/24 matrix, `npm run check` gate
+- Interactive prompts — name validation, type selection, output dir, confirmation
+- Non-interactive path (positional arg) preserved for CI and scripting
+- Post-scaffold output validation via `validateScaffold()` before `npm install`
 
-## P0: CLI Completeness / Must-Do
+## Phase 1: Template Coverage — Complete
 
-### ~~P0.1 Lint Configuration~~ ✓ Done
+All complete:
 
-ESLint flat config (`eslint.config.ts`) with `typescript-eslint` in place.
+- `vanilla` template — `bootstrapApp`, router, basic route pair
+- `shell-app` template — `bootstrapApp`, router, signals, `effect`/`signal` wired with `render`/`destroy` lifecycle
 
-### ~~P0.2 Interactive Project Type Selection~~ ✓ Done
+## Phase 2: Ecosystem Alignment — Active
 
-Interactive prompts: project name (validated), type selection with descriptions,
-output directory (defaults `./`), confirmation summary before file creation.
-Non-interactive path (positional arg) preserved for CI/scripting.
+Templates exist but need to be production-ready against current package versions.
 
-### ~~P0.3 CI Pipeline~~ ✓ Done
+### P2.1 Bump Version Pins in Both Templates
 
-GitHub Actions CI workflow running `npm run check` against Node 22 and 24 matrix.
+Both templates pin stale versions. Scaffolded apps will install outdated packages.
 
-### ~~P0.4 Scaffolded Output Validation~~ ✓ Done
+| Dependency | Pinned | Current |
+| --- | --- | --- |
+| `spectre-shell` | `^0.0.1` | `^1.1.1` |
+| `spectre-shell-router` | `^0.0.1` | `^1.1.0` |
+| `spectre-shell-signals` | `^1.0.0` | `^1.1.0` |
+| `spectre-tokens` | `^1.0.0` | `^2.7.0` |
+| `spectre-ui` | `^0.4.1` | `^1.7.0` |
 
-`validateScaffold()` checks required files exist after copy, exits before
-`npm install` if anything is missing.
+Acceptance criteria: both `templates/*/package.json` files pin current semver ranges.
 
-## P1: Template Completeness
+### P2.2 Wire Spectre UI CSS into Both Templates
 
-### P1.1 Shell System Template
+`spectre-ui` is declared as a dependency in both templates but no CSS is imported.
+Scaffolded apps have zero Spectre styling out of the box.
 
-Objective Add a scaffolding template for a full Spectre shell application.
+Acceptance criteria:
 
-Why it matters The shell template is the structured-app path — router + signals
-wired from the start. It is the primary deliverable after the vanilla starter.
+- Both templates import the `spectre-ui` base CSS bundle on entry
+- Shell-app template demonstrates at least one `--sp-*` token variable in inline styles
+- Zero hardcoded hex or px literals in template source files
 
-Suggested deliverables
+### P2.3 Validate `bootstrapApp` API Against spectre-shell v1.1.1
 
-- Template at `templates/shell-app/` generating a working shell app with routing
-- Includes: `bootstrapApp()` entry, route configuration, signal usage example
-- New `shell-app` entry in the `PROJECT_TYPES` registry in `src/index.ts`
+Templates import `bootstrapApp` from `spectre-shell`. Confirm the function
+signature matches the published v1.1.1 export — specifically the `routes()`
+callback shape, `root` element binding, and any lifecycle hooks available.
+Update template usage if the API has changed.
+
+Acceptance criteria: template compiles cleanly against the installed v1.1.1
+types without type errors or `@ts-ignore` suppressions.
+
+## Phase 3: Template Expansion — Next
+
+### P3.1 Astro Template
+
+Add a `spectre-ui-astro` template for Astro-based projects.
+
+Why it matters: `spectre-ui-astro` v2.5.0 ships 9 SSR-safe components and is
+the supported path for Astro consumers. It has no prod dependencies on the
+shell packages — the template has a different dependency graph than `vanilla`
+and `shell-app`.
+
+Suggested deliverables:
+
+- Template at `templates/astro/` generating a working Astro starter
+- Includes at least two `spectre-ui-astro` components (e.g. `SpButton`, `SpCard`)
+- New `astro` entry in the `PROJECT_TYPES` registry in `src/index.ts`
+- Dependency notes: requires Astro `^6.4.3`, `spectre-tokens`, `spectre-ui`, `spectre-ui-astro`
 - Documented in `README.md`
 
-### P1.2 Spectre Manifest Integration
+Dependency notes: Implement after Phase 2 is complete and `spectre-ui-astro`
+template structure is confirmed stable.
 
-Objective Wire scaffolded projects into the `spectre-manifest` contract system.
+## Phase 4: Manifest Integration
 
-Why it matters A scaffolded project that is not registered in the manifest
-operates outside the contract enforcement system from day one.
+### P4.1 Spectre Manifest Integration
 
-Suggested deliverables
+Wire scaffolded projects into the `spectre-manifest` contract system.
+
+Acceptance criteria:
 
 - Scaffolded projects include a starter manifest entry
-- Document the manifest registration flow in `README.md`
+- README documents the manifest registration flow
 
-Dependency notes
+Blocked until `spectre-manifest` downstream tooling is in place.
 
-- Depends on `spectre-manifest` downstream consumer tooling being in place
+## Phase 5: Maintenance CLI
 
-## P2: Later / Controlled Improvement
+### P5.1 `spectre-init update` Command
 
-### P2.1 Update Existing Projects
+Allow `spectre-init update` to sync an existing project to the latest template structure.
 
-Objective Allow `spectre-init update` to sync an existing project to the latest
-template structure.
+Acceptance criteria:
 
-Suggested deliverables
+- Syncs config files without overwriting custom application code
+- Implement after Phase 3 templates are stable and version-pinning is solved
 
-- `spectre-init update` command that syncs config files without overwriting
-  custom application code
-- Implement after template coverage is complete and stable
+## Execution Order
 
-## 3. Explicitly Out of Scope
+1. ~~Lint config~~ ✓
+2. ~~CI pipeline~~ ✓
+3. ~~Interactive prompts~~ ✓
+4. ~~Output validation~~ ✓
+5. ~~Vanilla template~~ ✓
+6. ~~Shell-app template~~ ✓
+7. **Bump version pins** (P2.1) ← next
+8. **Wire spectre-ui CSS** (P2.2) ← next
+9. **Validate bootstrapApp API** (P2.3)
+10. Astro template (P3.1)
+11. Manifest integration (P4.1, blocked on upstream)
+12. Update command (P5.1, after templates stable)
+
+## Explicitly Out of Scope
 
 - Do not implement Spectre features here — this tool only scaffolds
 - Do not add runtime code that is imported by generated projects
 - Do not add framework logic, UI components, or design tokens
 - WordPress scaffolding is out of scope — handled by `spectre-base`
-
-## 4. Recommended Execution Order
-
-1. ~~Lint config~~ ✓ Done
-2. ~~CI pipeline~~ ✓ Done
-3. ~~Interactive prompts~~ ✓ Done
-4. ~~Output validation~~ ✓ Done
-5. Shell system template
-6. Manifest integration
-7. Update command (after templates stable)
+- React, Vue, or other framework-specific templates are out of scope

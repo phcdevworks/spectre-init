@@ -24,12 +24,22 @@ CLI scaffolding for Spectre-ready applications. `spectre-init` creates a new Typ
 
 ## Templates
 
-| Type | Description |
-| --- | --- |
-| `vanilla` | TypeScript starter with Vite, Tailwind, and Spectre UI. |
-| `shell-app` | Full shell app with `bootstrapApp`, router, and signals wired from the start. |
+| Type | Description | Packages wired |
+| --- | --- | --- |
+| `vanilla` | TypeScript + Vite starter with routing and Spectre UI. | `spectre-shell`, `spectre-shell-router`, `spectre-tokens`, `spectre-ui` |
+| `shell-app` | Full shell app with `bootstrapApp`, router, signals, and reactive effects. | `spectre-shell`, `spectre-shell-router`, `spectre-shell-signals`, `spectre-tokens`, `spectre-ui` |
 
 The interactive setup prompts for project type. The non-interactive path (`spectre-init <name>`) defaults to `vanilla`.
+
+## Ecosystem
+
+Templates scaffold against the Spectre package family:
+
+- **[spectre-shell](https://github.com/phcdevworks/spectre-shell)** — SPA bootstrap layer (`bootstrapApp`, lifecycle hooks)
+- **[spectre-shell-router](https://github.com/phcdevworks/spectre-shell-router)** — client-side router with named routes and `render`/`destroy` hooks
+- **[spectre-shell-signals](https://github.com/phcdevworks/spectre-shell-signals)** — reactive primitives (`signal`, `computed`, `effect`)
+- **[spectre-tokens](https://github.com/phcdevworks/spectre-tokens)** — design tokens as CSS variables (`--sp-*`), JS objects, and Tailwind theme
+- **[spectre-ui](https://github.com/phcdevworks/spectre-ui)** — CSS bundles and type-safe recipe functions built on tokens
 
 ## Capabilities
 

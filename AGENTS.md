@@ -38,7 +38,7 @@ maintenance when `JULES.md` explicitly allows it and all validation gates pass.
 ## Shared Edit Boundaries
 
 | Path | Status | Notes |
-|---|---|---|
+| --- | --- | --- |
 | `src/index.ts` | **May edit** | CLI entry point; changes require `npm run check` |
 | `templates/` | **May edit** | Scaffolding templates; new template directories require human review |
 | `package.json` | **May edit** | Dependencies and scripts permitted; `files`, `bin`, and `version` require human review |
@@ -216,11 +216,25 @@ If any of the following are encountered, output a `🛑 CONSTRAINT TRIGGERED` bl
 - The CLI would need to write files outside the target project directory
 - A new upstream template is requested but the owning package pattern is not yet proven/stable
 
+## Ecosystem Package Versions
+
+Templates must pin these current versions. Update this table when upstream packages release.
+
+| Package | Current version |
+| --- | --- |
+| `@phcdevworks/spectre-shell` | 1.1.1 |
+| `@phcdevworks/spectre-shell-router` | 1.1.0 |
+| `@phcdevworks/spectre-shell-signals` | 1.1.0 |
+| `@phcdevworks/spectre-tokens` | 2.7.0 |
+| `@phcdevworks/spectre-ui` | 1.7.0 |
+| `@phcdevworks/spectre-ui-astro` | 2.5.0 |
+
 ## Working Boundaries
 
 This package owns project scaffolding and starter template generation only.
 
 It does not own:
+
 - Runtime Spectre behavior (belongs in `@phcdevworks/spectre-shell`, `@phcdevworks/spectre-ui`, etc.)
 - Design token values (belongs in `@phcdevworks/spectre-tokens`)
 - UI component logic or composition
