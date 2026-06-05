@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the versioning reflects package releases.
 
+## [Unreleased]
+
+### Added
+
+- Added `@phcdevworks/spectre-manifest` as a devDependency. `spectre.manifest.json`
+  at the repo root declares this package's ecosystem role, layer, exports, and
+  allowed dependency targets. `check:ecosystem` validates it in the check pipeline.
+
 ## [1.0.0] - 2026-06-04
 
 First public release.

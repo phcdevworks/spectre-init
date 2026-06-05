@@ -1,0 +1,92 @@
+{
+  "$schema": "./node_modules/@phcdevworks/spectre-manifest/schema/spectre.manifest.schema.json",
+  "$id": "urn:phcdevworks:spectre-init:manifest",
+  "schemaVersion": "0.1",
+  "system": {
+    "name": "Spectre",
+    "version": "1.0.0",
+    "manifestVersion": "0.1",
+    "summary": "Ecosystem manifest for @phcdevworks/spectre-init — workspace scaffolding CLI for Spectre-aligned projects.",
+    "packageManager": "npm",
+    "repository": "https://github.com/phcdevworks/spectre-init"
+  },
+  "layers": {
+    "foundation": {
+      "title": "Foundation",
+      "description": "Base design-system packages and adapters that higher layers build on.",
+      "order": 10,
+      "dependsOn": []
+    },
+    "build": {
+      "title": "Build",
+      "description": "Composition and application-facing packages built on top of the foundation layer.",
+      "order": 20,
+      "dependsOn": ["foundation"]
+    }
+  },
+  "packages": {
+    "@phcdevworks/spectre-init": {
+      "role": "workspace-scaffolding",
+      "layer": "build",
+      "stability": "beta",
+      "description": "Workspace scaffolding entrypoint for creating new Spectre-aligned projects.",
+      "exports": ["."],
+      "dependencies": [],
+      "allowedTargets": ["layer:foundation", "layer:build", "external"],
+      "notes": [
+        "If spectre-init starts consuming governance packages later, it should move into a tooling/governance layer or receive an explicit boundary exception.",
+        "Scaffolding logic only — must not import from the runtime Spectre packages it generates."
+      ]
+    }
+  },
+  "rules": {
+    "dependencyDirection": [
+      {
+        "fromLayer": "build",
+        "allowedLayers": ["foundation", "build"],
+        "notes": ["Build packages may compose foundation packages and collaborate within the build layer."]
+      },
+      {
+        "fromLayer": "foundation",
+        "allowedLayers": ["foundation"]
+      }
+    ],
+    "forbiddenImports": [],
+    "boundaryConstraints": [
+      {
+        "scope": "package:@phcdevworks/spectre-init",
+        "rule": "Scaffolding logic only — no runtime Spectre package imports.",
+        "reason": "spectre-init generates project scaffolding; importing the packages it scaffolds would create circular coupling."
+      }
+    ]
+  },
+  "ai": {
+    "preferredEntrypoints": [
+      {
+        "task": "scaffold a new Spectre-aligned project",
+        "kind": "package",
+        "entrypoint": "@phcdevworks/spectre-init"
+      },
+      {
+        "task": "run full validation gate",
+        "kind": "command",
+        "entrypoint": "npm run check"
+      }
+    ],
+    "generationRules": [
+      "Do not add runtime Spectre package dependencies to this package.",
+      "Edit templates in templates/ to change scaffolded project output.",
+      "Run npm run check before staging any commit."
+    ],
+    "usageGuidance": [
+      "Run npx @phcdevworks/spectre-init to scaffold a new project.",
+      "Templates live in templates/ — edit there to change generated output.",
+      "This package is a CLI tool only; it does not publish a runtime JS/TS API."
+    ],
+    "safeDefaults": [
+      "Do not import from spectre-tokens, spectre-ui, or other Spectre runtime packages.",
+      "Keep the CLI dependency footprint minimal.",
+      "Do not add a Spectre design or UI dependency to this scaffolding package."
+    ]
+  }
+}

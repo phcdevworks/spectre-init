@@ -48,7 +48,8 @@
     "release:propose": "node --experimental-strip-types scripts/propose-version.ts",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "check": "npm run typecheck && npm run lint && npm run build",
+    "check:ecosystem": "spectre-manifest-validate spectre.manifest.json && spectre-manifest-check spectre.manifest.json .",
+    "check": "npm run typecheck && npm run lint && npm run build && npm run check:ecosystem",
     "prepublishOnly": "npm run check"
   },
   "dependencies": {
@@ -56,6 +57,7 @@
     "fs-extra": "^11.3.5"
   },
   "devDependencies": {
+    "@phcdevworks/spectre-manifest": "^1.0.0",
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^25.9.1",
     "eslint": "^10.4.1",
