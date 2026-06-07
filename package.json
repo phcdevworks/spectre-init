@@ -59,7 +59,7 @@
   "devDependencies": {
     "@phcdevworks/spectre-manifest": "^1.0.0",
     "@types/fs-extra": "^11.0.4",
-    "@types/node": "^25.9.1",
+    "@types/node": "^25.9.2",
     "eslint": "^10.4.1",
     "jiti": "^2.7.0",
     "prettier": "^3.8.3",
