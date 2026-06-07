@@ -22,22 +22,22 @@ Scoped to TS/Vite/Vanilla structured app scaffolding. Aligned to `ROADMAP.md`.
 
 ## Phase 2 — Ecosystem Alignment: Active
 
-### P1: Bump Version Pins in Both Templates
+### P1: Bump Version Pins in Both Templates — Complete
 
-- [ ] Update `templates/vanilla/package.json` — bump all `@phcdevworks/*` deps to current versions
+- [x] Update `templates/vanilla/package.json` — bump all `@phcdevworks/*` deps to current versions
   - `spectre-shell`: `^0.0.1` → `^1.1.1`
   - `spectre-shell-router`: `^0.0.1` → `^1.1.0`
   - `spectre-tokens`: `^1.0.0` → `^2.7.0`
   - `spectre-ui`: `^0.4.1` → `^1.7.0`
-- [ ] Update `templates/shell-app/package.json` — same bumps, plus:
+- [x] Update `templates/shell-app/package.json` — same bumps, plus:
   - `spectre-shell-signals`: `^1.0.0` → `^1.1.0`
 
-### P1: Wire Spectre UI CSS into Both Templates
+### P1: Wire Spectre UI CSS into Both Templates — Complete
 
-- [ ] Add `spectre-ui` CSS bundle import to `templates/vanilla/src/main.ts` (or a `style.css` entry)
-- [ ] Add `spectre-ui` CSS bundle import to `templates/shell-app/src/main.ts`
-- [ ] Add at least one `--sp-*` token variable usage to `shell-app` template — no hardcoded hex or px literals
-- [ ] Verify zero-hex constraint passes for both templates after CSS wiring
+- [x] Add `spectre-ui` CSS bundle import to `templates/vanilla/src/main.ts` (or a `style.css` entry)
+- [x] Add `spectre-ui` CSS bundle import to `templates/shell-app/src/main.ts`
+- [x] Add at least one `--sp-*` token variable usage to `shell-app` template — no hardcoded hex or px literals
+- [x] Verify zero-hex constraint passes for both templates after CSS wiring
 
 ### P1: Validate bootstrapApp API Against spectre-shell v1.1.1
 

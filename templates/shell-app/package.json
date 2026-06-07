@@ -6,11 +6,11 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@phcdevworks/spectre-shell": "^0.0.1",
-    "@phcdevworks/spectre-shell-router": "^0.0.1",
-    "@phcdevworks/spectre-shell-signals": "^1.0.0",
-    "@phcdevworks/spectre-tokens": "^1.0.0",
-    "@phcdevworks/spectre-ui": "^0.4.1"
+    "@phcdevworks/spectre-shell": "^1.1.1",
+    "@phcdevworks/spectre-shell-router": "^1.1.0",
+    "@phcdevworks/spectre-shell-signals": "^1.1.0",
+    "@phcdevworks/spectre-tokens": "^2.7.0",
+    "@phcdevworks/spectre-ui": "^1.7.0"
   },
   "devDependencies": {
     "typescript": "^5.9.3",

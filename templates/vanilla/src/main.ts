@@ -1,3 +1,4 @@
+import "@phcdevworks/spectre-ui/index.css"
 import { bootstrapApp } from "@phcdevworks/spectre-shell"
 import { navigate, registerRoute } from "@phcdevworks/spectre-shell-router"
 

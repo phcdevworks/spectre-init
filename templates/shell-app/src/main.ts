@@ -1,3 +1,4 @@
+import "@phcdevworks/spectre-ui/index.css"
 import { bootstrapApp } from "@phcdevworks/spectre-shell"
 import { navigate, registerRoute } from "@phcdevworks/spectre-shell-router"
 import { effect, signal } from "@phcdevworks/spectre-shell-signals"
@@ -15,7 +16,7 @@ bootstrapApp({
         render({ root }) {
           root.innerHTML = `
             <h1>Home</h1>
-            <p>Count: <span id="count-value">0</span></p>
+            <p>Count: <span id="count-value" style="color: var(--sp-text-on-page-brand)">0</span></p>
             <button id="increment">+1</button>
             <button id="to-about">Go to About</button>
           `
