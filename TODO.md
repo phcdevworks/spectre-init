@@ -39,11 +39,12 @@ Scoped to TS/Vite/Vanilla structured app scaffolding. Aligned to `ROADMAP.md`.
 * [x] Add at least one `--sp-*` token variable usage to `shell-app` template — no hardcoded hex or px literals
 * [x] Verify zero-hex constraint passes for both templates after CSS wiring
 
-### P1: Validate bootstrapApp API Against spectre-shell v1.1.1
+### P1: Validate and Fix bootstrapApp API — Complete
 
-* [ ] Confirm `bootstrapApp` export exists and matches the template call signature in `spectre-shell` v1.1.1
-* [ ] Confirm `routes()` callback shape, `root` binding, and any available lifecycle hooks match template usage
-* [ ] Fix template if API has changed; document any findings
+* [x] **Phantom imports** — removed `registerRoute` and `navigate` (never existed in the router package). Both templates now import only `type Route` from `@phcdevworks/spectre-shell-router`.
+* [x] **Route registration shape** — `routes()` now returns `Route[]` per `BootstrapOptions` contract. Each route has `path` and `loader` keys; `loader` returns a `PageModule` with `render` (and `destroy` where used).
+* [x] **Navigation** — replaced programmatic `navigate()` calls with `<a href="...">` links. The Router's click interceptor handles these through its full race-condition guard — no raw `history.pushState`.
+* [x] Both templates typecheck cleanly against installed v1.1.x packages with zero errors.
 
 ---
 
@@ -78,6 +79,17 @@ Scoped to TS/Vite/Vanilla structured app scaffolding. Aligned to `ROADMAP.md`.
 
 ---
 
+## Phase 6 — Template Modernization: After Phase 3
+
+All items below are work in `templates/` in this repo. All APIs are already shipped upstream.
+
+* [ ] Add `beforeMount` / `afterMount` callbacks to `bootstrapApp` in both templates
+* [ ] Observe `bootReady` signal via `effect()` in shell-app template
+* [ ] Add `meta: { title: string }` to each route definition in shell-app
+* [ ] Add a minimal `ShellPlugin` (boot logger) to shell-app — demonstrates `plugins` array on `BootstrapOptions`
+
+---
+
 ## Recommended Execution Order
 
 1. ~~Lint config~~ ✓
@@ -86,12 +98,13 @@ Scoped to TS/Vite/Vanilla structured app scaffolding. Aligned to `ROADMAP.md`.
 4. ~~Output validation~~ ✓
 5. ~~Vanilla template~~ ✓
 6. ~~Shell-app template~~ ✓
-7. **Bump version pins** ← next
-8. **Wire spectre-ui CSS** ← next
-9. **Validate bootstrapApp API**
-10. Astro template
-11. Manifest integration (blocked)
-12. Update command
+7. ~~Bump version pins~~ ✓
+8. ~~Wire spectre-ui CSS~~ ✓
+9. ~~Fix phantom imports + broken route API~~ ✓
+10. **Astro template** ← next (Phase 3)
+11. Template modernization (Phase 6)
+12. Manifest integration (Phase 4)
+13. Update command (Phase 5)
 
 ## Explicitly Out of Scope
 

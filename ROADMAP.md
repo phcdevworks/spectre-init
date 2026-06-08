@@ -64,15 +64,31 @@ Acceptance criteria:
 - Shell-app template demonstrates at least one `--sp-*` token variable in inline styles
 - Zero hardcoded hex or px literals in template source files
 
-### P2.3 Validate `bootstrapApp` API Against spectre-shell v1.1.1
+### P2.3 Fix Template API — Broken Against Current Packages
 
-Templates import `bootstrapApp` from `spectre-shell`. Confirm the function
-signature matches the published v1.1.1 export — specifically the `routes()`
-callback shape, `root` element binding, and any lifecycle hooks available.
-Update template usage if the API has changed.
+Both templates are broken against the current published packages. They must be rewritten before any further template work proceeds.
 
-Acceptance criteria: template compiles cleanly against the installed v1.1.1
-types without type errors or `@ts-ignore` suppressions.
+**What is wrong:**
+
+- Both templates import `registerRoute` and `navigate` from `@phcdevworks/spectre-shell-router`. These exports do not exist. The package only exports the `Router` class and types. Templates will fail at runtime.
+- `BootstrapOptions.routes` is typed `() => Route[]` — the callback must return an array of `{ path, loader }` objects. Both templates call `registerRoute()` inside the callback and return nothing.
+- `bootstrapApp` returns `void` and does not expose the `Router` instance. There is no way to call `router.navigate()` programmatically from template code. The templates currently call a non-existent standalone `navigate()`.
+
+**Upstream coordination required:**
+
+`spectre-shell` must resolve the programmatic navigation gap before the templates can be fixed. Options:
+
+1. `bootstrapApp` returns the `Router` instance — cleanest, but a minor breaking change (currently `void`).
+2. `spectre-shell` exports a module-level `navigate(path)` helper that proxies to the last-created Router — no breaking change, mirrors the pattern in other frameworks.
+
+Do not use `history.pushState()` directly in templates. It bypasses the Router's monotonic nav-id race-condition guard.
+
+**Acceptance criteria:**
+
+- Both templates import only real exports from each package
+- `routes()` callback returns `Route[]` per the `BootstrapOptions` contract
+- Programmatic navigation uses a supported API (not raw History)
+- Both templates typecheck cleanly without `@ts-ignore`
 
 ## Phase 3: Template Expansion — Next
 
@@ -120,6 +136,46 @@ Acceptance criteria:
 - Syncs config files without overwriting custom application code
 - Implement after Phase 3 templates are stable and version-pinning is solved
 
+## Phase 6: Template Modernization
+
+Templates should demonstrate the full depth of the Spectre ecosystem. All APIs in this phase are shipped in current upstream packages — this phase is about surfacing them in scaffolded output so new projects start with best-practice patterns already wired in.
+
+Prerequisite: Phase 2 P2.3 (template API fix) must be complete and templates must typecheck cleanly.
+
+### P6.1 Bootstrap Lifecycle (both templates)
+
+Expose `beforeMount`, `afterMount`, and `bootReady` in both templates. The `examples/minimal-spa` in `spectre-shell` is the canonical reference for this pattern.
+
+Acceptance criteria:
+
+- `beforeMount` and `afterMount` callbacks present in the `bootstrapApp` call
+- `bootReady` signal imported from `spectre-shell` and observed via `effect()` in shell-app
+
+### P6.2 Route Metadata + Document Title (shell-app)
+
+`spectre-shell-router` v1.1.0 ships `meta` on route definitions and `afterNavigate` on `RouterOptions`. Use them together for title management — a pattern every real app needs.
+
+Acceptance criteria:
+
+- Each route in the shell-app template carries `meta: { title: string }`
+- `afterNavigate` sets `document.title` from `context.meta?.title`
+- Both routes (`/`, `/about`) have distinct titles
+
+### P6.3 Navigation Loading State (shell-app)
+
+`onNavigationStart` and `onNavigationEnd` are available on `RouterOptions`. Wire a `navigating` signal to show/hide a loading indicator between route changes.
+
+Dependency: requires the Router instance to be accessible from template code — blocked until the programmatic navigation gap (P2.3) is resolved upstream.
+
+### P6.4 Plugin System Demo (shell-app)
+
+`bootstrapApp` accepts `plugins?: ShellPlugin[]` since spectre-shell v1.1.1. A single minimal plugin (e.g., dev-mode boot logger) is enough to show the pattern without adding noise.
+
+Acceptance criteria:
+
+- One `ShellPlugin` defined and passed in the shell-app template
+- Plugin uses `context.bootReady` to confirm startup state
+
 ## Execution Order
 
 1. ~~Lint config~~ ✓
@@ -128,12 +184,13 @@ Acceptance criteria:
 4. ~~Output validation~~ ✓
 5. ~~Vanilla template~~ ✓
 6. ~~Shell-app template~~ ✓
-7. **Bump version pins** (P2.1) ← next
-8. **Wire spectre-ui CSS** (P2.2) ← next
-9. **Validate bootstrapApp API** (P2.3)
+7. ~~Bump version pins~~ ✓ (P2.1)
+8. ~~Wire spectre-ui CSS~~ ✓ (P2.2)
+9. **Fix phantom imports + broken route API** (P2.3) — coordinate navigation pattern upstream first
 10. Astro template (P3.1)
-11. Manifest integration (P4.1, blocked on upstream)
-12. Update command (P5.1, after templates stable)
+11. Template modernization — lifecycle, metadata, plugins (P6.1–P6.4)
+12. Manifest integration (P4.1, blocked on upstream)
+13. Update command (P5.1, after templates stable)
 
 ## Explicitly Out of Scope
 
