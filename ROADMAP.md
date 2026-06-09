@@ -75,8 +75,9 @@ Implement after Phase 2 is confirmed stable.
 ### P4.1 Spectre Manifest Integration
 
 Wire scaffolded projects into the `spectre-manifest` contract system.
-`spectre-manifest-check` is already shipped and wired into the `check:ecosystem`
-script — the downstream tooling is in place.
+`spectre-manifest-check` is shipped and wired into the `check:ecosystem` script
+in upstream packages — the downstream tooling is in place. This can proceed
+independently of Phase 3.
 
 Remaining work in this repo:
 
@@ -100,7 +101,12 @@ Acceptance criteria:
 Templates should demonstrate the full depth of the Spectre ecosystem. All APIs
 in this phase are shipped in current upstream packages.
 
-Prerequisite: Phase 2 P2.3 is complete. Proceed.
+Prerequisites:
+
+- spectre-shell-router Phase 3 P3 docs closed (meta, afterNavigate,
+  onNavigationStart/End, and subscribe patterns need README examples to copy)
+- spectre-shell P2.5 programmatic navigation resolved (bootstrapApp return
+  value decided) before templates demonstrate navigate()
 
 ### P6.1 Bootstrap Lifecycle (both templates)
 

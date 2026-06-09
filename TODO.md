@@ -20,7 +20,7 @@ Scoped to TS/Vite/Vanilla structured app scaffolding. Aligned to `ROADMAP.md`.
 
 ---
 
-## Phase 2 — Ecosystem Alignment: Active
+## Phase 2 — Ecosystem Alignment: Complete
 
 ### P1: Bump Version Pins in Both Templates — Complete
 
@@ -66,7 +66,11 @@ Scoped to TS/Vite/Vanilla structured app scaffolding. Aligned to `ROADMAP.md`.
 ## Phase 4 — Manifest Integration
 
 * [ ] Wire manifest integration into scaffolded output
-  * Blocked until `spectre-manifest` downstream tooling is in place
+  * `spectre-manifest-check` is shipped and wired into `check:ecosystem` in
+    upstream packages — the downstream tooling is in place.
+  * Remaining work: scaffolded projects include a starter `spectre.manifest.json`;
+    README documents the manifest registration flow.
+  * Can proceed independently of Phase 3.
 
 ---
 
@@ -81,12 +85,23 @@ Scoped to TS/Vite/Vanilla structured app scaffolding. Aligned to `ROADMAP.md`.
 
 ## Phase 6 — Template Modernization: After Phase 3
 
-All items below are work in `templates/` in this repo. All APIs are already shipped upstream.
+All items below are work in `templates/` only. All APIs are shipped upstream.
+
+Prerequisites before starting:
+
+* spectre-shell-router Phase 3 P3 docs must be closed (meta, afterNavigate,
+  onNavigationStart/End, subscribe patterns need README examples to copy from)
+* spectre-shell P2.5 programmatic navigation must be resolved (bootstrapApp
+  return value decided) before templates can demonstrate navigate()
 
 * [ ] Add `beforeMount` / `afterMount` callbacks to `bootstrapApp` in both templates
 * [ ] Observe `bootReady` signal via `effect()` in shell-app template
-* [ ] Add `meta: { title: string }` to each route definition in shell-app
-* [ ] Add a minimal `ShellPlugin` (boot logger) to shell-app — demonstrates `plugins` array on `BootstrapOptions`
+* [ ] Add `meta: { title: string }` to each route definition in shell-app;
+      use `afterNavigate` to set `document.title`
+* [ ] Wire `navigating` signal from `onNavigationStart`/`onNavigationEnd` hooks;
+      reflect in DOM via `effect()`
+* [ ] Add a minimal `ShellPlugin` (boot logger) to shell-app — demonstrates
+      `plugins` array on `BootstrapOptions`
 
 ---
 
