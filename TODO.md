@@ -48,7 +48,7 @@ Scoped to TS/Vite/Vanilla structured app scaffolding. Aligned to `ROADMAP.md`.
 
 ---
 
-## Phase 3 — Template Expansion: Next
+## Phase 3 — Template Expansion: NEXT — Unblocked
 
 ### P2: Astro Template
 
@@ -59,18 +59,17 @@ Scoped to TS/Vite/Vanilla structured app scaffolding. Aligned to `ROADMAP.md`.
     * Deps: Astro `^6.4.3`, `spectre-tokens`, `spectre-ui`, `spectre-ui-astro`
     * New `astro` entry added to `PROJECT_TYPES` registry
     * Documented in README
-  * Implement after Phase 2 is complete
 
 ---
 
-## Phase 4 — Manifest Integration
+## Phase 4 — Manifest Integration: Unblocked — Can Run in Parallel with Phase 3
 
 * [ ] Wire manifest integration into scaffolded output
   * `spectre-manifest-check` is shipped and wired into `check:ecosystem` in
     upstream packages — the downstream tooling is in place.
   * Remaining work: scaffolded projects include a starter `spectre.manifest.json`;
     README documents the manifest registration flow.
-  * Can proceed independently of Phase 3.
+  * No dependency on Phase 3 — can be worked concurrently.
 
 ---
 
@@ -83,16 +82,17 @@ Scoped to TS/Vite/Vanilla structured app scaffolding. Aligned to `ROADMAP.md`.
 
 ---
 
-## Phase 6 — Template Modernization: After Phase 3
+## Phase 6 — Template Modernization: Blocked — Waiting on Upstream
 
-All items below are work in `templates/` only. All APIs are shipped upstream.
+All items below are work in `templates/` only. All APIs are already shipped upstream.
 
-Prerequisites before starting:
+Prerequisites — both must complete before starting Phase 6:
 
-* spectre-shell-router Phase 3 P3 docs must be closed (meta, afterNavigate,
-  onNavigationStart/End, subscribe patterns need README examples to copy from)
-* spectre-shell P2.5 programmatic navigation must be resolved (bootstrapApp
-  return value decided) before templates can demonstrate navigate()
+* `spectre-shell-router` P3 docs must be closed — meta, afterNavigate,
+  onNavigationStart/End, and subscribe patterns need README examples to copy from
+  (currently in progress in spectre-shell-router)
+* `spectre-shell` P2.5 must be implemented — `bootstrapApp` must return the `Router`
+  instance (Option A, currently in progress in spectre-shell)
 
 * [ ] Add `beforeMount` / `afterMount` callbacks to `bootstrapApp` in both templates
 * [ ] Observe `bootReady` signal via `effect()` in shell-app template
@@ -116,10 +116,10 @@ Prerequisites before starting:
 7. ~~Bump version pins~~ ✓
 8. ~~Wire spectre-ui CSS~~ ✓
 9. ~~Fix phantom imports + broken route API~~ ✓
-10. **Astro template** ← next (Phase 3)
-11. Template modernization (Phase 6)
-12. Manifest integration (Phase 4)
-13. Update command (Phase 5)
+10. **Astro template** ← next, unblocked (Phase 3)
+11. **Manifest integration** ← parallel with Phase 3, unblocked (Phase 4)
+12. Template modernization ← blocked until spectre-shell-router P3 docs + spectre-shell P2.5 ship (Phase 6)
+13. Update command ← after templates stable (Phase 5)
 
 ## Explicitly Out of Scope
 

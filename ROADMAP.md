@@ -101,12 +101,12 @@ Acceptance criteria:
 Templates should demonstrate the full depth of the Spectre ecosystem. All APIs
 in this phase are shipped in current upstream packages.
 
-Prerequisites:
+Prerequisites — both must be done before Phase 6 starts:
 
-- spectre-shell-router Phase 3 P3 docs closed (meta, afterNavigate,
-  onNavigationStart/End, and subscribe patterns need README examples to copy)
-- spectre-shell P2.5 programmatic navigation resolved (bootstrapApp return
-  value decided) before templates demonstrate navigate()
+- `spectre-shell-router` Phase 3 P3 docs closed (meta, afterNavigate,
+  onNavigationStart/End, subscribe patterns — README examples to copy from) ← in progress
+- `spectre-shell` P2.5 implemented (`bootstrapApp` returns `Router` instance,
+  decision is Option A) ← in progress
 
 ### P6.1 Bootstrap Lifecycle (both templates)
 
@@ -163,9 +163,10 @@ Acceptance criteria:
 7. ~~Bump version pins~~ ✓ (P2.1)
 8. ~~Wire spectre-ui CSS~~ ✓ (P2.2)
 9. ~~Fix phantom imports + broken route API~~ ✓ (P2.3)
-10. **Astro template** ← next (P3.1)
-11. Template modernization — lifecycle, metadata, loading state, plugins (P6.1–P6.4)
-12. Manifest integration (P4.1)
+10. **Astro template** ← next, unblocked (P3.1)
+11. **Manifest integration** ← can run in parallel with P3.1, unblocked (P4.1)
+12. Template modernization — lifecycle, metadata, loading state, plugins (P6.1–P6.4)
+    Blocked until: `spectre-shell-router` P3 docs done + `spectre-shell` P2.5 shipped
 13. Update command (P5.1, after templates stable)
 
 ## Explicitly Out of Scope
