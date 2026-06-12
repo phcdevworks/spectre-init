@@ -39,8 +39,8 @@
 
 CLI scaffolding for Spectre-ready applications. `spectre-init` creates a new TypeScript app from a bundled template, wires Spectre dependencies, and provides a predictable starter structure.
 
-[Contributing](CONTRIBUTING.md) | [Changelog](CHANGELOG.md) |
-[Roadmap](ROADMAP.md) | [Security Policy](SECURITY.md)
+[Contributing](CONTRIBUTING.md) | [Code of Conduct](CODE_OF_CONDUCT.md) |
+[Changelog](CHANGELOG.md) | [Roadmap](ROADMAP.md) | [Security Policy](SECURITY.md)
 
 ## When to use this package
 

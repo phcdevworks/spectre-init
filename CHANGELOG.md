@@ -46,3 +46,6 @@ First public release.
 - `CLAUDE.md`, `CODEX.md`, Copilot instructions, Claude permissions, CodeRabbit review config, and the pull request template now align on AI-agent roles and release handoffs.
 - README AI guidance reference now points to `AGENTS.md` first.
 - Bumped `fs-extra` to `^11.3.5`, `@types/node` to `^25.7.0`, `typescript-eslint` to `^8.59.3`.
+
+[unreleased]: https://github.com/phcdevworks/spectre-init/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/phcdevworks/spectre-init/tree/v1.0.0

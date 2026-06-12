@@ -51,7 +51,8 @@ npm run typecheck   # tsc --noEmit — catch type errors without building
 npm run lint        # ESLint flat config via jiti
 npm run build       # tsc → dist/
 npm run format      # Prettier write
-npm run check       # typecheck + lint + build (run before every commit)
+npm run check:ecosystem  # spectre-manifest schema + registration check
+npm run check       # typecheck + lint + build + check:ecosystem (run before every commit)
 ```
 
 There are no tests yet. `npm run check` is the full verification gate.

@@ -29,28 +29,6 @@ public behavior or contract impact, and unresolved risks. Do not edit generated
 outputs directly. Do not update [CHANGELOG.md](CHANGELOG.md) unless the change
 is release-relevant.
 
-## AI Operating Model
-
-This is the central AI coordination document for the repository. Agent-specific
-files may add tool-local guidance, but they must not override the role
-boundaries below.
-
-This repository uses a five-agent AI operating model with defined,
-non-overlapping roles:
-
-| Agent              | Role                                                                   |
-| ------------------ | ---------------------------------------------------------------------- |
-| **Claude Code**    | Lead developer - primary implementation, architecture, tests           |
-| **OpenAI Codex**   | Documentation, releases, production stabilization, repo hygiene        |
-| **ChatGPT**        | Strategy, coordination, prompt design, and external review - support only |
-| **GitHub Copilot** | General development assistance (in-editor suggestions)                 |
-| **Google Jules**   | Automated maintenance - small fixes, dependency updates, micro-patches |
-
-Human final review, release decisions, tagging, publishing, and merge authority rest with Bradley Potts
-(brad.potts@coastdigitalgroup.com). Claude Code, Codex, and Copilot do not
-commit by default. Jules may commit and push only bounded automated
-maintenance when `JULES.md` explicitly allows it and all validation gates pass.
-
 ## Instruction Map
 
 | File                              | Audience                     | Purpose                                                            |
