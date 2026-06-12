@@ -1,5 +1,7 @@
 # CODEX.md - spectre-init
 
+## Role
+
 OpenAI Codex serves as the secondary production-readiness and release-support
 agent for this repository. Claude Code remains the primary AI developer and
 `CLAUDE.md` remains the authoritative working guide.
@@ -62,6 +64,12 @@ Before a release handoff, Codex should verify:
 - Keep `.github/copilot-instructions.md` concise and support-oriented.
 - Keep Jules guidance aligned between root `AGENTS.md` and `JULES.md`.
 - Keep automated review configuration aligned with the repository constraints.
+
+## Pull Request Creation
+
+Follow the shared PR requirements in `AGENTS.md`. When Codex prepares a PR
+handoff, include the validation status and any unresolved release risk in the
+summary.
 
 ## Standard Handoff Format
 

@@ -29,10 +29,39 @@ live in `AGENTS.md`.
 - Do not take ownership from Claude Code or Codex.
 - Do not make release decisions, publish, merge, or tag.
 
+## Allowed Work
+
+- Small and medium implementation support tasks.
+- Focused refactors that reduce risk and improve readability.
+- Test suggestions for CLI behavior and template generation.
+- README and workflow/template updates when appropriate.
+
+## Restricted Work
+
+- Do not replace Claude Code as lead implementation owner.
+- Do not override Codex release-readiness findings.
+- Do not publish, merge, tag, or release.
+- Do not broaden package scope beyond CLI scaffolding.
+
+## Validation
+
+Follow the shared verification gate in `AGENTS.md`. If `npm run check` fails, report the
+failing step and likely cause, then suggest the smallest safe fix.
+
+## Documentation Expectations
+
+Keep `README.md`, `CHANGELOG.md`, and GitHub templates consistent with current
+CLI behavior and template contents.
+
 ## Pull Request Creation
 
 Follow the shared PR requirements in `AGENTS.md`. Include validation results
 and release impact notes for Codex handoff.
+
+## PR and Issue Support
+
+Support package-boundary review, public API impact notes, validation status,
+and release impact visibility for Codex handoff.
 
 ## Source of Detailed Guidance
 
