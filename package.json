@@ -49,7 +49,8 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "check:ecosystem": "spectre-manifest-validate spectre.manifest.json && spectre-manifest-check spectre.manifest.json .",
-    "check": "npm run typecheck && npm run lint && npm run build && npm run check:ecosystem",
+    "check:version-sync": "node scripts/check-readme-version.mjs",
+    "check": "npm run typecheck && npm run lint && npm run build && npm run check:version-sync && npm run check:ecosystem",
     "prepublishOnly": "npm run check"
   },
   "dependencies": {
