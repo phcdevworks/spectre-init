@@ -43,6 +43,33 @@ is release-relevant.
 | `.coderabbit.yaml`                | CodeRabbit                   | Automated review checks aligned with package boundaries            |
 | `.github/dependabot.yml`          | Dependabot / Jules handoff   | Dependency-update cadence for automated maintenance                |
 
+## Upstream Requests and Roadmap Self-Expansion
+
+Full directive: project-team [AGENTS.md](../AGENTS.md) "Upstream Requests and
+Roadmap Self-Expansion." Applied to this repo:
+
+- This repo is downstream of everything: `spectre-shell`,
+  `spectre-shell-router`, `spectre-shell-signals`, and (for the Astro
+  template) `spectre-tokens`, `spectre-ui`, `spectre-ui-astro` from
+  `project-design`. If a scaffolding template needs an upstream capability
+  that doesn't exist yet, append the request to the owning repo's `TODO.md`
+  under `## Requested by Downstream`, dated, with the reason and a link back
+  to this repo's own TODO.md/ROADMAP.md — never patch the gap into a generated
+  template as a local workaround.
+- This repo has no downstream of its own — it only generates starter projects
+  and is not itself consumed by another repo in this workspace. No `##
+  Requested by Downstream` section is expected here, but keep one ready if
+  that ever changes.
+- This repo's own [ROADMAP.md](ROADMAP.md) may be proactively expanded with new
+  or reordered phases by the agent's own analysis — but never mark a phase
+  delivered without `npm run check` passing, and never pin or scaffold a
+  template against an ecosystem package version newer than what's listed in
+  the Ecosystem Package Versions table above without confirming the upstream
+  release first.
+- Surface any new TODO request or roadmap expansion in the handoff for Bradley
+  Potts in the same change it was made, and reflect cross-repo-relevant
+  changes in the project-team's own ROADMAP.md/TODO.md.
+
 ## Shared Edit Boundaries
 
 | Path | Status | Notes |
@@ -159,6 +186,9 @@ structure. Zero hardcoded hex colors or spacing literals in any template file.
 3. **Fail fast on bad names** — `validateProjectName()` must reject anything that would be an invalid npm package name.
 4. **TypeScript preferred** — all generated templates must use TypeScript unless there is a specific documented reason not to.
 5. **No new runtime deps** — do not add dependencies to this package's `package.json` that would be imported at runtime inside scaffolded projects.
+6. **Scripts are TypeScript** — all `scripts/` tooling in this repo (not the
+   scaffolded templates) is `.ts`, run via
+   `node --experimental-strip-types`; never add a new `.js`/`.mjs` script.
 
 ## Coordination Rules
 
