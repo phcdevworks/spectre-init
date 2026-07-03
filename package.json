@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Spectre initialization and project scaffolding tool",
   "type": "module",
-  "packageManager": "npm@11.17.0",
+  "packageManager": "npm@11.18.0",
   "bin": {
     "spectre-init": "dist/index.js"
   },
@@ -55,16 +55,16 @@
   },
   "dependencies": {
     "@inquirer/prompts": "^8.5.2",
-    "fs-extra": "^11.3.5"
+    "fs-extra": "^11.3.6"
   },
   "devDependencies": {
     "@phcdevworks/spectre-manifest": "^1.0.0",
     "@types/fs-extra": "^11.0.4",
-    "@types/node": "^26.0.1",
+    "@types/node": "^26.1.0",
     "eslint": "^10.6.0",
     "jiti": "^2.7.0",
-    "prettier": "^3.9.0",
+    "prettier": "^3.9.4",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.62.0"
+    "typescript-eslint": "^8.62.1"
   }
 }

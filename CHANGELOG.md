@@ -12,7 +12,7 @@ All notable changes to this project will be documented here. The format follows 
 
 ## [1.0.0] - 2026-06-04
 
-First public release.
+Release Title: Phase 0/1 - First Public Release
 
 ### Added
 
