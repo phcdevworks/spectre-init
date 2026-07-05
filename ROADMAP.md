@@ -11,12 +11,12 @@ Templates scaffold against these published packages:
 
 | Package | Version | Role |
 | --- | --- | --- |
-| `@phcdevworks/spectre-shell` | 1.1.1 | SPA bootstrap — `bootstrapApp`, lifecycle callbacks, readiness signal |
+| `@phcdevworks/spectre-shell` | 1.1.1 (+ unreleased `bootstrapApp` → `Router` return) | SPA bootstrap — `bootstrapApp`, lifecycle callbacks, readiness signal |
 | `@phcdevworks/spectre-shell-router` | 1.1.0 | Client-side router — route matching, named routes, `render`/`destroy` hooks |
-| `@phcdevworks/spectre-shell-signals` | 1.1.0 | Reactive primitives — signals, computed, effects |
-| `@phcdevworks/spectre-tokens` | 2.7.0 | Design tokens — CSS variables (`--sp-*`), JS objects, Tailwind theme |
-| `@phcdevworks/spectre-ui` | 1.7.0 | Styling layer — CSS bundles, recipe functions, Tailwind preset |
-| `@phcdevworks/spectre-ui-astro` | 2.5.0 | Astro adapter — SSR-safe components |
+| `@phcdevworks/spectre-shell-signals` | 1.1.0 (v1.2.0 queued — docs/manifest only, no API changes) | Reactive primitives — signals, computed, effects |
+| `@phcdevworks/spectre-tokens` | 3.3.1 | Design tokens — CSS variables (`--sp-*`), JS objects, Tailwind theme |
+| `@phcdevworks/spectre-ui` | 2.7.1 | Styling layer — CSS bundles, recipe functions, Tailwind preset |
+| `@phcdevworks/spectre-ui-astro` | 3.4.1 | Astro adapter — SSR-safe components |
 
 ## Phase 0: CLI Foundation — Complete
 
@@ -101,12 +101,13 @@ Acceptance criteria:
 Templates should demonstrate the full depth of the Spectre ecosystem. All APIs
 in this phase are shipped in current upstream packages.
 
-Prerequisites — both must be done before Phase 6 starts:
+Prerequisites — both now complete:
 
 - `spectre-shell-router` Phase 3 P3 docs closed (meta, afterNavigate,
-  onNavigationStart/End, subscribe patterns — README examples to copy from) ← in progress
+  onNavigationStart/End, subscribe patterns — README examples to copy from) ✓
 - `spectre-shell` P2.5 implemented (`bootstrapApp` returns `Router` instance,
-  decision is Option A) ← in progress
+  decision is Option A) ✓ — in `[Unreleased]`, queued for the next
+  `spectre-shell` release
 
 ### P6.1 Bootstrap Lifecycle (both templates)
 
@@ -166,7 +167,7 @@ Acceptance criteria:
 10. **Astro template** ← next, unblocked (P3.1)
 11. **Manifest integration** ← can run in parallel with P3.1, unblocked (P4.1)
 12. Template modernization — lifecycle, metadata, loading state, plugins (P6.1–P6.4)
-    Blocked until: `spectre-shell-router` P3 docs done + `spectre-shell` P2.5 shipped
+    Unblocked — both prerequisites are done; ready to start
 13. Update command (P5.1, after templates stable)
 
 ## Explicitly Out of Scope

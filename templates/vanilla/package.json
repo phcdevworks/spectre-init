@@ -8,8 +8,8 @@
   "dependencies": {
     "@phcdevworks/spectre-shell": "^1.1.1",
     "@phcdevworks/spectre-shell-router": "^1.1.0",
-    "@phcdevworks/spectre-tokens": "^2.7.0",
-    "@phcdevworks/spectre-ui": "^1.7.0"
+    "@phcdevworks/spectre-tokens": "^3.3.1",
+    "@phcdevworks/spectre-ui": "^2.7.1"
   },
   "devDependencies": {
     "typescript": "^5.9.3",

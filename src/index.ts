@@ -3,7 +3,7 @@
 import { confirm, input, select } from '@inquirer/prompts'
 import { execSync } from 'child_process'
 import { existsSync, readFileSync } from 'fs'
-import { copy, readJson, writeJson } from 'fs-extra'
+import fsExtra from 'fs-extra'
 import path from 'path'
 import { fileURLToPath } from 'url'
 
@@ -150,12 +150,12 @@ async function main(): Promise<void> {
 
   console.log(`\nScaffolding Spectre app: ${projectName}`)
 
-  await copy(templateDir, targetDir)
+  await fsExtra.copy(templateDir, targetDir)
 
   const pkgPath = path.join(targetDir, 'package.json')
-  const pkg = (await readJson(pkgPath)) as Record<string, unknown>
+  const pkg = (await fsExtra.readJson(pkgPath)) as Record<string, unknown>
   pkg.name = projectName
-  await writeJson(pkgPath, pkg, { spaces: 2 })
+  await fsExtra.writeJson(pkgPath, pkg, { spaces: 2 })
 
   const missing = validateScaffold(targetDir)
   if (missing.length > 0) {

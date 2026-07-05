@@ -82,17 +82,16 @@ Scoped to TS/Vite/Vanilla structured app scaffolding. Aligned to `ROADMAP.md`.
 
 ---
 
-## Phase 6 — Template Modernization: Blocked — Waiting on Upstream
+## Phase 6 — Template Modernization: Unblocked — Ready to Start
 
 All items below are work in `templates/` only. All APIs are already shipped upstream.
 
-Prerequisites — both must complete before starting Phase 6:
+Prerequisites — both now complete:
 
-* `spectre-shell-router` P3 docs must be closed — meta, afterNavigate,
-  onNavigationStart/End, and subscribe patterns need README examples to copy from
-  (currently in progress in spectre-shell-router)
-* `spectre-shell` P2.5 must be implemented — `bootstrapApp` must return the `Router`
-  instance (Option A, currently in progress in spectre-shell)
+* `spectre-shell-router` P3 docs closed — meta, afterNavigate,
+  onNavigationStart/End, and subscribe patterns have README examples to copy from
+* `spectre-shell` P2.5 implemented — `bootstrapApp` returns the `Router`
+  instance (Option A), in `[Unreleased]`, queued for the next `spectre-shell` release
 
 * [ ] Add `beforeMount` / `afterMount` callbacks to `bootstrapApp` in both templates
 * [ ] Observe `bootReady` signal via `effect()` in shell-app template
@@ -118,7 +117,7 @@ Prerequisites — both must complete before starting Phase 6:
 9. ~~Fix phantom imports + broken route API~~ ✓
 10. **Astro template** ← next, unblocked (Phase 3)
 11. **Manifest integration** ← parallel with Phase 3, unblocked (Phase 4)
-12. Template modernization ← blocked until spectre-shell-router P3 docs + spectre-shell P2.5 ship (Phase 6)
+12. **Template modernization** ← unblocked, ready to start (Phase 6)
 13. Update command ← after templates stable (Phase 5)
 
 ## Explicitly Out of Scope

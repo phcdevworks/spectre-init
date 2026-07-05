@@ -1,7 +1,10 @@
 import "@phcdevworks/spectre-ui/index.css"
+import { defineSpectreButton } from "@phcdevworks/spectre-components/button"
 import { bootstrapApp } from "@phcdevworks/spectre-shell"
 import type { Route } from "@phcdevworks/spectre-shell-router"
 import { effect, signal } from "@phcdevworks/spectre-shell-signals"
+
+defineSpectreButton()
 
 const root = document.getElementById("app")!
 const count = signal(0)
@@ -20,14 +23,14 @@ bootstrapApp({
               root.innerHTML = `
                 <h1>Home</h1>
                 <p>Count: <span id="count-value" style="color: var(--sp-text-on-page-brand)">0</span></p>
-                <button id="increment">+1</button>
+                <sp-button variant="primary">+1</sp-button>
                 <a href="/about">Go to About</a>
               `
               stopEffect = effect(() => {
                 const el = root.querySelector<HTMLElement>("#count-value")
                 if (el) el.textContent = String(count.value)
               })
-              root.querySelector("#increment")!.addEventListener("click", () => {
+              root.querySelector("sp-button")!.addEventListener("click", () => {
                 count.value++
               })
             },
