@@ -4,6 +4,8 @@ All notable changes to this project will be documented here. The format follows 
 
 ## [Unreleased]
 
+Contract change type: additive
+
 ### Added
 
 - Added `@phcdevworks/spectre-manifest` as a devDependency. `spectre.manifest.json`
