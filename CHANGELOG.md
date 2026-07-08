@@ -4,6 +4,10 @@ All notable changes to this project will be documented here. The format follows 
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-07-08
+
+Release Title: Phase 2 - Ecosystem Alignment and Release Tooling
+
 Contract change type: additive
 
 ### Added
@@ -65,5 +69,6 @@ Release Title: Phase 0/1 - First Public Release
 - README AI guidance reference now points to `AGENTS.md` first.
 - Bumped `fs-extra` to `^11.3.5`, `@types/node` to `^25.7.0`, `typescript-eslint` to `^8.59.3`.
 
-[unreleased]: https://github.com/phcdevworks/spectre-init/compare/v1.0.0...HEAD
+[unreleased]: https://github.com/phcdevworks/spectre-init/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/phcdevworks/spectre-init/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/phcdevworks/spectre-init/tree/v1.0.0
