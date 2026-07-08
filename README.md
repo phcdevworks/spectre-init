@@ -59,7 +59,7 @@ CLI scaffolding for Spectre-ready applications. `spectre-init` creates a new Typ
 | Type | Description | Packages wired |
 | --- | --- | --- |
 | `vanilla` | TypeScript + Vite starter with routing and Spectre UI. | `spectre-shell`, `spectre-shell-router`, `spectre-tokens`, `spectre-ui` |
-| `shell-app` | Full shell app with `bootstrapApp`, router, signals, and reactive effects. | `spectre-shell`, `spectre-shell-router`, `spectre-shell-signals`, `spectre-tokens`, `spectre-ui` |
+| `shell-app` | Full shell app with `bootstrapApp`, router, signals, reactive effects, and Spectre components. | `spectre-shell`, `spectre-shell-router`, `spectre-shell-signals`, `spectre-components`, `spectre-tokens`, `spectre-ui` |
 
 The interactive setup prompts for project type. The non-interactive path (`spectre-init <name>`) defaults to `vanilla`.
 
@@ -70,6 +70,7 @@ Templates scaffold against the Spectre package family:
 - **[spectre-shell](https://github.com/phcdevworks/spectre-shell)** — SPA bootstrap layer (`bootstrapApp`, lifecycle hooks)
 - **[spectre-shell-router](https://github.com/phcdevworks/spectre-shell-router)** — client-side router with named routes and `render`/`destroy` hooks
 - **[spectre-shell-signals](https://github.com/phcdevworks/spectre-shell-signals)** — reactive primitives (`signal`, `computed`, `effect`)
+- **[spectre-components](https://github.com/phcdevworks/spectre-components)** — Spectre web components (for example `sp-button` in `shell-app`)
 - **[spectre-tokens](https://github.com/phcdevworks/spectre-tokens)** — design tokens as CSS variables (`--sp-*`), JS objects, and Tailwind theme
 - **[spectre-ui](https://github.com/phcdevworks/spectre-ui)** — CSS bundles and type-safe recipe functions built on tokens
 
@@ -141,6 +142,8 @@ Useful scripts:
 - `npm run typecheck` validates TypeScript without emitting files.
 - `npm run lint` runs ESLint.
 - `npm run build` emits the CLI to `dist`.
+- `npm run check:version-sync` checks README/package.json version parity.
+- `npm run check:ecosystem` validates the spectre-manifest entry.
 - `npm run check` runs the standard package verification flow.
 
 AI-agent coordination starts in [AGENTS.md](./AGENTS.md), with companion
@@ -150,12 +153,12 @@ guidance in [CLAUDE.md](./CLAUDE.md), [CODEX.md](./CODEX.md),
 
 ### Troubleshooting
 
-| Problem                                      | Likely cause                                           | Fix                                                       |
-| -------------------------------------------- | ------------------------------------------------------ | --------------------------------------------------------- |
-| `npm run check` fails                        | Type or lint error                                     | Run `npm run typecheck` or `npm run lint` to isolate      |
-| Scaffolded app fails `npm install`           | Network or registry issue                              | Run `npm install` manually inside the generated directory |
-| Project name rejected                        | Name contains uppercase, spaces, or invalid characters | Use lowercase letters, numbers, hyphens, and dots only    |
-| `spectre-init --version` shows wrong version | Stale global install                                   | Run `npm install -g @phcdevworks/spectre-init` to update  |
+| Problem                                      | Likely cause                                           | Fix                                                                 |
+|----------------------------------------------|--------------------------------------------------------|---------------------------------------------------------------------|
+| `npm run check` fails                        | Type or lint error                                     | Run `npm run typecheck` or `npm run lint` to isolate                |
+| Scaffolded app fails `npm install`           | Network or registry issue                              | Run `npm install` manually inside the generated directory           |
+| Project name rejected                        | Name contains uppercase, spaces, or invalid characters | Use lowercase letters, numbers, hyphens, underscores, and dots only |
+| `spectre-init --version` shows wrong version | Stale global install                                   | Run `npm install -g @phcdevworks/spectre-init` to update            |
 
 ## Contributing
 

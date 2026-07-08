@@ -58,13 +58,13 @@
     "fs-extra": "^11.3.6"
   },
   "devDependencies": {
-    "@phcdevworks/spectre-manifest": "^1.0.0",
+    "@phcdevworks/spectre-manifest": "^1.1.0",
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^26.1.0",
     "eslint": "^10.6.0",
     "jiti": "^2.7.0",
     "prettier": "^3.9.4",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.62.1"
+    "typescript-eslint": "^8.63.0"
   }
 }

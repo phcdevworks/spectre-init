@@ -264,9 +264,10 @@ Templates must pin these current versions. Update this table when upstream packa
 | `@phcdevworks/spectre-shell` | 1.1.1 |
 | `@phcdevworks/spectre-shell-router` | 1.1.0 |
 | `@phcdevworks/spectre-shell-signals` | 1.1.0 |
-| `@phcdevworks/spectre-tokens` | 2.7.0 |
-| `@phcdevworks/spectre-ui` | 1.7.0 |
-| `@phcdevworks/spectre-ui-astro` | 2.5.0 |
+| `@phcdevworks/spectre-tokens` | 3.3.1 |
+| `@phcdevworks/spectre-ui` | 2.7.1 |
+| `@phcdevworks/spectre-components` | 1.7.0 |
+| `@phcdevworks/spectre-ui-astro` | 3.4.1 |
 
 ## Working Boundaries
 

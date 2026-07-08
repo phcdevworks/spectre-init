@@ -55,18 +55,15 @@ the change.
 ## Pull Request Creation
 
 Follow the shared PR requirements in `AGENTS.md`. Jules PRs should also state
-which maintenance category was executed.
+which maintenance category was executed. Bradley Potts holds final authority
+for commits, merges, tags, publishing, and releases, per `AGENTS.md`. Jules
+prepares and validates allowed maintenance changes and opens a PR — it does
+not commit or push on its own.
 
-## Commit Authority
+### Suggested commit message format
 
-Jules commits and pushes autonomously when all validation gates pass clean.
-Jules must not:
-- reset or discard changes it did not make
-- force-push or rewrite history
-- commit any state where a validation gate fails
-- absorb unrelated working-tree changes into its commit
-
-### Commit message format
+For use in the PR description or as the suggested commit message, matched to
+the maintenance category performed:
 
 - Dependency update: `chore(spectre-init): bump <package> to <version>`
 - Doc fix: `docs(spectre-init): <description of fix>`

@@ -25,12 +25,13 @@ Scoped to TS/Vite/Vanilla structured app scaffolding. Aligned to `ROADMAP.md`.
 ### P1: Bump Version Pins in Both Templates — Complete
 
 * [x] Update `templates/vanilla/package.json` — bump all `@phcdevworks/*` deps to current versions
-  * `spectre-shell`: `^0.0.1` → `^1.1.1`
-  * `spectre-shell-router`: `^0.0.1` → `^1.1.0`
-  * `spectre-tokens`: `^1.0.0` → `^2.7.0`
-  * `spectre-ui`: `^0.4.1` → `^1.7.0`
+  * `spectre-shell`: `^1.1.1`
+  * `spectre-shell-router`: `^1.1.0`
+  * `spectre-tokens`: `^3.3.1`
+  * `spectre-ui`: `^2.7.1`
 * [x] Update `templates/shell-app/package.json` — same bumps, plus:
-  * `spectre-shell-signals`: `^1.0.0` → `^1.1.0`
+  * `spectre-shell-signals`: `^1.1.0`
+  * `spectre-components`: `^1.7.0`
 
 ### P1: Wire Spectre UI CSS into Both Templates — Complete
 

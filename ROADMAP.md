@@ -16,6 +16,7 @@ Templates scaffold against these published packages:
 | `@phcdevworks/spectre-shell-signals` | 1.1.0 (v1.2.0 queued — docs/manifest only, no API changes) | Reactive primitives — signals, computed, effects |
 | `@phcdevworks/spectre-tokens` | 3.3.1 | Design tokens — CSS variables (`--sp-*`), JS objects, Tailwind theme |
 | `@phcdevworks/spectre-ui` | 2.7.1 | Styling layer — CSS bundles, recipe functions, Tailwind preset |
+| `@phcdevworks/spectre-components` | 1.7.0 | Web component layer — custom elements used by shell-app starter |
 | `@phcdevworks/spectre-ui-astro` | 3.4.1 | Astro adapter — SSR-safe components |
 
 ## Phase 0: CLI Foundation — Complete
@@ -56,7 +57,7 @@ imports, no raw `history.pushState`. Both templates typecheck cleanly.
 
 Add a `spectre-ui-astro` template for Astro-based projects.
 
-Why it matters: `spectre-ui-astro` v2.5.0 ships 9 SSR-safe components and is
+Why it matters: `spectre-ui-astro` v3.4.1 ships 9 SSR-safe components and is
 the supported path for Astro consumers. It has a different dependency graph
 than `vanilla` and `shell-app` — no dependency on the shell packages.
 

@@ -22,6 +22,8 @@ Thanks for helping improve `@phcdevworks/spectre-init`. This package is the Spec
 npm run typecheck
 npm run lint
 npm run build
+npm run check:version-sync
+npm run check:ecosystem
 npm run check
 ```
 

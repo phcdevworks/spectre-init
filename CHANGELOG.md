@@ -9,6 +9,22 @@ All notable changes to this project will be documented here. The format follows 
 - Added `@phcdevworks/spectre-manifest` as a devDependency. `spectre.manifest.json`
   at the repo root declares this package's ecosystem role, layer, exports, and
   allowed dependency targets. `check:ecosystem` validates it in the check pipeline.
+- Added `shell-app` template — a full shell starter wiring `bootstrapApp`, the
+  router, reactive signals/effects, and `@phcdevworks/spectre-components`
+  (`sp-button`).
+- Added `check:version-sync` script (`scripts/check-readme-version.ts`) that
+  verifies README version references stay in sync with `package.json`; wired
+  into `npm run check`.
+- Added `release:propose` script (`scripts/propose-version.ts`) that suggests
+  the next semantic version bump based on `[Unreleased]` change classification.
+
+### Changed
+
+- Bumped `@phcdevworks/spectre-manifest` devDependency range to `^1.1.0`.
+- Bumped `typescript-eslint` devDependency to `^8.63.0`.
+- Bumped template dependency pins: `@phcdevworks/spectre-tokens` to `3.3.1`,
+  `@phcdevworks/spectre-ui` to `2.7.1`, `@phcdevworks/spectre-ui-astro`
+  reference to `3.4.1`.
 
 ## [1.0.0] - 2026-06-04
 
