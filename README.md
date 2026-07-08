@@ -7,7 +7,7 @@
 | Project team | `project-shell` |
 | Repository role | Spectre project scaffolding CLI |
 | Package/artifact | `@phcdevworks/spectre-init` |
-| Current version/status | 1.0.0 |
+| Current version/status | 1.1.0 |
 
 ## Standard Workflow
 
