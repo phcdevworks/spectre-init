@@ -87,84 +87,12 @@ Full validation command: `npm run check`.
 
 Detailed implementation workflow lives in `CLAUDE.md`. Human contributor workflow lives in `CONTRIBUTING.md`.
 
-## Claude Code - Lead Developer
+## Agent-Specific Guides
 
-**Claude Code** (`claude-sonnet-4-6`) is the designated primary AI developer for
-this repository, maintained on behalf of Bradley Potts
-(brad.potts@coastdigitalgroup.com) at PHCDevworks. All development is driven
-through Claude Code operating from `CLAUDE.md` as the authoritative working
-guide.
-
-**Owns:**
-
-- CLI implementation in `src/index.ts`
-- Template implementation in `templates/`
-- Scaffolding architecture and validation behavior
-- Test coverage when tests are added
-- Final implementation validation before handoff (`npm run check` must pass)
-
-**Does not own:** documentation publishing, release versioning, changelog
-authorship, dependency bump PRs, or repo-wide AI governance.
-
-## OpenAI Codex - Documentation & Releases
-
-Codex handles documentation quality, release preparation, production
-stabilization, repo hygiene, config standardization, and release-readiness
-checks. Codex operates from `AGENTS.md` and `CODEX.md`.
-
-**Owns:**
-
-- `README.md`, `CHANGELOG.md`, `ROADMAP.md`, `TODO.md`, `CONTRIBUTING.md`, and
-  other root documentation
-- Release preparation: semver review, package metadata checks, changelog
-  entries, and release notes
-- Production stabilization: reviewing release readiness, flagging regressions,
-  and ensuring the verification gate passes
-- Repo hygiene: stale documentation cleanup, formatting consistency, config
-  standardization, PR and issue template maintenance
-- AI-agent instruction alignment across `AGENTS.md`, `CLAUDE.md`, `CODEX.md`,
-  Copilot guidance, and automated review config
-
-**Does not own:** primary feature implementation, template architecture, large
-refactors, dependency-update ownership, deployment, publishing, or release
-execution.
-
-Codex may make small, bounded documentation, config, release metadata, and
-stabilization fixes when they reduce drift or release risk. Implementation
-changes remain Claude Code-owned unless Bradley explicitly asks Codex to make a
-small stabilization fix.
-
-## GitHub Copilot - Development Assistance
-
-Copilot provides in-editor code suggestions and assists developers during active
-coding sessions. See `.github/copilot-instructions.md` for Copilot-specific
-guidance.
-
-**Supports:** inline completions, small code suggestions, TypeScript/API hints,
-test suggestions, refactor suggestions, and developer productivity inside the
-IDE.
-
-**Owns:** nothing directly. Suggestions are advisory and must follow the owning
-agent or human reviewer.
-
-**Does not own:** lead implementation decisions, architecture direction, release
-coordination, production stabilization ownership, repo-wide AI governance,
-automated maintenance workflows, config standardization ownership, or commit
-authority.
-
-## Google Jules - Automated Maintenance
-
-Jules handles small, automated maintenance tasks that do not require
-architectural judgment.
-
-**Owns:**
-
-- Dependency version bumps coordinated with `.github/dependabot.yml`
-- Small config corrections such as whitespace, key ordering, and obvious typos
-- Mechanical documentation fixes such as broken links or markdown formatting
-
-**Does not own:** feature work, new templates, architecture changes, public CLI
-contract changes, large refactors, release decisions, or publishing.
+- `CLAUDE.md` - primary development authority and implementation workflow.
+- `CODEX.md` - documentation, release, stabilization, and repo hygiene workflow.
+- `JULES.md` - bounded automated maintenance workflow.
+- `COPILOT.md` and `.github/copilot-instructions.md` - support-assistant workflow.
 
 ## Mission
 
