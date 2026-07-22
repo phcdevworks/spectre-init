@@ -4,6 +4,21 @@ All notable changes to this project will be documented here. The format follows 
 
 ## [Unreleased]
 
+## [1.2.0] - 2026-07-22
+
+Release Title: TypeScript 7 Toolchain Support
+
+Contract change type: additive
+
+### Changed
+
+- Added TypeScript 7 support alongside TypeScript 6: internal tooling
+  (ESLint/typescript-eslint) runs against TypeScript 6 via an
+  `npm:@typescript/typescript6` alias since `typescript-eslint` does not yet
+  support TypeScript 7's programmatic API; TypeScript 7's native compiler is
+  available via the `@typescript/native` devDependency alias. Bumped
+  `typescript-eslint` to `^8.65.0`.
+
 ## [1.1.0] - 2026-07-08
 
 Release Title: Phase 2 - Ecosystem Alignment and Release Tooling
@@ -69,6 +84,7 @@ Release Title: Phase 0/1 - First Public Release
 - README AI guidance reference now points to `AGENTS.md` first.
 - Bumped `fs-extra` to `^11.3.5`, `@types/node` to `^25.7.0`, `typescript-eslint` to `^8.59.3`.
 
-[unreleased]: https://github.com/phcdevworks/spectre-init/compare/v1.1.0...HEAD
+[unreleased]: https://github.com/phcdevworks/spectre-init/compare/v1.2.0...HEAD
+[1.2.0]: https://github.com/phcdevworks/spectre-init/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/phcdevworks/spectre-init/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/phcdevworks/spectre-init/tree/v1.0.0
