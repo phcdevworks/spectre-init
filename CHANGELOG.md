@@ -6,7 +6,7 @@ All notable changes to this project will be documented here. The format follows 
 
 ## [1.2.0] - 2026-07-22
 
-Release Title: TypeScript 7 Toolchain Support
+Release Title: Phase 2 - TypeScript 7 Toolchain Support
 
 Contract change type: additive
 
