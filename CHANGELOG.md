@@ -4,7 +4,7 @@ All notable changes to this project will be documented here. The format follows 
 
 ## [Unreleased]
 
-## [1.2.0] - 2026-07-22
+## [1.2.0] - 2026-07-23
 
 Release Title: Phase 2 - TypeScript 7 Toolchain Support
 
@@ -84,7 +84,7 @@ Release Title: Phase 0/1 - First Public Release
 - README AI guidance reference now points to `AGENTS.md` first.
 - Bumped `fs-extra` to `^11.3.5`, `@types/node` to `^25.7.0`, `typescript-eslint` to `^8.59.3`.
 
-[unreleased]: https://github.com/phcdevworks/spectre-init/compare/v1.2.0...HEAD
-[1.2.0]: https://github.com/phcdevworks/spectre-init/compare/v1.1.0...v1.2.0
+[unreleased]: https://github.com/phcdevworks/spectre-init/compare/1.2.0...HEAD
+[1.2.0]: https://github.com/phcdevworks/spectre-init/compare/1.1.0...1.2.0
 [1.1.0]: https://github.com/phcdevworks/spectre-init/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/phcdevworks/spectre-init/tree/v1.0.0
