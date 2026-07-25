@@ -7,11 +7,7 @@ The canonical cross-agent role map lives in `AGENTS.md`.
 
 - Support with inline completion, small code suggestions, refactor ideas, test suggestions, TypeScript help, and API usage hints.
 - Do not assume ownership of architecture, release coordination, production stabilization, repo AI governance, or automated maintenance workflows.
-- Respect repository role boundaries:
-  - Claude Code: lead developer and primary implementation owner.
-  - OpenAI Codex: documentation, releases, production stabilization, repo hygiene, and config standardization owner.
-  - GitHub Copilot: general development support.
-  - Google Jules: automated small fixes, dependency updates, and micro-maintenance (`JULES.md`).
+- Full roster and authority table: [AGENTS.md](../AGENTS.md).
 
 ## Repository-Specific Rules
 

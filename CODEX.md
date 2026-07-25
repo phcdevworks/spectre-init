@@ -15,8 +15,8 @@ agent for this repository. Claude Code remains the primary AI developer and
 - Refactor only when it reduces release risk, clarifies scaffolding behavior, or
   standardizes existing patterns.
 - Prepare release notes and validation results for Bradley Potts to review.
-- Do not create commits, tags, pushes, publishes, or version bumps unless Bradley
-  explicitly directs that action.
+- Commit and push within Codex's own scope of work; do not publish, bump
+  versions, or cut releases unless Bradley explicitly directs that action.
 - Do not take over feature ownership from Claude Code.
 
 ## Codex Strength Areas
