@@ -14,9 +14,10 @@ agent for this repository. Claude Code remains the primary AI developer and
   template contract violations.
 - Refactor only when it reduces release risk, clarifies scaffolding behavior, or
   standardizes existing patterns.
-- Prepare release notes and validation results for Bradley Potts to review.
-- Commit and push within Codex's own scope of work; do not publish, bump
-  versions, or cut releases unless Bradley explicitly directs that action.
+- Commit, tag, and cut the release itself — version bump, changelog
+  versioning, `v<version>` tag, and GitHub Release — for every release-ready
+  `CHANGELOG.md [Unreleased]` section (see "Release Review" below). `npm
+  publish` stays with Bradley Potts.
 - Do not take over feature ownership from Claude Code.
 
 ## Codex Strength Areas
@@ -44,7 +45,7 @@ Core non-negotiable rules live in `AGENTS.md` under "Core Directives" and "Const
 
 ## Release Review
 
-Before a release handoff, Codex should verify:
+Before cutting a release, Codex should verify:
 
 - `npm run check` passes.
 - `CHANGELOG.md` has an `[Unreleased]` entry or the intended version entry.
@@ -55,6 +56,23 @@ Before a release handoff, Codex should verify:
 - CI configuration still exercises the package verification gate.
 - Human-review triggers from `AGENTS.md` are called out in the handoff.
 - Any AI-agent documentation changes preserve the role map in `AGENTS.md`.
+
+### Release Mechanics
+
+1. Bump `version` in `package.json`.
+2. Add a dated entry to `CHANGELOG.md` under a new version heading:
+   `## [<version>] - <YYYY-MM-DD>`, with a release title line in the format
+   `**Release Title:** Phase <N> - <short title>`, where `Phase <N>` is the
+   active phase name from this repo's own `ROADMAP.md` and `<short title>`
+   is a concise summary of what shipped. If the release spans no single
+   ROADMAP phase, state that explicitly instead of inventing one.
+3. Stage and commit the version bump and changelog update.
+4. Create the git tag: `git tag v<version>` (matching `package.json`
+   exactly), then push the commit and tag.
+5. Publish the GitHub Release from that tag: `gh release create v<version>
+   --title "v<version>: Phase <N> - <short title>" --notes-file` (extract the
+   new version's changelog section, or `--notes` inline for a short release).
+6. `npm publish` is **not** run by Codex — that stays with Bradley Potts.
 
 ## Config Hygiene
 

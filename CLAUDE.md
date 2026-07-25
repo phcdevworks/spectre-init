@@ -71,11 +71,11 @@ There are no tests yet. `npm run check` is the full verification gate.
 
 ## Release Process
 
-1. Run `npm run check` — must be clean.
-2. Bump `version` in `package.json`.
-3. Add a dated entry to `CHANGELOG.md` under a new version heading.
-4. Hand off to Codex for release review and sign-off.
-5. Brad commits, tags, and publishes after Codex sign-off.
+Claude Code implements features and fixes with a `CHANGELOG.md [Unreleased]`
+entry per change. Cutting the release itself — version bump, changelog
+versioning, `v<version>` tag, and GitHub Release — is Codex's job; see
+`CODEX.md` "Release Review" for the full procedure. `npm publish` stays
+with Bradley Potts regardless of who prepares the release.
 
 ## Current Work Queue
 
