@@ -5,7 +5,9 @@ Human owner: PHCDevworks / <brad.potts@coastdigitalgroup.com>
 
 ## Commit Policy
 
-Claude Code does **not** create git commits, push branches, or create tags in this repository. Changes are prepared and validated but left for human review and commit.
+See [AGENTS.md](./AGENTS.md) for the full grant of authority. Changes are
+validated, then staged, committed, tagged, and pushed without per-action
+confirmation.
 
 ## Multi-Agent Team
 

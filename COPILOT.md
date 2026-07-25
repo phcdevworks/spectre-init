@@ -12,13 +12,9 @@ maintenance workflows.
 
 ## Authority Boundaries
 
-- Claude Code remains lead implementation owner (`CLAUDE.md`).
-- Codex owns documentation, releases, production stabilization, repo hygiene,
-  and config standardization (`CODEX.md`).
-- Jules owns bounded automated maintenance (`JULES.md`).
-
-Shared agent roster, edit boundaries, PR requirements, and coordination rules
-live in `AGENTS.md`.
+Full roster and authority table: [AGENTS.md](AGENTS.md). Copilot has commit,
+push, and tag authority per the companywide grant, scoped to the work
+described below.
 
 ## Practical Guardrails
 
@@ -27,7 +23,7 @@ live in `AGENTS.md`.
 - Do not suggest runtime feature logic that belongs in downstream Spectre
   packages.
 - Do not take ownership from Claude Code or Codex.
-- Do not make release decisions, publish, merge, or tag.
+- Do not make release decisions, publish packages, or merge PRs.
 
 ## Allowed Work
 
@@ -40,7 +36,7 @@ live in `AGENTS.md`.
 
 - Do not replace Claude Code as lead implementation owner.
 - Do not override Codex release-readiness findings.
-- Do not publish, merge, tag, or release.
+- Do not publish packages, merge PRs, or cut releases.
 - Do not broaden package scope beyond CLI scaffolding.
 
 ## Validation
