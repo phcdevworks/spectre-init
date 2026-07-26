@@ -7,6 +7,7 @@ The canonical cross-agent role map lives in `AGENTS.md`.
 
 - Support with inline completion, small code suggestions, refactor ideas, test suggestions, TypeScript help, and API usage hints.
 - Do not assume ownership of architecture, release coordination, production stabilization, repo AI governance, or automated maintenance workflows.
+- Copilot has commit, push, and tag authority per the companywide grant.
 - Full roster and authority table: [AGENTS.md](../AGENTS.md).
 
 ## Repository-Specific Rules
