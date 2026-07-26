@@ -51,13 +51,13 @@ CLI scaffolding for Spectre-ready applications. `spectre-init` creates a new Typ
 [Contributing](CONTRIBUTING.md) | [Code of Conduct](CODE_OF_CONDUCT.md) |
 [Changelog](CHANGELOG.md) | [Roadmap](ROADMAP.md) | [Security Policy](SECURITY.md)
 
-## When to use this package
+## When To Use This Package
 
 - You are starting a new Spectre-based application from scratch.
 - You want a working starter with `@phcdevworks/spectre-shell`, `@phcdevworks/spectre-tokens`, and the router wired up from the first commit.
 - You want project files, `AGENTS.md`, and AI-agent guidance pre-populated for the Spectre ecosystem.
 
-## When not to use this package
+## When Not To Use This Package
 
 - You are adding Spectre to an existing project — install packages individually instead.
 - You need a non-TypeScript or non-vanilla-JS template — this scaffold is TypeScript-only.
@@ -93,7 +93,7 @@ Templates scaffold against the Spectre package family:
 - Validates scaffolded output before running `npm install`.
 - Runs `npm install` after scaffolding so the app is ready to start.
 
-## Install
+## Installation
 
 Run once with `npx`:
 
@@ -168,6 +168,24 @@ guidance in [CLAUDE.md](./CLAUDE.md), [CODEX.md](./CODEX.md),
 | Scaffolded app fails `npm install`           | Network or registry issue                              | Run `npm install` manually inside the generated directory           |
 | Project name rejected                        | Name contains uppercase, spaces, or invalid characters | Use lowercase letters, numbers, hyphens, underscores, and dots only |
 | `spectre-init --version` shows wrong version | Stale global install                                   | Run `npm install -g @phcdevworks/spectre-init` to update            |
+
+## AI And Automation Boundaries
+
+Claude Code (`claude-sonnet-4-6`) is the primary development agent for this
+repository. Codex handles releases, including cutting tagged releases and
+GitHub Releases, and production stabilization. Jules handles small automated
+fixes and dependency updates. GitHub Copilot provides development support.
+
+All AI agents with repository access (Claude Code, Codex, Copilot, Jules)
+have commit, push, and tag authority in this repository. Publishing to npm
+remains Bradley Potts's sole authority. See [AGENTS.md](AGENTS.md) for the
+full commit-policy and release-authority grant.
+
+**Protected from automated change:** the scaffolding-only scope (no runtime
+routing, reactive state, UI components, or framework adapters added locally)
+and the token-driven template constraint (no hardcoded hex colors or spacing
+literals in templates). See [AGENTS.md](AGENTS.md) for full agent governance
+and boundary rules.
 
 ## Contributing
 
