@@ -56,7 +56,7 @@
   "devDependencies": {
     "@phcdevworks/spectre-manifest": "^1.1.0",
     "@types/fs-extra": "^11.0.4",
-    "@types/node": "^26.1.1",
+    "@types/node": "^26.1.2",
     "@typescript/native": "npm:typescript@^7.0.2",
     "eslint": "^10.7.0",
     "jiti": "^2.7.0",
