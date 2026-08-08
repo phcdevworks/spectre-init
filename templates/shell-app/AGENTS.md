@@ -19,6 +19,15 @@ handoffs. Use anonymous role-based wording such as "a downstream integration"
 or "a production consumer." Zero tolerance, no exceptions — this applies even
 to well-known or already-public vendor names.
 
+
+## Commit Authorship
+
+Commit authorship is human-only. No AI agent adds itself (or any other AI) as
+a commit author or co-author — no `Co-Authored-By: Claude`/`Codex`/`Copilot`
+trailer, no author-field changes. When an AI agent drafts commit or PR message
+text for a human to use, it must never include such a trailer or list an AI
+as author or co-author.
+
 ## Development
 
 ```bash
