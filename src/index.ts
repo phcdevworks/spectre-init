@@ -17,23 +17,44 @@ const PROJECT_TYPES = {
     label: 'Vanilla Spectre',
     description: 'TypeScript starter with Vite, Tailwind, and Spectre UI.',
     templateDir: 'vanilla',
+    requiredFiles: [
+      'index.html',
+      'package.json',
+      'spectre.manifest.json',
+      'src/main.ts',
+      'tsconfig.json',
+      'vite.config.ts',
+    ],
   },
   'shell-app': {
     label: 'Shell App',
     description: 'Full Spectre shell app with router and signals wired from the start.',
     templateDir: 'shell-app',
+    requiredFiles: [
+      'index.html',
+      'package.json',
+      'spectre.manifest.json',
+      'src/main.ts',
+      'tsconfig.json',
+      'vite.config.ts',
+    ],
+  },
+  astro: {
+    label: 'Astro',
+    description: 'Astro starter with Spectre UI Astro components.',
+    templateDir: 'astro',
+    requiredFiles: [
+      'astro.config.ts',
+      'package.json',
+      'spectre.manifest.json',
+      'src/layouts/BaseLayout.astro',
+      'src/pages/index.astro',
+      'tsconfig.json',
+    ],
   },
 } as const
 
 type ProjectTypeKey = keyof typeof PROJECT_TYPES
-
-const REQUIRED_SCAFFOLD_FILES = [
-  'index.html',
-  'package.json',
-  'src/main.ts',
-  'tsconfig.json',
-  'vite.config.ts',
-]
 
 function showHelp(): void {
   console.log(`
@@ -69,8 +90,8 @@ function validateProjectName(name: string): string | null {
   return null
 }
 
-function validateScaffold(targetDir: string): string[] {
-  return REQUIRED_SCAFFOLD_FILES.filter((f) => !existsSync(path.join(targetDir, f)))
+function validateScaffold(targetDir: string, typeKey: ProjectTypeKey): string[] {
+  return PROJECT_TYPES[typeKey].requiredFiles.filter((f) => !existsSync(path.join(targetDir, f)))
 }
 
 async function promptUser(): Promise<{ projectName: string; typeKey: ProjectTypeKey; targetDir: string }> {
@@ -157,7 +178,24 @@ async function main(): Promise<void> {
   pkg.name = projectName
   await fsExtra.writeJson(pkgPath, pkg, { spaces: 2 })
 
-  const missing = validateScaffold(targetDir)
+  const manifestPath = path.join(targetDir, 'spectre.manifest.json')
+  if (existsSync(manifestPath)) {
+    const manifest = (await fsExtra.readJson(manifestPath)) as {
+      $id: string
+      system: { name: string }
+      packages: Record<string, unknown>
+    }
+    const previousName = manifest.system.name
+    manifest.system.name = projectName
+    manifest.$id = `urn:local:${projectName}:manifest`
+    if (previousName in manifest.packages) {
+      manifest.packages[projectName] = manifest.packages[previousName]
+      delete manifest.packages[previousName]
+    }
+    await fsExtra.writeJson(manifestPath, manifest, { spaces: 2 })
+  }
+
+  const missing = validateScaffold(targetDir, typeKey)
   if (missing.length > 0) {
     console.error(`\nError: scaffolding incomplete. Missing files:`)
     for (const f of missing) console.error(`  ${f}`)

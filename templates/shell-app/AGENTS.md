@@ -10,6 +10,12 @@ This project was scaffolded by `@phcdevworks/spectre-init`. It follows the Spect
 - Shell bootstrap is handled by `@phcdevworks/spectre-shell`. Do not bypass `bootstrapApp`.
 - Reactive state is handled by `@phcdevworks/spectre-shell-signals`. Use `signal`, `effect`, and `computed` — do not reach for external state libraries.
 
+## Manifest
+
+`spectre.manifest.json` describes this app's Spectre dependencies. When you add
+or remove a `@phcdevworks/*` dependency in `package.json`, update the matching
+`dependencies` array on the `"<project-name>"` package entry in
+`spectre.manifest.json` to keep them in sync.
 
 ## Confidential External Identities
 
@@ -18,7 +24,6 @@ identities in tracked files, git metadata, reviews, releases, issues, or
 handoffs. Use anonymous role-based wording such as "a downstream integration"
 or "a production consumer." Zero tolerance, no exceptions — this applies even
 to well-known or already-public vendor names.
-
 
 ## Commit Authorship
 

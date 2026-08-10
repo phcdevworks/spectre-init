@@ -1,0 +1,94 @@
+{
+  "$schema": "./node_modules/@phcdevworks/spectre-manifest/schema/spectre.manifest.schema.json",
+  "$id": "urn:local:spectre-app:manifest",
+  "schemaVersion": "0.1",
+  "system": {
+    "name": "spectre-app",
+    "version": "0.0.1",
+    "manifestVersion": "0.1",
+    "summary": "Application manifest for this Spectre-scaffolded project.",
+    "packageManager": "npm"
+  },
+  "layers": {
+    "foundation": {
+      "title": "Foundation",
+      "description": "Published Spectre packages this app consumes as external dependencies.",
+      "order": 10,
+      "dependsOn": []
+    },
+    "app": {
+      "title": "Application",
+      "description": "This project.",
+      "order": 20,
+      "dependsOn": ["foundation"]
+    }
+  },
+  "packages": {
+    "@phcdevworks/spectre-tokens": {
+      "role": "design-tokens",
+      "layer": "foundation",
+      "stability": "stable",
+      "description": "Design tokens as CSS variables and JS objects.",
+      "exports": ["."]
+    },
+    "@phcdevworks/spectre-ui": {
+      "role": "styling",
+      "layer": "foundation",
+      "stability": "stable",
+      "description": "CSS bundles and type-safe recipe functions built on tokens.",
+      "exports": ["."]
+    },
+    "@phcdevworks/spectre-ui-astro": {
+      "role": "astro-adapter",
+      "layer": "foundation",
+      "stability": "stable",
+      "description": "SSR-safe Astro components built on spectre-ui recipes.",
+      "exports": ["."]
+    },
+    "spectre-app": {
+      "role": "application",
+      "layer": "app",
+      "stability": "experimental",
+      "description": "Astro Spectre app scaffolded by @phcdevworks/spectre-init.",
+      "exports": ["."],
+      "dependencies": [
+        "@phcdevworks/spectre-tokens",
+        "@phcdevworks/spectre-ui",
+        "@phcdevworks/spectre-ui-astro"
+      ],
+      "allowedTargets": ["layer:foundation"]
+    }
+  },
+  "rules": {
+    "dependencyDirection": [
+      {
+        "fromLayer": "foundation",
+        "allowedLayers": ["foundation"]
+      },
+      {
+        "fromLayer": "app",
+        "allowedLayers": ["app", "foundation"]
+      }
+    ],
+    "forbiddenImports": [],
+    "boundaryConstraints": []
+  },
+  "ai": {
+    "preferredEntrypoints": [
+      {
+        "task": "run this app's dev server",
+        "kind": "command",
+        "entrypoint": "npm run dev"
+      }
+    ],
+    "generationRules": [
+      "Consume Spectre UI through @phcdevworks/spectre-ui-astro components — do not hand-roll markup against spectre-ui recipes directly."
+    ],
+    "usageGuidance": [
+      "This manifest describes this app's own Spectre dependencies. It is a starting point, not a registration in the Spectre ecosystem manifest."
+    ],
+    "safeDefaults": [
+      "Keep the \"spectre-app\" package entry's dependencies list in sync with package.json's @phcdevworks/* dependencies."
+    ]
+  }
+}

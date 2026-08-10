@@ -1,0 +1,16 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro"
+import { SpButton, SpCard } from "@phcdevworks/spectre-ui-astro"
+---
+
+<BaseLayout title="Spectre App">
+  <main class="sp-container sp-section">
+    <SpCard variant="elevated">
+      <h1>Spectre App</h1>
+      <p>Scaffolded with spectre-init. Start editing in src/pages/index.astro.</p>
+      <SpButton variant="primary" as="a" href="https://github.com/phcdevworks/spectre-ui-astro">
+        Read the docs
+      </SpButton>
+    </SpCard>
+  </main>
+</BaseLayout>

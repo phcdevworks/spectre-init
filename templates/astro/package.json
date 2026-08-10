@@ -1,0 +1,19 @@
+{
+  "name": "spectre-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@phcdevworks/spectre-tokens": "^4.3.0",
+    "@phcdevworks/spectre-ui": "^4.0.0",
+    "@phcdevworks/spectre-ui-astro": "^4.4.0",
+    "astro": "^7.2.0"
+  },
+  "devDependencies": {
+    "typescript": "^7.0.2"
+  }
+}

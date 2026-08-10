@@ -4,6 +4,26 @@ All notable changes to this project will be documented here. The format follows 
 
 ## [Unreleased]
 
+### Added
+
+- Added `astro` template — an Astro starter wiring `@phcdevworks/spectre-ui-astro`
+  components (`SpButton`, `SpCard`) with a shared `BaseLayout.astro`. New `astro`
+  entry in the `PROJECT_TYPES` registry.
+- Added a starter `spectre.manifest.json` to all three templates, declaring the
+  scaffolded app as a single package that depends on the Spectre packages the
+  template wires up. `spectre-init` renames the manifest's package entry,
+  `system.name`, and `$id` to the scaffolded project name, the same way it
+  patches `package.json`. README documents the manifest registration flow
+  (`spectre-manifest-validate` / `spectre-manifest-check`).
+
+### Changed
+
+- `PROJECT_TYPES` entries now declare their own `requiredFiles` list;
+  `validateScaffold()` checks per-type required files instead of one shared
+  Vite-shaped list, since the `astro` template has no `index.html`,
+  `src/main.ts`, or `vite.config.ts`. `spectre.manifest.json` is now a required
+  file for all three templates.
+
 ## [1.2.0] - 2026-07-23
 
 Release Title: Phase 2 - TypeScript 7 Toolchain Support

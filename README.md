@@ -69,6 +69,7 @@ CLI scaffolding for Spectre-ready applications. `spectre-init` creates a new Typ
 | --- | --- | --- |
 | `vanilla` | TypeScript + Vite starter with routing and Spectre UI. | `spectre-shell`, `spectre-shell-router`, `spectre-tokens`, `spectre-ui` |
 | `shell-app` | Full shell app with `bootstrapApp`, router, signals, reactive effects, and Spectre components. | `spectre-shell`, `spectre-shell-router`, `spectre-shell-signals`, `spectre-components`, `spectre-tokens`, `spectre-ui` |
+| `astro` | Astro starter using `spectre-ui-astro` components (`SpButton`, `SpCard`). | `spectre-tokens`, `spectre-ui`, `spectre-ui-astro`, `astro` |
 
 The interactive setup prompts for project type. The non-interactive path (`spectre-init <name>`) defaults to `vanilla`.
 
@@ -82,6 +83,7 @@ Templates scaffold against the Spectre package family:
 - **[spectre-components](https://github.com/phcdevworks/spectre-components)** — Spectre web components (for example `sp-button` in `shell-app`)
 - **[spectre-tokens](https://github.com/phcdevworks/spectre-tokens)** — design tokens as CSS variables (`--sp-*`), JS objects, and Tailwind theme
 - **[spectre-ui](https://github.com/phcdevworks/spectre-ui)** — CSS bundles and type-safe recipe functions built on tokens
+- **[spectre-ui-astro](https://github.com/phcdevworks/spectre-ui-astro)** — SSR-safe Astro components built on `spectre-ui` recipes (used by `astro`)
 
 ## Capabilities
 
@@ -90,8 +92,31 @@ Templates scaffold against the Spectre package family:
 - Copies the bundled template starter into a new project directory.
 - Validates project names before writing files.
 - Updates the generated package name to match the requested project.
+- Updates the generated `spectre.manifest.json` package entry to match the requested project.
 - Validates scaffolded output before running `npm install`.
 - Runs `npm install` after scaffolding so the app is ready to start.
+
+## Manifest Registration
+
+Every template includes a starter `spectre.manifest.json` describing the
+scaffolded app as a single package that consumes the Spectre packages listed
+in its `dependencies` field (`@phcdevworks/spectre-shell`,
+`@phcdevworks/spectre-tokens`, and so on, depending on template). `spectre-init`
+renames the manifest's package entry, `system.name`, and `$id` to match your
+project name, the same way it patches `package.json`.
+
+This manifest is a starting point, not an automatic registration — it isn't
+validated by the scaffolded app's own scripts by default. To validate it:
+
+```bash
+npm install --save-dev @phcdevworks/spectre-manifest
+npx spectre-manifest-validate spectre.manifest.json
+npx spectre-manifest-check spectre.manifest.json .
+```
+
+Keep the `dependencies` array on the app's package entry in sync with the
+`@phcdevworks/*` entries in `package.json` — `spectre-manifest-check` flags
+drift between the two.
 
 ## Installation
 
