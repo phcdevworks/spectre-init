@@ -16,7 +16,7 @@ packages) but is not itself a dependency of any other repo in the workspace.
 | Project team | `project-shell` |
 | Repository role | Spectre project scaffolding CLI |
 | Package/artifact | `@phcdevworks/spectre-init` |
-| Current version/status | 1.2.0 |
+| Current version/status | 1.3.0 |
 
 ## Standard Workflow
 

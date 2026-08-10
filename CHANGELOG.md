@@ -4,6 +4,12 @@ All notable changes to this project will be documented here. The format follows 
 
 ## [Unreleased]
 
+## [1.3.0] - 2026-08-10
+
+Release Title: Template Expansion and Project Maintenance
+
+Contract change type: additive
+
 ### Added
 
 - Added `astro` template — an Astro starter wiring `@phcdevworks/spectre-ui-astro`
@@ -30,6 +36,10 @@ All notable changes to this project will be documented here. The format follows 
   Vite-shaped list, since the `astro` template has no `index.html`,
   `src/main.ts`, or `vite.config.ts`. `spectre.manifest.json` is now a required
   file for all three templates.
+- Added or synchronized the published template lockfiles with their current
+  dependency pins so generated projects support reproducible `npm ci` installs.
+- Declared the generated Vite projects as ESM packages so their TypeScript Vite
+  configs remain compatible with Vite's native configuration loader.
 
 ## [1.2.0] - 2026-07-23
 
@@ -111,7 +121,8 @@ Release Title: First Public Release
 - README AI guidance reference now points to `AGENTS.md` first.
 - Bumped `fs-extra` to `^11.3.5`, `@types/node` to `^25.7.0`, `typescript-eslint` to `^8.59.3`.
 
-[unreleased]: https://github.com/phcdevworks/spectre-init/compare/v1.2.0...HEAD
+[unreleased]: https://github.com/phcdevworks/spectre-init/compare/v1.3.0...HEAD
+[1.3.0]: https://github.com/phcdevworks/spectre-init/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/phcdevworks/spectre-init/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/phcdevworks/spectre-init/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/phcdevworks/spectre-init/tree/v1.0.0
