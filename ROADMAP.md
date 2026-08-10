@@ -34,22 +34,11 @@ Templates scaffold against these published packages:
 | 2 | Ecosystem alignment — version pin bumps, `spectre-ui` CSS wiring, zero-hex constraint, phantom-import and route-API fixes, TypeScript 7 toolchain support | 1.1.0–1.2.0 |
 | 3 | Astro template — `templates/astro/` using `@phcdevworks/spectre-ui-astro` (`SpButton`, `SpCard`), `astro` entry in `PROJECT_TYPES`, per-type `requiredFiles` in `validateScaffold()` | Unreleased |
 | 4 | Manifest integration — starter `spectre.manifest.json` in all three templates, `spectre-init` renames the manifest's package entry/`system.name`/`$id` to the scaffolded project name, README documents `spectre-manifest-validate`/`spectre-manifest-check` | Unreleased |
+| 5 | Maintenance CLI — `spectre-init update [path]` detects the project's template from its dependencies, refreshes boilerplate config files and `spectre.manifest.json`, and bumps version pins for dependencies the project already declares; never touches `src/` or adds new dependencies | Unreleased |
 
 ---
 
 ## What's Next
-
-### Phase 5: Maintenance CLI
-
-#### P5.1 `spectre-init update` Command
-
-Allow `spectre-init update` to sync an existing project to the latest template
-structure.
-
-Acceptance criteria:
-
-- Syncs config files without overwriting custom application code
-- Implement after Phase 3 templates are stable
 
 ### Phase 6: Template Modernization
 
@@ -111,8 +100,8 @@ Acceptance criteria:
 
 1. ~~Astro template~~ ✓ (P3.1)
 2. ~~Manifest integration~~ ✓ (P4.1)
-3. **Template modernization** ← next, unblocked (P6.1–P6.4)
-4. Update command (P5.1, after templates stable)
+3. ~~Update command~~ ✓ (P5.1)
+4. **Template modernization** ← next, unblocked (P6.1–P6.4)
 
 ## Explicitly Out of Scope
 

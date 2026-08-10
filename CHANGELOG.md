@@ -15,6 +15,13 @@ All notable changes to this project will be documented here. The format follows 
   `system.name`, and `$id` to the scaffolded project name, the same way it
   patches `package.json`. README documents the manifest registration flow
   (`spectre-manifest-validate` / `spectre-manifest-check`).
+- Added `spectre-init update [path]` command. Detects the project's template
+  from its `@phcdevworks/*` dependencies, overwrites boilerplate config files
+  (`.gitignore`, `AGENTS.md`, `tsconfig.json`, `vite.config.ts`/`astro.config.ts`,
+  `spectre.manifest.json`), and bumps version pins for dependencies the
+  project already declares to match the current template. Never touches
+  `src/`, `package.json` scripts/name, or adds dependencies the project
+  doesn't already have.
 
 ### Changed
 
@@ -26,7 +33,7 @@ All notable changes to this project will be documented here. The format follows 
 
 ## [1.2.0] - 2026-07-23
 
-Release Title: Phase 2 - TypeScript 7 Toolchain Support
+Release Title: TypeScript 7 Toolchain Support
 
 Contract change type: additive
 
@@ -41,7 +48,7 @@ Contract change type: additive
 
 ## [1.1.0] - 2026-07-08
 
-Release Title: Phase 2 - Ecosystem Alignment and Release Tooling
+Release Title: Ecosystem Alignment and Release Tooling
 
 Contract change type: additive
 
@@ -69,7 +76,7 @@ Contract change type: additive
 
 ## [1.0.0] - 2026-06-04
 
-Release Title: Phase 0/1 - First Public Release
+Release Title: First Public Release
 
 ### Added
 

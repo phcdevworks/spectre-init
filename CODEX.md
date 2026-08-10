@@ -62,16 +62,18 @@ Before cutting a release, Codex should verify:
 1. Bump `version` in `package.json`.
 2. Add a dated entry to `CHANGELOG.md` under a new version heading:
    `## [<version>] - <YYYY-MM-DD>`, with a release title line in the format
-   `**Release Title:** Phase <N> - <short title>`, where `Phase <N>` is the
-   active phase name from this repo's own `ROADMAP.md` and `<short title>`
-   is a concise summary of what shipped. If the release spans no single
-   ROADMAP phase, state that explicitly instead of inventing one.
+   `**Release Title:** <short title>`, where `<short title>` is a concise
+   summary of what shipped. Do not include roadmap phase numbers in release
+   titles.
 3. Stage and commit the version bump and changelog update.
 4. Create the git tag: `git tag v<version>` (matching `package.json`
    exactly), then push the commit and tag.
 5. Publish the GitHub Release from that tag: `gh release create v<version>
-   --title "v<version>: Phase <N> - <short title>" --notes-file` (extract the
-   new version's changelog section, or `--notes` inline for a short release).
+   --title "<short title>" --notes-file`. The notes file must contain the full
+   versioned `CHANGELOG.md` entry verbatim except for the version heading and
+   `Release Title` line, which GitHub already displays. Preserve the
+   contract-change line, section headings, and every bullet. Never summarize,
+   condense, paraphrase, add to, or omit the remaining changelog content.
 6. `npm publish` is **not** run by Codex — that stays with Bradley Potts.
 
 ## Config Hygiene

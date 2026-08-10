@@ -25,6 +25,8 @@ const PROJECT_TYPES = {
       'tsconfig.json',
       'vite.config.ts',
     ],
+    configFiles: ['.gitignore', 'AGENTS.md', 'tsconfig.json', 'vite.config.ts'],
+    detectDependency: '@phcdevworks/spectre-shell',
   },
   'shell-app': {
     label: 'Shell App',
@@ -38,6 +40,8 @@ const PROJECT_TYPES = {
       'tsconfig.json',
       'vite.config.ts',
     ],
+    configFiles: ['.gitignore', 'AGENTS.md', 'tsconfig.json', 'vite.config.ts'],
+    detectDependency: '@phcdevworks/spectre-shell-signals',
   },
   astro: {
     label: 'Astro',
@@ -51,6 +55,8 @@ const PROJECT_TYPES = {
       'src/pages/index.astro',
       'tsconfig.json',
     ],
+    configFiles: ['.gitignore', 'AGENTS.md', 'astro.config.ts', 'tsconfig.json'],
+    detectDependency: '@phcdevworks/spectre-ui-astro',
   },
 } as const
 
@@ -59,12 +65,18 @@ type ProjectTypeKey = keyof typeof PROJECT_TYPES
 function showHelp(): void {
   console.log(`
 Usage: spectre-init [project-name]
+       spectre-init update [path]
 
 Scaffold a new Spectre-ready application from a bundled template.
 Run with no arguments to launch the interactive setup.
 
 Arguments:
   project-name    Name of the new project directory (skips interactive prompts)
+
+Commands:
+  update [path]   Sync config files and dependency pins in an existing
+                   spectre-init project to the current template (default
+                   path: current directory). Never touches files under src/.
 
 Options:
   -h, --help      Show this help message
@@ -92,6 +104,98 @@ function validateProjectName(name: string): string | null {
 
 function validateScaffold(targetDir: string, typeKey: ProjectTypeKey): string[] {
   return PROJECT_TYPES[typeKey].requiredFiles.filter((f) => !existsSync(path.join(targetDir, f)))
+}
+
+interface ManifestShape {
+  $id: string
+  system: { name: string }
+  packages: Record<string, unknown>
+}
+
+function patchManifestName(manifest: ManifestShape, projectName: string): void {
+  const previousName = manifest.system.name
+  manifest.system.name = projectName
+  manifest.$id = `urn:local:${projectName}:manifest`
+  if (previousName in manifest.packages) {
+    manifest.packages[projectName] = manifest.packages[previousName]
+    delete manifest.packages[previousName]
+  }
+}
+
+const TYPE_DETECTION_PRIORITY: ProjectTypeKey[] = ['astro', 'shell-app', 'vanilla']
+
+function detectProjectType(dependencies: Record<string, string>): ProjectTypeKey | null {
+  for (const typeKey of TYPE_DETECTION_PRIORITY) {
+    if (PROJECT_TYPES[typeKey].detectDependency in dependencies) {
+      return typeKey
+    }
+  }
+  return null
+}
+
+async function updateProject(targetDir: string): Promise<void> {
+  const pkgPath = path.join(targetDir, 'package.json')
+  if (!existsSync(pkgPath)) {
+    console.error(`Error: no package.json found in "${targetDir}". Is this a spectre-init scaffolded project?`)
+    process.exit(1)
+  }
+
+  const pkg = (await fsExtra.readJson(pkgPath)) as {
+    name?: string
+    dependencies?: Record<string, string>
+    devDependencies?: Record<string, string>
+  }
+
+  const typeKey = detectProjectType(pkg.dependencies ?? {})
+  if (!typeKey) {
+    console.error('Error: could not detect project type from package.json dependencies. Is this a spectre-init scaffolded project?')
+    process.exit(1)
+  }
+
+  const templateDir = path.join(__dirname, '../templates', PROJECT_TYPES[typeKey].templateDir)
+
+  console.log(`\nUpdating ${PROJECT_TYPES[typeKey].label} project in: ${targetDir}`)
+
+  const updatedFiles: string[] = []
+  for (const file of PROJECT_TYPES[typeKey].configFiles) {
+    const src = path.join(templateDir, file)
+    if (existsSync(src)) {
+      await fsExtra.copy(src, path.join(targetDir, file))
+      updatedFiles.push(file)
+    }
+  }
+
+  const templatePkg = (await fsExtra.readJson(path.join(templateDir, 'package.json'))) as {
+    dependencies?: Record<string, string>
+    devDependencies?: Record<string, string>
+  }
+
+  const bumped: string[] = []
+  for (const section of ['dependencies', 'devDependencies'] as const) {
+    const current = pkg[section]
+    const template = templatePkg[section]
+    if (!current || !template) continue
+    for (const [name, version] of Object.entries(template)) {
+      if (name in current && current[name] !== version) {
+        bumped.push(`${name}: ${current[name]} -> ${version}`)
+        current[name] = version
+      }
+    }
+  }
+  await fsExtra.writeJson(pkgPath, pkg, { spaces: 2 })
+
+  const manifestPath = path.join(targetDir, 'spectre.manifest.json')
+  const templateManifestPath = path.join(templateDir, 'spectre.manifest.json')
+  if (existsSync(manifestPath) && existsSync(templateManifestPath) && pkg.name) {
+    const templateManifest = (await fsExtra.readJson(templateManifestPath)) as ManifestShape
+    patchManifestName(templateManifest, pkg.name)
+    await fsExtra.writeJson(manifestPath, templateManifest, { spaces: 2 })
+    updatedFiles.push('spectre.manifest.json')
+  }
+
+  console.log(`\nUpdated config files: ${updatedFiles.length > 0 ? updatedFiles.join(', ') : 'none'}`)
+  console.log(bumped.length > 0 ? `Bumped dependency pins:\n  ${bumped.join('\n  ')}` : 'Dependency pins already up to date.')
+  console.log('\nApplication code under src/ was not touched. Run `npm install` to apply dependency changes.')
 }
 
 async function promptUser(): Promise<{ projectName: string; typeKey: ProjectTypeKey; targetDir: string }> {
@@ -146,6 +250,12 @@ async function main(): Promise<void> {
     process.exit(0)
   }
 
+  if (args[0] === 'update') {
+    const targetDir = path.resolve(process.cwd(), args[1] ?? '.')
+    await updateProject(targetDir)
+    return
+  }
+
   let projectName: string
   let typeKey: ProjectTypeKey = 'vanilla'
   let targetDir: string
@@ -180,18 +290,8 @@ async function main(): Promise<void> {
 
   const manifestPath = path.join(targetDir, 'spectre.manifest.json')
   if (existsSync(manifestPath)) {
-    const manifest = (await fsExtra.readJson(manifestPath)) as {
-      $id: string
-      system: { name: string }
-      packages: Record<string, unknown>
-    }
-    const previousName = manifest.system.name
-    manifest.system.name = projectName
-    manifest.$id = `urn:local:${projectName}:manifest`
-    if (previousName in manifest.packages) {
-      manifest.packages[projectName] = manifest.packages[previousName]
-      delete manifest.packages[previousName]
-    }
+    const manifest = (await fsExtra.readJson(manifestPath)) as ManifestShape
+    patchManifestName(manifest, projectName)
     await fsExtra.writeJson(manifestPath, manifest, { spaces: 2 })
   }
 

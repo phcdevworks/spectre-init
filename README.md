@@ -156,9 +156,30 @@ This package exposes the `spectre-init` binary.
 ```bash
 spectre-init                  # interactive setup
 spectre-init <project-name>   # skip prompts, scaffold immediately
+spectre-init update [path]    # sync an existing project's config files and dependency pins
 spectre-init --help
 spectre-init --version
 ```
+
+## Updating An Existing Project
+
+`spectre-init update [path]` (default path: current directory) brings an
+existing scaffolded project's boilerplate up to date with the currently
+installed `spectre-init` version:
+
+- Detects the project's template (`vanilla`, `shell-app`, or `astro`) from its
+  `@phcdevworks/*` dependencies.
+- Overwrites config files that are boilerplate, not application code:
+  `.gitignore`, `AGENTS.md`, `tsconfig.json`, and `vite.config.ts` /
+  `astro.config.ts`.
+- Refreshes `spectre.manifest.json` from the current template, preserving the
+  project's own name.
+- Bumps the version pin for any `@phcdevworks/*` (or other) dependency the
+  project already has, to match the current template — it does not add
+  dependencies the project doesn't already have, and never touches `scripts`,
+  `name`, or other `package.json` fields.
+- Never touches anything under `src/`. Run `npm install` afterward to apply
+  any dependency changes.
 
 ## Boundaries
 

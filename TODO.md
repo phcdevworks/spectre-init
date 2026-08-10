@@ -1,19 +1,10 @@
 # Spectre Init Execution Todo
 
-Phases 0–4 are complete — see [ROADMAP.md](ROADMAP.md) for the delivery
+Phases 0–5 are complete — see [ROADMAP.md](ROADMAP.md) for the delivery
 summary and [CHANGELOG.md](CHANGELOG.md) for release-by-release detail.
 
 Phase 6 (Template Modernization) is unblocked — both its prerequisites
-shipped upstream. Phase 5 (Maintenance CLI) follows once templates are stable.
-
----
-
-## Phase 5 — Maintenance CLI
-
-- [ ] Add `spectre-init update` command
-  - Updates config files in an existing Spectre project to latest template
-  - Does not overwrite custom application code
-  - Implement after Phase 3 templates are stable
+shipped upstream.
 
 ---
 
@@ -36,8 +27,8 @@ All items below are work in `templates/` only. All APIs are already shipped upst
 
 1. ~~Astro template~~ ✓ (Phase 3)
 2. ~~Manifest integration~~ ✓ (Phase 4)
-3. **Template modernization** ← next, unblocked (Phase 6)
-4. Update command ← after templates stable (Phase 5)
+3. ~~Update command~~ ✓ (Phase 5)
+4. **Template modernization** ← next, unblocked (Phase 6)
 
 ## Explicitly Out of Scope
 
