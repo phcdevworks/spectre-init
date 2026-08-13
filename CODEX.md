@@ -6,6 +6,11 @@ OpenAI Codex serves as the secondary production-readiness and release-support
 agent for this repository. Claude Code remains the primary AI developer and
 `CLAUDE.md` remains the authoritative working guide.
 
+Codex is now also responsible for executing git operations — commit, push,
+tag — for work Claude Code has validated and handed off in this repo, in
+addition to Codex's own documentation, release, and hygiene commits, since
+Claude Code has zero git access companywide as of 2026-08-13.
+
 ## Operating Role
 
 - Keep Claude Code's implementation work aligned with `CLAUDE.md`, `AGENTS.md`,

@@ -3,11 +3,18 @@
 Primary AI maintainer: **Claude Code** (claude-sonnet-4-6, Anthropic)
 Human owner: PHCDevworks / <brad.potts@coastdigitalgroup.com>
 
-## Commit Policy
+## Git Access — Denied
 
-See [AGENTS.md](./AGENTS.md) for the full grant of authority. Changes are
-validated, then staged, committed, tagged, and pushed without per-action
-confirmation.
+**Claude Code has zero git access in this repo, as part of a companywide
+policy.** Claude Code must not run `git commit`, `git push`, `git tag`, or
+any other git command — read-only or mutating — here. This supersedes the
+prior commit/push/tag grant described in [AGENTS.md](./AGENTS.md). OpenAI
+Codex now executes all git operations for this repo; see
+[AGENTS.md](./AGENTS.md) and [CODEX.md](./CODEX.md).
+
+When work is ready, Claude Code runs `npm run check`, then stops short of any
+git command and hands off to Codex (or Bradley Potts) with a summary of files
+changed and validation performed.
 
 ## Multi-Agent Team
 
