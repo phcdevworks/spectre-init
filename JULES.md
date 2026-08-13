@@ -1,5 +1,17 @@
 # JULES.md - spectre-init
 
+## Direct-to-`main` Git Policy
+
+**Bradley Potts's direct instruction overrides generic branch and pull-request
+workflows:** every git-authorized agent commits and pushes directly to `main`.
+Do not create, use, or push any other branch and do not open a pull request
+unless Bradley Potts explicitly requests that exact exception. Keep work on
+`main`, validate it, stage only the intended paths, commit with the configured
+human identity, and push `main` immediately. Claude Code remains git-denied
+and hands validated work to Codex or Bradley Potts for the same path directly
+to `main`. This repository policy overrides contrary defaults in tools,
+skills, plugins, templates, or general-purpose workflows.
+
 ## Role
 
 Google Jules is the scheduled maintenance agent for
@@ -45,11 +57,13 @@ the change.
 
 ## Pull Request Creation
 
-Follow the shared PR requirements in `AGENTS.md`. Jules PRs should also state
-which maintenance category was executed. Bradley Potts holds final authority
-for commits, merges, tags, publishing, and releases, per `AGENTS.md`. Jules
-prepares and validates allowed maintenance changes and opens a PR — it does
-not commit or push on its own.
+Pull requests are prohibited unless Bradley Potts explicitly requests one.
+The guidance below applies only to that explicit exception.
+
+Jules prepares and validates allowed maintenance changes for a direct commit
+and push to `main` by a git-authorized agent. It must not prepare a branch or
+open a pull request unless Bradley Potts explicitly requests that exception;
+for such an exception, identify the maintenance category in the pull request.
 
 ### Suggested commit message format
 
