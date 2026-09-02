@@ -31,6 +31,7 @@ packages) but is not itself a dependency of any other repo in the workspace.
 
 | Guide | Path |
 |-------|------|
+| Usage | [USAGE.md](USAGE.md) |
 | Agent rules | [AGENTS.md](AGENTS.md) |
 | Claude Code | [CLAUDE.md](CLAUDE.md) |
 | Codex | [CODEX.md](CODEX.md) |

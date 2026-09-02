@@ -4,6 +4,12 @@ All notable changes to this project will be documented here. The format follows 
 
 ## [Unreleased]
 
+### Added
+
+- Added `USAGE.md`, a standalone usage guide covering install, scaffold, and
+  update flows for the `vanilla` and `shell-app` templates, linked from the
+  README's documentation map.
+
 ## [1.3.0] - 2026-08-10
 
 Release Title: Template Expansion and Project Maintenance

@@ -9,11 +9,11 @@
   "dependencies": {
     "@phcdevworks/spectre-shell": "^1.4.0",
     "@phcdevworks/spectre-shell-router": "^1.4.0",
-    "@phcdevworks/spectre-tokens": "^4.3.0",
-    "@phcdevworks/spectre-ui": "^4.0.0"
+    "@phcdevworks/spectre-tokens": "^4.7.0",
+    "@phcdevworks/spectre-ui": "^5.0.0"
   },
   "devDependencies": {
     "typescript": "^7.0.2",
-    "vite": "^8.2.1"
+    "vite": "^8.2.2"
   }
 }

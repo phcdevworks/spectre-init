@@ -18,10 +18,10 @@ Templates scaffold against these published packages:
 | `@phcdevworks/spectre-shell` | 1.4.0 | SPA bootstrap — `bootstrapApp`, lifecycle callbacks, readiness signal, returns `Router` instance |
 | `@phcdevworks/spectre-shell-router` | 1.4.0 | Client-side router — route matching, named routes, `render`/`destroy` hooks, `meta`, `afterNavigate` |
 | `@phcdevworks/spectre-shell-signals` | 1.3.0 | Reactive primitives — signals, computed, effects |
-| `@phcdevworks/spectre-tokens` | 4.3.0 | Design tokens — CSS variables (`--sp-*`), JS objects |
-| `@phcdevworks/spectre-ui` | 4.0.0 | Styling layer — CSS bundles, recipe functions |
-| `@phcdevworks/spectre-components` | 1.15.0 | Web component layer — custom elements used by shell-app starter |
-| `@phcdevworks/spectre-ui-astro` | 4.4.0 | Astro adapter — SSR-safe components used by the astro starter |
+| `@phcdevworks/spectre-tokens` | 4.7.0 | Design tokens — CSS variables (`--sp-*`), JS objects |
+| `@phcdevworks/spectre-ui` | 5.0.0 | Styling layer — CSS bundles, recipe functions |
+| `@phcdevworks/spectre-components` | 1.18.0 | Web component layer — custom elements used by shell-app starter |
+| `@phcdevworks/spectre-ui-astro` | 4.7.0 | Astro adapter — SSR-safe components used by the astro starter |
 
 ---
 
@@ -45,11 +45,18 @@ Templates scaffold against these published packages:
 Templates should demonstrate the full depth of the Spectre ecosystem. All APIs
 in this phase are shipped in current upstream packages.
 
-Prerequisites — both complete:
+Prerequisites — P6.1/P6.4 ready, P6.2/P6.3 blocked:
 
 - `spectre-shell-router` `meta`, `afterNavigate`, `onNavigationStart`/`End`,
   and `subscribe` patterns have README examples to copy from ✓
 - `spectre-shell` `bootstrapApp` returns the `Router` instance ✓
+- **Blocked:** `bootstrapApp`'s `BootstrapOptions` has no `routerOptions`
+  passthrough — `new Router(registeredRoutes, root)` is called with no
+  third argument, so `afterNavigate` and `onNavigationStart`/`onNavigationEnd`
+  (both `RouterOptions`, only settable via the `Router` constructor) cannot
+  reach a router built through `bootstrapApp`. Requested upstream in
+  `spectre-shell/TODO.md` under "Requested by Downstream". Blocks P6.2 and
+  P6.3 until `spectre-shell` adds the passthrough and publishes a release.
 
 #### P6.1 Bootstrap Lifecycle (both templates)
 
