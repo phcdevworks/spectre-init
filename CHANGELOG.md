@@ -4,11 +4,25 @@ All notable changes to this project will be documented here. The format follows 
 
 ## [Unreleased]
 
+## [1.4.0] - 2026-09-04
+
+Release Title: Template Modernization and Dependency Refresh
+
+Contract change type: additive
+
 ### Added
 
 - Added `USAGE.md`, a standalone usage guide covering install, scaffold, and
   update flows for the `vanilla` and `shell-app` templates, linked from the
   README's documentation map.
+- Template modernization (Phase 6): `beforeMount`/`afterMount` callbacks in
+  both templates; `bootReady` observed via `effect()` and a `ShellPlugin`
+  boot-logger demo in shell-app; route `meta: { title }` combined with
+  `afterNavigate` for document-title management; and a `navigating` signal,
+  driven by `routerOptions.onNavigationStart`/`onNavigationEnd`, reflecting
+  loading state in the shell-app DOM via `effect()`. Requires
+  `@phcdevworks/spectre-shell` `^1.5.0` for the new `routerOptions`
+  passthrough on `BootstrapOptions`.
 
 ## [1.3.0] - 2026-08-10
 
@@ -127,7 +141,8 @@ Release Title: First Public Release
 - README AI guidance reference now points to `AGENTS.md` first.
 - Bumped `fs-extra` to `^11.3.5`, `@types/node` to `^25.7.0`, `typescript-eslint` to `^8.59.3`.
 
-[unreleased]: https://github.com/phcdevworks/spectre-init/compare/v1.3.0...HEAD
+[unreleased]: https://github.com/phcdevworks/spectre-init/compare/v1.4.0...HEAD
+[1.4.0]: https://github.com/phcdevworks/spectre-init/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/phcdevworks/spectre-init/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/phcdevworks/spectre-init/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/phcdevworks/spectre-init/compare/v1.0.0...v1.1.0

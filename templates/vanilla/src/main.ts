@@ -6,6 +6,12 @@ const root = document.getElementById("app")!
 
 bootstrapApp({
   root,
+  beforeMount() {
+    console.info("[spectre-app] mounting")
+  },
+  afterMount() {
+    console.info("[spectre-app] mounted")
+  },
   routes(): Route[] {
     return [
       {

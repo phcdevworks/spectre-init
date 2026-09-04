@@ -1,20 +1,59 @@
 import "@phcdevworks/spectre-ui/index.css"
 import { defineSpectreButton } from "@phcdevworks/spectre-components/button"
-import { bootstrapApp } from "@phcdevworks/spectre-shell"
+import { bootstrapApp, bootReady, type ShellPlugin } from "@phcdevworks/spectre-shell"
 import type { Route } from "@phcdevworks/spectre-shell-router"
 import { effect, signal } from "@phcdevworks/spectre-shell-signals"
 
 defineSpectreButton()
 
 const root = document.getElementById("app")!
+const navStatus = document.getElementById("nav-status")!
 const count = signal(0)
+const navigating = signal(false)
+
+const bootLoggerPlugin: ShellPlugin = {
+  name: "boot-logger",
+  install({ bootReady }) {
+    effect(() => {
+      if (bootReady.value) console.info("[spectre-app] boot ready")
+    })
+  },
+}
+
+effect(() => {
+  if (!bootReady.value) {
+    navStatus.textContent = "Booting…"
+  } else {
+    navStatus.textContent = navigating.value ? "Loading…" : ""
+  }
+})
 
 bootstrapApp({
   root,
+  beforeMount() {
+    console.info("[spectre-app] mounting")
+  },
+  afterMount() {
+    console.info("[spectre-app] mounted")
+  },
+  plugins: [bootLoggerPlugin],
+  routerOptions: {
+    onNavigationStart: () => {
+      navigating.value = true
+    },
+    onNavigationEnd: () => {
+      navigating.value = false
+    },
+    afterNavigate: (context) => {
+      const title = context.meta?.title
+      document.title = typeof title === "string" ? `${title} · Spectre App` : "Spectre App"
+    },
+  },
   routes(): Route[] {
     return [
       {
         path: "/",
+        meta: { title: "Home" },
         loader: async () => {
           let stopEffect: (() => void) | null = null
 
@@ -42,6 +81,7 @@ bootstrapApp({
       },
       {
         path: "/about",
+        meta: { title: "About" },
         loader: async () => ({
           render({ root }) {
             root.innerHTML = `
