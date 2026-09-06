@@ -6,6 +6,7 @@ import { existsSync, readFileSync } from 'fs'
 import fsExtra from 'fs-extra'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import { parseArgs } from 'node:util'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -67,8 +68,8 @@ type ProjectTypeKey = keyof typeof PROJECT_TYPES
 
 function showHelp(): void {
   console.log(`
-Usage: spectre-init [project-name]
-       spectre-init update [path]
+Usage: spectre-init [project-name] [--template <type>] [--skip-install]
+       spectre-init update [path] [--dry-run]
 
 Scaffold a new Spectre-ready application from a bundled template.
 Run with no arguments to launch the interactive setup.
@@ -82,6 +83,9 @@ Commands:
                    path: current directory). Never touches files under src/.
 
 Options:
+  --template     Template: vanilla, shell-app, or astro (default: vanilla)
+  --skip-install Generate files without running npm install
+  --dry-run      Preview update changes without writing files
   -h, --help      Show this help message
   -v, --version   Show version number
 `)
@@ -136,7 +140,7 @@ function detectProjectType(dependencies: Record<string, string>): ProjectTypeKey
   return null
 }
 
-async function updateProject(targetDir: string): Promise<void> {
+async function updateProject(targetDir: string, dryRun: boolean): Promise<void> {
   const pkgPath = path.join(targetDir, 'package.json')
   if (!existsSync(pkgPath)) {
     console.error(`Error: no package.json found in "${targetDir}". Is this a spectre-init scaffolded project?`)
@@ -157,13 +161,14 @@ async function updateProject(targetDir: string): Promise<void> {
 
   const templateDir = path.join(__dirname, '../templates', PROJECT_TYPES[typeKey].templateDir)
 
-  console.log(`\nUpdating ${PROJECT_TYPES[typeKey].label} project in: ${targetDir}`)
+  console.log(`\n${dryRun ? "Previewing update for" : "Updating"} ${PROJECT_TYPES[typeKey].label} project in: ${targetDir}`)
 
   const updatedFiles: string[] = []
+  const writes: { file: string; content: Buffer | string }[] = []
   for (const file of PROJECT_TYPES[typeKey].configFiles) {
     const src = path.join(templateDir, file === '.gitignore' ? '_gitignore' : file)
     if (existsSync(src)) {
-      await fsExtra.copy(src, path.join(targetDir, file))
+      writes.push({ file: path.join(targetDir, file), content: await fsExtra.readFile(src) })
       updatedFiles.push(file)
     }
   }
@@ -185,29 +190,35 @@ async function updateProject(targetDir: string): Promise<void> {
       }
     }
   }
-  await fsExtra.writeJson(pkgPath, pkg, { spaces: 2 })
+  writes.push({ file: pkgPath, content: JSON.stringify(pkg, null, 2) + '\n' })
 
   const manifestPath = path.join(targetDir, 'spectre.manifest.json')
   const templateManifestPath = path.join(templateDir, 'spectre.manifest.json')
   if (existsSync(manifestPath) && existsSync(templateManifestPath) && pkg.name) {
     const templateManifest = (await fsExtra.readJson(templateManifestPath)) as ManifestShape
     patchManifestName(templateManifest, pkg.name)
-    await fsExtra.writeJson(manifestPath, templateManifest, { spaces: 2 })
+    writes.push({ file: manifestPath, content: JSON.stringify(templateManifest, null, 2) + '\n' })
     updatedFiles.push('spectre.manifest.json')
   }
 
-  console.log(`\nUpdated config files: ${updatedFiles.length > 0 ? updatedFiles.join(', ') : 'none'}`)
-  console.log(bumped.length > 0 ? `Bumped dependency pins:\n  ${bumped.join('\n  ')}` : 'Dependency pins already up to date.')
-  console.log('\nApplication code under src/ was not touched. Run `npm install` to apply dependency changes.')
+  if (!dryRun) {
+    for (const { file, content } of writes) await fsExtra.writeFile(file, content)
+  }
+
+  console.log(`\n${dryRun ? "Would overwrite config files" : "Updated config files"}: ${updatedFiles.length > 0 ? updatedFiles.join(', ') : 'none'}`)
+  console.log(bumped.length > 0 ? `${dryRun ? "Would change dependency pins" : "Changed dependency pins"}:\n  ${bumped.join('\n  ')}` : 'Dependency pins already up to date.')
+  console.log(dryRun
+    ? '\nDry run complete. No files were written. Application code under src/ would be preserved.'
+    : '\nApplication code under src/ was not touched. Run `npm install` to apply dependency changes.')
 }
 
-async function promptUser(): Promise<{ projectName: string; typeKey: ProjectTypeKey; targetDir: string }> {
+async function promptUser(selectedType?: ProjectTypeKey): Promise<{ projectName: string; typeKey: ProjectTypeKey; targetDir: string }> {
   const projectName = await input({
     message: 'Project name:',
     validate: (value) => validateProjectName(value) ?? true,
   })
 
-  const typeKey = await select<ProjectTypeKey>({
+  const typeKey = selectedType ?? await select<ProjectTypeKey>({
     message: 'Project type:',
     choices: Object.entries(PROJECT_TYPES).map(([key, meta]) => ({
       value: key as ProjectTypeKey,
@@ -243,28 +254,46 @@ async function promptUser(): Promise<{ projectName: string; typeKey: ProjectType
 }
 
 async function main(): Promise<void> {
-  if (args.includes('-h') || args.includes('--help')) {
+  const { values, positionals } = parseArgs({
+    args,
+    allowPositionals: true,
+    options: {
+      help: { type: 'boolean', short: 'h' },
+      version: { type: 'boolean', short: 'v' },
+      template: { type: 'string' },
+      'skip-install': { type: 'boolean' },
+      'dry-run': { type: 'boolean' },
+    },
+  })
+  if (values.help) {
     showHelp()
-    process.exit(0)
-  }
-
-  if (args.includes('-v') || args.includes('--version')) {
-    console.log(getVersion())
-    process.exit(0)
-  }
-
-  if (args[0] === 'update') {
-    const targetDir = path.resolve(process.cwd(), args[1] ?? '.')
-    await updateProject(targetDir)
     return
   }
+  if (values.version) {
+    console.log(getVersion())
+    return
+  }
+  if (positionals[0] === 'update') {
+    if (values.template !== undefined || values['skip-install'] || positionals.length > 2) {
+      throw new Error('Usage: spectre-init update [path] [--dry-run]')
+    }
+    await updateProject(path.resolve(process.cwd(), positionals[1] ?? '.'), values['dry-run'] ?? false)
+    return
+  }
+  if (values['dry-run'] || positionals.length > 1) {
+    throw new Error('Usage: spectre-init [project-name] [--template <type>] [--skip-install]')
+  }
+  if (values.template !== undefined && !Object.hasOwn(PROJECT_TYPES, values.template)) {
+    throw new Error('Unknown template. Choose vanilla, shell-app, or astro.')
+  }
+  const selectedType = values.template as ProjectTypeKey | undefined
 
   let projectName: string
-  let typeKey: ProjectTypeKey = 'vanilla'
+  let typeKey: ProjectTypeKey = selectedType ?? 'vanilla'
   let targetDir: string
 
-  if (args[0]) {
-    projectName = args[0]
+  if (positionals[0]) {
+    projectName = positionals[0]
     const nameError = validateProjectName(projectName)
     if (nameError) {
       console.error(`Error: ${nameError}`)
@@ -272,7 +301,7 @@ async function main(): Promise<void> {
     }
     targetDir = path.join(process.cwd(), projectName)
   } else {
-    ;({ projectName, typeKey, targetDir } = await promptUser())
+    ;({ projectName, typeKey, targetDir } = await promptUser(selectedType))
   }
 
   if (existsSync(targetDir)) {
@@ -284,7 +313,11 @@ async function main(): Promise<void> {
 
   console.log(`\nScaffolding Spectre app: ${projectName}`)
 
-  await fsExtra.copy(templateDir, targetDir)
+  await fsExtra.copy(templateDir, targetDir, {
+    filter: (source) => !['node_modules', 'dist', '.astro'].includes(
+      path.relative(templateDir, source).split(path.sep)[0],
+    ),
+  })
   await fsExtra.move(path.join(targetDir, '_gitignore'), path.join(targetDir, '.gitignore'))
 
   const pkgPath = path.join(targetDir, 'package.json')
@@ -306,10 +339,12 @@ async function main(): Promise<void> {
     process.exit(1)
   }
 
-  console.log('Installing dependencies...')
-  execSync('npm install', { cwd: targetDir, stdio: 'inherit' })
+  if (!values['skip-install']) {
+    console.log('Installing dependencies...')
+    execSync('npm install', { cwd: targetDir, stdio: 'inherit' })
+  }
 
-  console.log(`\nDone! Next steps:\n  cd ${projectName}\n  npm run dev`)
+  console.log(`\nDone! Next steps:\n  cd ${projectName}\n${values['skip-install'] ? '  npm install\n' : ''}  npm run dev`)
 }
 
 main().catch((err: unknown) => {

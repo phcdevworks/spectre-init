@@ -1,6 +1,6 @@
 {
   "name": "@phcdevworks/spectre-init",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "description": "@phcdevworks/spectre-init is the project scaffolding CLI of the Spectre shell ecosystem. It creates a new TypeScript app from a bundled template, wires Spectre dependencies, and provides a predictable starter structure.",
   "type": "module",
   "packageManager": "npm@12.0.2",
@@ -51,8 +51,9 @@
     "check:ecosystem": "spectre-manifest-validate spectre.manifest.json && spectre-manifest-check spectre.manifest.json .",
     "check:version-sync": "node --experimental-strip-types scripts/check-readme-version.ts",
     "check:manifest-names": "node --experimental-strip-types scripts/check-manifest-names.ts",
-    "check": "npm run typecheck && npm run lint && npm run build && npm run check:manifest-names && npm run check:version-sync && npm run check:ecosystem",
-    "prepublishOnly": "npm run check"
+    "check": "npm run typecheck && npm run lint && npm run build && npm run check:manifest-names && npm run check:cli-options && npm run check:version-sync && npm run check:ecosystem",
+    "prepublishOnly": "npm run check",
+    "check:cli-options": "node --experimental-strip-types scripts/check-cli-options.ts"
   },
   "devDependencies": {
     "@phcdevworks/spectre-manifest": "^1.1.0",

@@ -16,7 +16,7 @@ packages) but is not itself a dependency of any other repo in the workspace.
 | Project team | `project-shell` |
 | Repository role | Spectre project scaffolding CLI |
 | Package/artifact | `@phcdevworks/spectre-init` |
-| Current version/status | 1.4.1 |
+| Current version/status | 1.5.0 |
 
 ## Standard Workflow
 
@@ -72,7 +72,8 @@ CLI scaffolding for Spectre-ready applications. `spectre-init` creates a new Typ
 | `shell-app` | Full shell app with `bootstrapApp`, router, signals, reactive effects, and Spectre components. | `spectre-shell`, `spectre-shell-router`, `spectre-shell-signals`, `spectre-components`, `spectre-tokens`, `spectre-ui` |
 | `astro` | Astro starter using `spectre-ui-astro` components (`SpButton`, `SpCard`). | `spectre-tokens`, `spectre-ui`, `spectre-ui-astro`, `astro` |
 
-The interactive setup prompts for project type. The non-interactive path (`spectre-init <name>`) defaults to `vanilla`.
+The interactive setup prompts for project type. The non-interactive path (`spectre-init <name>`) defaults to `vanilla`; use
+`--template shell-app` or `--template astro` to choose another template.
 
 ## Ecosystem
 
@@ -162,7 +163,21 @@ spectre-init --help
 spectre-init --version
 ```
 
+For scripted scaffolding, use `spectre-init my-app --template astro --skip-install`.
+The supported template names are `vanilla`, `shell-app`, and `astro`.
+With `--skip-install`, run `npm install` in the generated directory when ready.
+
 ## Updating An Existing Project
+
+Preview an update before applying it:
+
+```bash
+spectre-init update ./my-app --dry-run
+```
+
+The preview lists configuration files that would be overwritten and dependency
+version changes. It writes no files and does not install dependencies.
+Run the same command without `--dry-run` to apply the update.
 
 `spectre-init update [path]` (default path: current directory) brings an
 existing scaffolded project's boilerplate up to date with the currently

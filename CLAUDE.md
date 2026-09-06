@@ -74,8 +74,9 @@ npm run format      # Prettier write
 npm run check:ecosystem     # spectre-manifest schema + registration check
 npm run check:version-sync  # README/package.json version parity check
 npm run release:propose     # suggest next version bump based on CHANGELOG
+npm run check:cli-options # template flags, install control, and dry-run checks
 npm run check:manifest-names # regression checks against the built CLI
-npm run check       # typecheck + lint + build + check:manifest-names + check:version-sync + check:ecosystem (run before every commit)
+npm run check       # typecheck + lint + build + check:manifest-names + check:cli-options + check:version-sync + check:ecosystem (run before every commit)
 ```
 
 `npm run check` is the full verification gate, including manifest-name

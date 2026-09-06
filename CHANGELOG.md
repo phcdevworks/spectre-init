@@ -4,6 +4,23 @@ All notable changes to this project will be documented here. The format follows 
 
 ## [Unreleased]
 
+## [1.5.0] - 2026-09-06
+
+**Release Title:** Scripted Scaffolding and Update Previews
+
+Contract change type: additive
+
+### Added
+
+- Add `--template vanilla|shell-app|astro` for template selection in scripted
+  scaffolding and as a preset for interactive setup.
+- Add `--skip-install` to generate project files without installing dependencies.
+  Exclude local template dependency and build directories when scaffolding.
+- Add `update [path] --dry-run` to preview configuration overwrites and dependency
+  version changes without writing files.
+- Validate CLI options and command combinations before writing project files,
+  with regression checks covering all templates and dry-run file preservation.
+
 ## [1.4.1] - 2026-09-06
 
 **Release Title:** Scaffold Manifest and Ignore File Fixes
@@ -158,7 +175,8 @@ Release Title: First Public Release
 - README AI guidance reference now points to `AGENTS.md` first.
 - Bumped `fs-extra` to `^11.3.5`, `@types/node` to `^25.7.0`, `typescript-eslint` to `^8.59.3`.
 
-[unreleased]: https://github.com/phcdevworks/spectre-init/compare/v1.4.1...HEAD
+[unreleased]: https://github.com/phcdevworks/spectre-init/compare/v1.5.0...HEAD
+[1.5.0]: https://github.com/phcdevworks/spectre-init/compare/v1.4.1...v1.5.0
 [1.4.1]: https://github.com/phcdevworks/spectre-init/compare/v1.4.0...v1.4.1
 [1.4.0]: https://github.com/phcdevworks/spectre-init/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/phcdevworks/spectre-init/compare/v1.2.0...v1.3.0

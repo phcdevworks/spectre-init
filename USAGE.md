@@ -1,7 +1,7 @@
 # Using `spectre-init`
 
 This guide covers scaffolding and maintaining a Spectre project with the
-`vanilla` and `shell-app` templates.
+`vanilla`, `shell-app`, and `astro` templates.
 
 ## Install
 
@@ -36,10 +36,18 @@ cd my-app
 npm run dev
 ```
 
-To scaffold the full shell app template non-interactively, run the
-interactive flow and select `shell-app` when prompted, or pass it directly
-once your `spectre-init` version supports a template flag — check
-`spectre-init --help` for the current flag name.
+Choose a template and optionally defer dependency installation:
+
+```bash
+spectre-init my-app --template shell-app --skip-install
+cd my-app
+npm install
+npm run dev
+```
+
+`--template` accepts `vanilla`, `shell-app`, or `astro`. With no project
+name, setup remains interactive and uses the selected template.
+`--skip-install` generates files without running npm install.
 
 ### Templates
 
@@ -47,8 +55,19 @@ once your `spectre-init` version supports a template flag — check
 | --- | --- | --- |
 | `vanilla` | TypeScript + Vite starter with routing and Spectre UI. | `spectre-shell`, `spectre-shell-router`, `spectre-tokens`, `spectre-ui` |
 | `shell-app` | Full shell app with `bootstrapApp`, router, signals, reactive effects, and Spectre components. | `spectre-shell`, `spectre-shell-router`, `spectre-shell-signals`, `spectre-components`, `spectre-tokens`, `spectre-ui` |
+| `astro` | Astro starter with Spectre components. | `spectre-tokens`, `spectre-ui`, `spectre-ui-astro`, `astro` |
 
 ## Update An Existing Project
+
+Preview an update before applying it:
+
+```bash
+spectre-init update ./my-app --dry-run
+```
+
+The preview lists configuration files that would be overwritten and dependency
+version changes. It writes no files and does not install dependencies.
+Run the same command without `--dry-run` to apply the update.
 
 `spectre-init update [path]` (default path: current directory) brings an
 existing scaffolded project's boilerplate up to date with the currently
@@ -62,10 +81,10 @@ spectre-init update ./my-app
 
 What it does:
 
-- Detects the project's template (`vanilla` or `shell-app`) from its
+- Detects the project's template (`vanilla`, `shell-app`, or `astro`) from its
   `@phcdevworks/*` dependencies.
 - Overwrites config files that are boilerplate, not application code:
-  `.gitignore`, `AGENTS.md`, `tsconfig.json`, and `vite.config.ts`.
+  `.gitignore`, `AGENTS.md`, `tsconfig.json`, and `vite.config.ts` / `astro.config.ts`.
 - Refreshes `spectre.manifest.json` from the current template, preserving the
   project's own name.
 - Bumps the version pin for any `@phcdevworks/*` (or other) dependency the

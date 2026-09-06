@@ -1,6 +1,6 @@
 # Spectre Init Execution Todo
 
-Phases 0–6 are complete — see [ROADMAP.md](ROADMAP.md) for the delivery
+Phases 0–7 are complete — see [ROADMAP.md](ROADMAP.md) for the delivery
 summary and [CHANGELOG.md](CHANGELOG.md) for release-by-release detail.
 
 No work is currently queued.

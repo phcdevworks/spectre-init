@@ -36,6 +36,7 @@ Templates scaffold against these published packages:
 | 4 | Manifest integration — starter `spectre.manifest.json` in all three templates, `spectre-init` renames the manifest's package entry/`system.name`/`$id` to the scaffolded project name, README documents `spectre-manifest-validate`/`spectre-manifest-check` | 1.3.0 |
 | 5 | Maintenance CLI — `spectre-init update [path]` detects the project's template from its dependencies, refreshes boilerplate config files and `spectre.manifest.json`, and bumps version pins for dependencies the project already declares; never touches `src/` or adds new dependencies | 1.3.0 |
 | 6 | Template modernization — `beforeMount`/`afterMount`/`bootReady` in both templates, route `meta: { title }` + `afterNavigate` document-title management, a `navigating` signal reflecting router loading state, and a `ShellPlugin` boot-logger demo, all in shell-app | 1.4.0 |
+| 7 | Scripted template selection, optional dependency installation, and read-only update previews | 1.5.0 |
 
 ---
 
