@@ -4,58 +4,9 @@ All notable changes to this project will be documented here. The format follows 
 
 ## [Unreleased]
 
-## [1.6.0] - 2026-09-06
+## [1.4.0] - 2026-09-06
 
-**Release Title:** Ecosystem Template Refresh
-
-Contract change type: additive
-
-### Changed
-
-- Refresh all generated templates to the current published Spectre ecosystem
-  releases: shell 1.6.0, router 1.5.0, signals 1.4.0, tokens 4.8.0, UI 5.0.1,
-  components 1.19.0, and the Astro adapter 4.8.0.
-- Ignore generated dependency and build directories at every repository depth
-  so locally building a template does not cause the root lint gate to inspect
-  compiled bundles.
-
-## [1.5.0] - 2026-09-06
-
-**Release Title:** Scripted Scaffolding and Update Previews
-
-Contract change type: additive
-
-### Added
-
-- Add `--template vanilla|shell-app|astro` for template selection in scripted
-  scaffolding and as a preset for interactive setup.
-- Add `--skip-install` to generate project files without installing dependencies.
-  Exclude local template dependency and build directories when scaffolding.
-- Add `update [path] --dry-run` to preview configuration overwrites and dependency
-  version changes without writing files.
-- Validate CLI options and command combinations before writing project files,
-  with regression checks covering all templates and dry-run file preservation.
-
-## [1.4.1] - 2026-09-06
-
-**Release Title:** Scaffold Manifest and Ignore File Fixes
-
-Contract change type: semantic change
-
-### Fixed
-
-- Ship template ignore rules under a package-safe filename and restore
-  `.gitignore` during scaffolding and updates, so installed CLI copies include
-  the same ignore rules as the repository templates.
-- Preserve the application package entry in generated and refreshed manifests
-  when the project name matches the template default (`spectre-app`).
-- Add CLI regression checks to the required validation gate covering all three
-  templates, original and renamed projects, repeated updates, and preservation
-  of application source and package metadata.
-
-## [1.4.0] - 2026-09-04
-
-Release Title: Template Modernization and Dependency Refresh
+**Release Title:** Template Modernization and CLI Automation
 
 Contract change type: additive
 
@@ -72,6 +23,35 @@ Contract change type: additive
   loading state in the shell-app DOM via `effect()`. Requires
   `@phcdevworks/spectre-shell` `^1.5.0` for the new `routerOptions`
   passthrough on `BootstrapOptions`.
+- Added `--template vanilla|shell-app|astro` for template selection in scripted
+  scaffolding and as a preset for interactive setup.
+- Added `--skip-install` to generate project files without installing
+  dependencies. Local template dependency and build directories are excluded
+  from scaffolded output.
+- Added `update [path] --dry-run` to preview configuration overwrites and
+  dependency version changes without writing files.
+- Added CLI regression checks covering all templates, option validation,
+  dry-run file preservation, repeated updates, and manifest naming.
+
+### Changed
+
+- Refreshed all generated templates to the current published Spectre ecosystem
+  releases: shell 1.6.0, router 1.5.0, signals 1.4.0, tokens 4.8.0, UI 5.0.1,
+  components 1.19.0, and the Astro adapter 4.8.0.
+- Updated ESLint to 10.10.0, GitHub checkout and Node setup actions to v6, and
+  CI coverage to test the minimum supported Node 22.12 release, current Node
+  22, and Node 24.
+- Ignored generated dependency and build directories at every repository depth
+  so locally building a template does not cause the root lint gate to inspect
+  compiled bundles.
+
+### Fixed
+
+- Shipped template ignore rules under a package-safe filename and restored
+  `.gitignore` during scaffolding and updates, so installed CLI copies include
+  the same ignore rules as the repository templates.
+- Preserved the application package entry in generated and refreshed manifests
+  when the project name matches the template default (`spectre-app`).
 
 ## [1.3.0] - 2026-08-10
 
@@ -190,10 +170,7 @@ Release Title: First Public Release
 - README AI guidance reference now points to `AGENTS.md` first.
 - Bumped `fs-extra` to `^11.3.5`, `@types/node` to `^25.7.0`, `typescript-eslint` to `^8.59.3`.
 
-[unreleased]: https://github.com/phcdevworks/spectre-init/compare/v1.6.0...HEAD
-[1.6.0]: https://github.com/phcdevworks/spectre-init/compare/v1.5.0...v1.6.0
-[1.5.0]: https://github.com/phcdevworks/spectre-init/compare/v1.4.1...v1.5.0
-[1.4.1]: https://github.com/phcdevworks/spectre-init/compare/v1.4.0...v1.4.1
+[unreleased]: https://github.com/phcdevworks/spectre-init/compare/v1.4.0...HEAD
 [1.4.0]: https://github.com/phcdevworks/spectre-init/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/phcdevworks/spectre-init/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/phcdevworks/spectre-init/compare/v1.1.0...v1.2.0
