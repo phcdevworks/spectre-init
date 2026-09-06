@@ -8,9 +8,9 @@
     "preview": "astro preview"
   },
   "dependencies": {
-    "@phcdevworks/spectre-tokens": "^4.7.0",
-    "@phcdevworks/spectre-ui": "^5.0.0",
-    "@phcdevworks/spectre-ui-astro": "^4.7.0",
+    "@phcdevworks/spectre-tokens": "^4.8.0",
+    "@phcdevworks/spectre-ui": "^5.0.1",
+    "@phcdevworks/spectre-ui-astro": "^4.8.0",
     "astro": "^7.3.1"
   },
   "devDependencies": {

@@ -4,6 +4,21 @@ All notable changes to this project will be documented here. The format follows 
 
 ## [Unreleased]
 
+## [1.6.0] - 2026-09-06
+
+**Release Title:** Ecosystem Template Refresh
+
+Contract change type: additive
+
+### Changed
+
+- Refresh all generated templates to the current published Spectre ecosystem
+  releases: shell 1.6.0, router 1.5.0, signals 1.4.0, tokens 4.8.0, UI 5.0.1,
+  components 1.19.0, and the Astro adapter 4.8.0.
+- Ignore generated dependency and build directories at every repository depth
+  so locally building a template does not cause the root lint gate to inspect
+  compiled bundles.
+
 ## [1.5.0] - 2026-09-06
 
 **Release Title:** Scripted Scaffolding and Update Previews
@@ -175,7 +190,8 @@ Release Title: First Public Release
 - README AI guidance reference now points to `AGENTS.md` first.
 - Bumped `fs-extra` to `^11.3.5`, `@types/node` to `^25.7.0`, `typescript-eslint` to `^8.59.3`.
 
-[unreleased]: https://github.com/phcdevworks/spectre-init/compare/v1.5.0...HEAD
+[unreleased]: https://github.com/phcdevworks/spectre-init/compare/v1.6.0...HEAD
+[1.6.0]: https://github.com/phcdevworks/spectre-init/compare/v1.5.0...v1.6.0
 [1.5.0]: https://github.com/phcdevworks/spectre-init/compare/v1.4.1...v1.5.0
 [1.4.1]: https://github.com/phcdevworks/spectre-init/compare/v1.4.0...v1.4.1
 [1.4.0]: https://github.com/phcdevworks/spectre-init/compare/v1.3.0...v1.4.0

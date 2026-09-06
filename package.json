@@ -1,6 +1,6 @@
 {
   "name": "@phcdevworks/spectre-init",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "@phcdevworks/spectre-init is the project scaffolding CLI of the Spectre shell ecosystem. It creates a new TypeScript app from a bundled template, wires Spectre dependencies, and provides a predictable starter structure.",
   "type": "module",
   "packageManager": "npm@12.0.2",
