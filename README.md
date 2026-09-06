@@ -16,7 +16,7 @@ packages) but is not itself a dependency of any other repo in the workspace.
 | Project team | `project-shell` |
 | Repository role | Spectre project scaffolding CLI |
 | Package/artifact | `@phcdevworks/spectre-init` |
-| Current version/status | 1.4.0 |
+| Current version/status | 1.4.1 |
 
 ## Standard Workflow
 
@@ -198,6 +198,7 @@ Useful scripts:
 - `npm run typecheck` validates TypeScript without emitting files.
 - `npm run lint` runs ESLint.
 - `npm run build` emits the CLI to `dist`.
+- `npm run check:manifest-names` verifies manifest renaming through the built CLI across all templates.
 - `npm run check:version-sync` checks README/package.json version parity.
 - `npm run check:ecosystem` validates the spectre-manifest entry.
 - `npm run check` runs the standard package verification flow.
@@ -223,8 +224,9 @@ repository. Codex handles releases, including cutting tagged releases and
 GitHub Releases, and production stabilization. Jules handles small automated
 fixes and dependency updates. GitHub Copilot provides development support.
 
-All AI agents with repository access (Claude Code, Codex, Copilot, Jules)
-have commit, push, and tag authority in this repository. Publishing to npm
+Codex, Copilot, and Jules have commit, push, and tag authority in this
+repository. Claude Code has no git access and hands validated work to Codex
+or Bradley Potts for git operations. Publishing to npm
 remains Bradley Potts's sole authority. See [AGENTS.md](AGENTS.md) for the
 full commit-policy and release-authority grant.
 

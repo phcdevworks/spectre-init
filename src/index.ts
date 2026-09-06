@@ -18,6 +18,7 @@ const PROJECT_TYPES = {
     description: 'TypeScript starter with Vite, Tailwind, and Spectre UI.',
     templateDir: 'vanilla',
     requiredFiles: [
+      '.gitignore',
       'index.html',
       'package.json',
       'spectre.manifest.json',
@@ -33,6 +34,7 @@ const PROJECT_TYPES = {
     description: 'Full Spectre shell app with router and signals wired from the start.',
     templateDir: 'shell-app',
     requiredFiles: [
+      '.gitignore',
       'index.html',
       'package.json',
       'spectre.manifest.json',
@@ -48,6 +50,7 @@ const PROJECT_TYPES = {
     description: 'Astro starter with Spectre UI Astro components.',
     templateDir: 'astro',
     requiredFiles: [
+      '.gitignore',
       'astro.config.ts',
       'package.json',
       'spectre.manifest.json',
@@ -116,7 +119,7 @@ function patchManifestName(manifest: ManifestShape, projectName: string): void {
   const previousName = manifest.system.name
   manifest.system.name = projectName
   manifest.$id = `urn:local:${projectName}:manifest`
-  if (previousName in manifest.packages) {
+  if (previousName !== projectName && previousName in manifest.packages) {
     manifest.packages[projectName] = manifest.packages[previousName]
     delete manifest.packages[previousName]
   }
@@ -158,7 +161,7 @@ async function updateProject(targetDir: string): Promise<void> {
 
   const updatedFiles: string[] = []
   for (const file of PROJECT_TYPES[typeKey].configFiles) {
-    const src = path.join(templateDir, file)
+    const src = path.join(templateDir, file === '.gitignore' ? '_gitignore' : file)
     if (existsSync(src)) {
       await fsExtra.copy(src, path.join(targetDir, file))
       updatedFiles.push(file)
@@ -282,6 +285,7 @@ async function main(): Promise<void> {
   console.log(`\nScaffolding Spectre app: ${projectName}`)
 
   await fsExtra.copy(templateDir, targetDir)
+  await fsExtra.move(path.join(targetDir, '_gitignore'), path.join(targetDir, '.gitignore'))
 
   const pkgPath = path.join(targetDir, 'package.json')
   const pkg = (await fsExtra.readJson(pkgPath)) as Record<string, unknown>

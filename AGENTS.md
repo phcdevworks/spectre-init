@@ -247,7 +247,8 @@ structure. Zero hardcoded hex colors or spacing literals in any template file.
 - Jules handles small automated maintenance. Jules should not create new
   templates, change project architecture, own release decisions, or make
   publishing decisions.
-- Bradley Potts remains the final reviewer and the only release authority.
+- Bradley Potts remains the final reviewer and sole npm publishing authority;
+  Codex's tagged-release authority is defined in the Standard Authority Model.
 
 ## Pull Request Requirements
 

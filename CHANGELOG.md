@@ -4,6 +4,23 @@ All notable changes to this project will be documented here. The format follows 
 
 ## [Unreleased]
 
+## [1.4.1] - 2026-09-06
+
+**Release Title:** Scaffold Manifest and Ignore File Fixes
+
+Contract change type: semantic change
+
+### Fixed
+
+- Ship template ignore rules under a package-safe filename and restore
+  `.gitignore` during scaffolding and updates, so installed CLI copies include
+  the same ignore rules as the repository templates.
+- Preserve the application package entry in generated and refreshed manifests
+  when the project name matches the template default (`spectre-app`).
+- Add CLI regression checks to the required validation gate covering all three
+  templates, original and renamed projects, repeated updates, and preservation
+  of application source and package metadata.
+
 ## [1.4.0] - 2026-09-04
 
 Release Title: Template Modernization and Dependency Refresh
@@ -141,7 +158,8 @@ Release Title: First Public Release
 - README AI guidance reference now points to `AGENTS.md` first.
 - Bumped `fs-extra` to `^11.3.5`, `@types/node` to `^25.7.0`, `typescript-eslint` to `^8.59.3`.
 
-[unreleased]: https://github.com/phcdevworks/spectre-init/compare/v1.4.0...HEAD
+[unreleased]: https://github.com/phcdevworks/spectre-init/compare/v1.4.1...HEAD
+[1.4.1]: https://github.com/phcdevworks/spectre-init/compare/v1.4.0...v1.4.1
 [1.4.0]: https://github.com/phcdevworks/spectre-init/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/phcdevworks/spectre-init/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/phcdevworks/spectre-init/compare/v1.1.0...v1.2.0

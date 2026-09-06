@@ -32,10 +32,10 @@ Templates scaffold against these published packages:
 | 0 | CLI foundation — ESLint flat config, CI pipeline (Node 22/24 matrix), interactive prompts, non-interactive path, post-scaffold output validation | 1.0.0 |
 | 1 | Template coverage — `vanilla` and `shell-app` templates (`bootstrapApp`, router, signals, `effect`/`signal` lifecycle) | 1.0.0–1.1.0 |
 | 2 | Ecosystem alignment — version pin bumps, `spectre-ui` CSS wiring, zero-hex constraint, phantom-import and route-API fixes, TypeScript 7 toolchain support | 1.1.0–1.2.0 |
-| 3 | Astro template — `templates/astro/` using `@phcdevworks/spectre-ui-astro` (`SpButton`, `SpCard`), `astro` entry in `PROJECT_TYPES`, per-type `requiredFiles` in `validateScaffold()` | Unreleased |
-| 4 | Manifest integration — starter `spectre.manifest.json` in all three templates, `spectre-init` renames the manifest's package entry/`system.name`/`$id` to the scaffolded project name, README documents `spectre-manifest-validate`/`spectre-manifest-check` | Unreleased |
-| 5 | Maintenance CLI — `spectre-init update [path]` detects the project's template from its dependencies, refreshes boilerplate config files and `spectre.manifest.json`, and bumps version pins for dependencies the project already declares; never touches `src/` or adds new dependencies | Unreleased |
-| 6 | Template modernization — `beforeMount`/`afterMount`/`bootReady` in both templates, route `meta: { title }` + `afterNavigate` document-title management, a `navigating` signal reflecting router loading state, and a `ShellPlugin` boot-logger demo, all in shell-app | Unreleased |
+| 3 | Astro template — `templates/astro/` using `@phcdevworks/spectre-ui-astro` (`SpButton`, `SpCard`), `astro` entry in `PROJECT_TYPES`, per-type `requiredFiles` in `validateScaffold()` | 1.3.0 |
+| 4 | Manifest integration — starter `spectre.manifest.json` in all three templates, `spectre-init` renames the manifest's package entry/`system.name`/`$id` to the scaffolded project name, README documents `spectre-manifest-validate`/`spectre-manifest-check` | 1.3.0 |
+| 5 | Maintenance CLI — `spectre-init update [path]` detects the project's template from its dependencies, refreshes boilerplate config files and `spectre.manifest.json`, and bumps version pins for dependencies the project already declares; never touches `src/` or adds new dependencies | 1.3.0 |
+| 6 | Template modernization — `beforeMount`/`afterMount`/`bootReady` in both templates, route `meta: { title }` + `afterNavigate` document-title management, a `navigating` signal reflecting router loading state, and a `ShellPlugin` boot-logger demo, all in shell-app | 1.4.0 |
 
 ---
 

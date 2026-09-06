@@ -11,8 +11,8 @@ For every TODO item Claude Code completes, use this sequence in the same change:
 
 If implementation is incomplete or any required check fails, keep the TODO item open and do not describe the work as shipped.
 
-Primary AI maintainer: **Claude Code** (claude-sonnet-4-6, Anthropic)
-Human owner: PHCDevworks / <brad.potts@coastdigitalgroup.com>
+Primary AI maintainer: **Claude Code** (claude-sonnet-4-6)
+Human owner: PHCDevworks / Bradley Potts
 
 ## Git Access — Denied
 
@@ -59,7 +59,7 @@ templates/
     package.json
     tsconfig.json
     vite.config.ts
-    .gitignore
+    _gitignore       — restored to .gitignore in generated projects
     AGENTS.md
 dist/               — Compiled output (git-ignored, npm-published)
 ```
@@ -74,10 +74,12 @@ npm run format      # Prettier write
 npm run check:ecosystem     # spectre-manifest schema + registration check
 npm run check:version-sync  # README/package.json version parity check
 npm run release:propose     # suggest next version bump based on CHANGELOG
-npm run check       # typecheck + lint + build + check:version-sync + check:ecosystem (run before every commit)
+npm run check:manifest-names # regression checks against the built CLI
+npm run check       # typecheck + lint + build + check:manifest-names + check:version-sync + check:ecosystem (run before every commit)
 ```
 
-There are no tests yet. `npm run check` is the full verification gate.
+`npm run check` is the full verification gate, including manifest-name
+regression checks across all three templates and repeated project updates.
 
 ## Key Implementation Details
 
