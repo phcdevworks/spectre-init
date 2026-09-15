@@ -56,7 +56,7 @@
     "check:cli-options": "node --experimental-strip-types scripts/check-cli-options.ts"
   },
   "devDependencies": {
-    "@phcdevworks/spectre-manifest": "^1.1.0",
+    "@phcdevworks/spectre-manifest": "^1.2.0",
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^26.4.1",
     "@typescript/native": "npm:typescript@^7.0.2",
