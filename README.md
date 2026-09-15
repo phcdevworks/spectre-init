@@ -1,8 +1,8 @@
 # @phcdevworks/spectre-init
 
-`@phcdevworks/spectre-init` is the project scaffolding CLI of the Spectre
-shell ecosystem. It creates a new TypeScript app from a bundled template,
-wires Spectre dependencies, and provides a predictable starter structure.
+`@phcdevworks/spectre-init` is the project-initialization tool for the
+Spectre platform. It creates new applications from PHCDevworks' established
+architecture, conventions, and package contracts.
 
 Maintained by [PHCDevworks](https://go.phcdev.co). It scaffolds new
 applications against the rest of the Spectre shell ecosystem (`spectre-shell`,
