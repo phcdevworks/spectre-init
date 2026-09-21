@@ -56,18 +56,18 @@
     "check:cli-options": "node --experimental-strip-types scripts/check-cli-options.ts"
   },
   "devDependencies": {
-    "@phcdevworks/spectre-manifest": "^1.1.0",
+    "@phcdevworks/spectre-manifest": "^1.2.0",
     "@types/fs-extra": "^11.0.4",
-    "@types/node": "^26.4.1",
+    "@types/node": "^26.6.2",
     "@typescript/native": "npm:typescript@^7.0.2",
-    "eslint": "^10.10.0",
+    "eslint": "^10.11.0",
     "jiti": "^2.7.0",
-    "prettier": "^3.9.6",
+    "prettier": "^3.9.8",
     "typescript": "npm:@typescript/typescript6@^6.0.2",
-    "typescript-eslint": "^8.69.0"
+    "typescript-eslint": "^8.70.0"
   },
   "dependencies": {
-    "@inquirer/prompts": "^8.7.1",
+    "@inquirer/prompts": "^8.7.2",
     "fs-extra": "^11.4.0"
   }
 }

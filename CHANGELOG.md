@@ -8,6 +8,8 @@ All notable changes to this project will be documented here. The format follows 
 
 - Standardized the package summary against the approved PHCDevworks product
   description.
+- Refreshed the CLI development toolchain and generated template dependencies,
+  including the current Spectre ecosystem, Astro, and Vite releases.
 
 ## [1.4.0] - 2026-09-06
 
