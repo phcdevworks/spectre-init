@@ -51,6 +51,7 @@ No phase is currently queued. Propose the next one proactively — see
 2. ~~Manifest integration~~ ✓ (P4.1)
 3. ~~Update command~~ ✓ (P5.1)
 4. ~~Template modernization~~ ✓ (P6.1–P6.4)
+5. ~~Scripted selection, optional install, update previews~~ ✓ (P7)
 
 ## Explicitly Out of Scope
 
