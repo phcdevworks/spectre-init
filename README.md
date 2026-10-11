@@ -16,7 +16,7 @@ packages) but is not itself a dependency of any other repo in the workspace.
 | Project team | `project-shell` |
 | Repository role | Spectre project scaffolding CLI |
 | Package/artifact | `@phcdevworks/spectre-init` |
-| Current version/status | 1.4.0 |
+| Current version/status | 1.5.0 |
 
 ## Standard Workflow
 
@@ -37,6 +37,7 @@ packages) but is not itself a dependency of any other repo in the workspace.
 | Codex | [CODEX.md](CODEX.md) |
 | Copilot | [COPILOT.md](COPILOT.md) |
 | Jules | [JULES.md](JULES.md) |
+| Grok  | [GROK.md](GROK.md)   |
 | Roadmap | [ROADMAP.md](ROADMAP.md) |
 | Todo | [TODO.md](TODO.md) |
 | Changelog | [CHANGELOG.md](CHANGELOG.md) |
@@ -220,7 +221,7 @@ Useful scripts:
 
 AI-agent coordination starts in [AGENTS.md](./AGENTS.md), with companion
 guidance in [CLAUDE.md](./CLAUDE.md), [CODEX.md](./CODEX.md),
-[COPILOT.md](./COPILOT.md), [JULES.md](./JULES.md), and
+[COPILOT.md](./COPILOT.md), [JULES.md](./JULES.md), [GROK.md](./GROK.md), and
 [.github/copilot-instructions.md](./.github/copilot-instructions.md).
 
 ### Troubleshooting

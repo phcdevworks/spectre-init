@@ -4,12 +4,25 @@ All notable changes to this project will be documented here. The format follows 
 
 ## [Unreleased]
 
+## [1.5.0] - 2026-10-12
+
+**Release Title:** Ecosystem and Tooling Refresh
+
+Contract change type: semantic change
+
 ### Changed
 
 - Standardized the package summary against the approved PHCDevworks product
   description.
 - Refreshed the CLI development toolchain and generated template dependencies,
   including the current Spectre ecosystem, Astro, and Vite releases.
+- Raised the minimum supported Node 22 release from 22.12 to 22.13 to match
+  the current runtime and validation-tool engine requirements.
+
+### Fixed
+
+- Excluded generated template dependency, build, and framework cache
+  directories from the published package.
 
 ## [1.4.0] - 2026-09-06
 
@@ -177,7 +190,8 @@ Release Title: First Public Release
 - README AI guidance reference now points to `AGENTS.md` first.
 - Bumped `fs-extra` to `^11.3.5`, `@types/node` to `^25.7.0`, `typescript-eslint` to `^8.59.3`.
 
-[unreleased]: https://github.com/phcdevworks/spectre-init/compare/v1.4.0...HEAD
+[unreleased]: https://github.com/phcdevworks/spectre-init/compare/v1.5.0...HEAD
+[1.5.0]: https://github.com/phcdevworks/spectre-init/compare/v1.4.0...v1.5.0
 [1.4.0]: https://github.com/phcdevworks/spectre-init/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/phcdevworks/spectre-init/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/phcdevworks/spectre-init/compare/v1.1.0...v1.2.0

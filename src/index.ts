@@ -314,7 +314,7 @@ async function main(): Promise<void> {
   console.log(`\nScaffolding Spectre app: ${projectName}`)
 
   await fsExtra.copy(templateDir, targetDir, {
-    filter: (source) => !['node_modules', 'dist', '.astro'].includes(
+    filter: (source) => !['node_modules', 'dist', '.astro', '.npmignore'].includes(
       path.relative(templateDir, source).split(path.sep)[0],
     ),
   })

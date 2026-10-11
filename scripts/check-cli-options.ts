@@ -36,6 +36,7 @@ try {
     assert.equal(result.status, 0, result.stderr)
     assert.match(result.stdout, /npm install/)
     assert.ok(!existsSync(join(target, 'node_modules')))
+    assert.ok(!existsSync(join(target, '.npmignore')))
     assert.ok(!existsSync(join(target, 'npm-invoked')))
     assert.ok(existsSync(join(target, template === 'astro' ? 'astro.config.ts' : 'vite.config.ts')))
     const pkgPath = join(target, 'package.json')

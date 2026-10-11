@@ -15,13 +15,13 @@ Templates scaffold against these published packages:
 
 | Package | Version | Role |
 | --- | --- | --- |
-| `@phcdevworks/spectre-shell` | 1.6.0 | SPA bootstrap — `bootstrapApp`, lifecycle callbacks, readiness signal, returns `Router` instance |
-| `@phcdevworks/spectre-shell-router` | 1.5.0 | Client-side router — route matching, named routes, `render`/`destroy` hooks, `meta`, `afterNavigate` |
-| `@phcdevworks/spectre-shell-signals` | 1.4.0 | Reactive primitives — signals, computed, effects |
-| `@phcdevworks/spectre-tokens` | 4.9.0 | Design tokens — CSS variables (`--sp-*`), JS objects |
-| `@phcdevworks/spectre-ui` | 5.2.0 | Styling layer — CSS bundles, recipe functions |
-| `@phcdevworks/spectre-components` | 1.20.0 | Web component layer — custom elements used by shell-app starter |
-| `@phcdevworks/spectre-ui-astro` | 4.9.0 | Astro adapter — SSR-safe components used by the astro starter |
+| `@phcdevworks/spectre-shell` | 1.7.0 | SPA bootstrap — `bootstrapApp`, lifecycle callbacks, readiness signal, returns `Router` instance |
+| `@phcdevworks/spectre-shell-router` | 1.5.1 | Client-side router — route matching, named routes, `render`/`destroy` hooks, `meta`, `afterNavigate` |
+| `@phcdevworks/spectre-shell-signals` | 1.5.0 | Reactive primitives — signals, computed, effects |
+| `@phcdevworks/spectre-tokens` | 4.13.0 | Design tokens — CSS variables (`--sp-*`), JS objects |
+| `@phcdevworks/spectre-ui` | 5.5.0 | Styling layer — CSS bundles, recipe functions |
+| `@phcdevworks/spectre-components` | 1.23.0 | Web component layer — custom elements used by shell-app starter |
+| `@phcdevworks/spectre-ui-astro` | 4.12.0 | Astro adapter — SSR-safe components used by the astro starter |
 
 ---
 
@@ -42,7 +42,8 @@ Templates scaffold against these published packages:
 
 ## What's Next
 
-No phase is currently queued. See [TODO.md](TODO.md) for demand-driven work.
+No phase is currently queued. Propose the next one proactively — see
+[TODO.md](TODO.md) for work that is ready to start.
 
 ## Execution Order
 

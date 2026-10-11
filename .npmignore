@@ -14,6 +14,9 @@ SECURITY.md
 
 # Build artifacts
 node_modules/
+**/node_modules/
+templates/**/dist/
+templates/**/.astro/
 spectre-theme/dist/
 
 # Config files

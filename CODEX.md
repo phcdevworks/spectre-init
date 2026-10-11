@@ -19,10 +19,11 @@ Claude Code has zero git access companywide as of 2026-08-13.
   template contract violations.
 - Refactor only when it reduces release risk, clarifies scaffolding behavior, or
   standardizes existing patterns.
-- Commit, tag, and cut the release itself — version bump, changelog
-  versioning, `v<version>` tag, and GitHub Release — for every release-ready
-  `CHANGELOG.md [Unreleased]` section (see "Release Review" below). `npm
-  publish` stays with Bradley Potts.
+- On "commit", commit and push only — no version bump, tag, or release.
+  Cut the release itself (version bump, changelog versioning, `v<version>`
+  tag, and GitHub Release; see "Release Review" below) only when Bradley
+  Potts says to get this repo ready for release. `npm publish` stays with
+  Bradley Potts.
 - Do not take over feature ownership from Claude Code.
 
 ## Codex Strength Areas
@@ -38,7 +39,7 @@ Claude Code has zero git access companywide as of 2026-08-13.
 1. Read `AGENTS.md` for canonical agent coordination and role boundaries.
 2. Read `CLAUDE.md` for the project implementation guide.
 3. Read `TODO.md`, especially current P0 items.
-4. Check `git status --short` and preserve user, Claude Code, Jules, Copilot, or
+4. Check `git status --short` and preserve user, Claude Code, Jules, Copilot, Grok, or
    other reviewer changes.
 5. Inspect the files relevant to the requested change before editing.
 6. Confirm whether the work touches `src/index.ts`, `templates/`, docs, or
