@@ -16,7 +16,7 @@ packages) but is not itself a dependency of any other repo in the workspace.
 | Project team | `project-shell` |
 | Repository role | Spectre project scaffolding CLI |
 | Package/artifact | `@phcdevworks/spectre-init` |
-| Current version/status | 1.5.0 |
+| Current version/status | 1.6.0 |
 
 ## Standard Workflow
 
@@ -108,13 +108,12 @@ in its `dependencies` field (`@phcdevworks/spectre-shell`,
 renames the manifest's package entry, `system.name`, and `$id` to match your
 project name, the same way it patches `package.json`.
 
-This manifest is a starting point, not an automatic registration — it isn't
-validated by the scaffolded app's own scripts by default. To validate it:
+This manifest is a starting point, not an automatic registration. Each starter
+includes `@phcdevworks/spectre-manifest` and a `check:ecosystem` script. To
+validate it:
 
 ```bash
-npm install --save-dev @phcdevworks/spectre-manifest
-npx spectre-manifest-validate spectre.manifest.json
-npx spectre-manifest-check spectre.manifest.json .
+npm run check:ecosystem
 ```
 
 Keep the `dependencies` array on the app's package entry in sync with the

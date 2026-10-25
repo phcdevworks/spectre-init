@@ -15,13 +15,13 @@ Templates scaffold against these published packages:
 
 | Package | Version | Role |
 | --- | --- | --- |
-| `@phcdevworks/spectre-shell` | 1.7.0 | SPA bootstrap — `bootstrapApp`, lifecycle callbacks, readiness signal, returns `Router` instance |
-| `@phcdevworks/spectre-shell-router` | 1.5.1 | Client-side router — route matching, named routes, `render`/`destroy` hooks, `meta`, `afterNavigate` |
-| `@phcdevworks/spectre-shell-signals` | 1.5.0 | Reactive primitives — signals, computed, effects |
-| `@phcdevworks/spectre-tokens` | 4.13.0 | Design tokens — CSS variables (`--sp-*`), JS objects |
-| `@phcdevworks/spectre-ui` | 5.5.0 | Styling layer — CSS bundles, recipe functions |
-| `@phcdevworks/spectre-components` | 1.23.0 | Web component layer — custom elements used by shell-app starter |
-| `@phcdevworks/spectre-ui-astro` | 4.12.0 | Astro adapter — SSR-safe components used by the astro starter |
+| `@phcdevworks/spectre-shell` | 1.8.0 | SPA bootstrap — `bootstrapApp`, lifecycle callbacks, readiness signal, returns `Router` instance |
+| `@phcdevworks/spectre-shell-router` | 1.6.0 | Client-side router — route matching, named routes, `render`/`destroy` hooks, `meta`, `afterNavigate` |
+| `@phcdevworks/spectre-shell-signals` | 1.6.1 | Reactive primitives — signals, computed, effects |
+| `@phcdevworks/spectre-tokens` | 4.15.0 | Design tokens — CSS variables (`--sp-*`), JS objects |
+| `@phcdevworks/spectre-ui` | 5.8.0 | Styling layer — CSS bundles, recipe functions |
+| `@phcdevworks/spectre-components` | 1.25.0 | Web component layer — custom elements used by shell-app starter |
+| `@phcdevworks/spectre-ui-astro` | 4.14.0 | Astro adapter — SSR-safe components used by the astro starter |
 
 ---
 

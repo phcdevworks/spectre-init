@@ -38,6 +38,12 @@ try {
         assert.equal(manifest.system.name, name)
         assert.equal(manifest.$id, `urn:local:${name}:manifest`)
         assert.deepEqual(manifest.packages, expectedPackages, `${template}: ${name}`)
+        if (name !== 'spectre-app') {
+          assert.ok(
+            !readFileSync(manifestPath, 'utf8').includes('spectre-app'),
+            `${template}: "spectre-app" survived the rename to "${name}"`
+          )
+        }
         assert.deepEqual(JSON.parse(readFileSync(pkgPath, 'utf8')), pkg)
         assert.equal(readFileSync(sourcePath, 'utf8'), source)
         assert.equal(readFileSync(join(target, '.gitignore'), 'utf8'), ignoreRules)

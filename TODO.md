@@ -3,7 +3,14 @@
 Phases 0–7 are complete — see [ROADMAP.md](ROADMAP.md) for the delivery
 summary and [CHANGELOG.md](CHANGELOG.md) for release-by-release detail.
 
-No work is currently queued.
+No work is queued.
+
+---
+
+## Requested by Downstream
+
+None open. Three `shell-app` starter gaps reported by a downstream integration
+on 2026-10-12 are fixed in 1.6.0 (see CHANGELOG.md).
 
 ---
 

@@ -112,7 +112,7 @@
       "This manifest describes this app's own Spectre dependencies. It is a starting point, not a registration in the Spectre ecosystem manifest."
     ],
     "safeDefaults": [
-      "Keep the \"spectre-app\" package entry's dependencies list in sync with package.json's @phcdevworks/* dependencies."
+      "Keep this application's package entry dependencies list in sync with package.json's @phcdevworks/* dependencies."
     ]
   }
 }

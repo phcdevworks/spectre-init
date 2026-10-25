@@ -4,6 +4,35 @@ All notable changes to this project will be documented here. The format follows 
 
 ## [Unreleased]
 
+## [1.6.0] - 2026-10-25
+
+**Release Title:** Template Validation and Ecosystem Refresh
+
+Contract change type: semantic change
+
+### Changed
+
+- Refreshed all generated templates to the current published Spectre ecosystem
+  releases: shell 1.8.0, router 1.6.0, signals 1.6.1, tokens 4.15.0, UI 5.8.0,
+  components 1.25.0, and the Astro adapter 4.14.0.
+- Updated Astro to 7.4.2, Vite to 8.3.5, and the CLI development toolchain.
+
+### Fixed
+
+- `shell-app` and `vanilla` starters now type-check out of the box:
+  `tsconfig.json` adds `vite/client` types, DOM libs, `noEmit`, and an
+  `include` of `src` and `vite.config.ts`, and `package.json` adds a
+  `typecheck` script. Previously `tsc --noEmit` failed with TS2882 on the
+  shell CSS side-effect import.
+- All three starters declare `@phcdevworks/spectre-manifest ^2.0.0` as a
+  devDependency with a `check:ecosystem` script, so the manifest `$schema`
+  path resolves and the manifest validates in a fresh scaffold.
+- Renamed scaffolds no longer keep the literal `spectre-app` in the manifest's
+  `ai.safeDefaults`; `check:manifest-names` now asserts no `spectre-app`
+  string survives a rename.
+
+Reported by a downstream integration using the `shell-app` starter.
+
 ## [1.5.0] - 2026-10-12
 
 **Release Title:** Ecosystem and Tooling Refresh
@@ -190,7 +219,8 @@ Release Title: First Public Release
 - README AI guidance reference now points to `AGENTS.md` first.
 - Bumped `fs-extra` to `^11.3.5`, `@types/node` to `^25.7.0`, `typescript-eslint` to `^8.59.3`.
 
-[unreleased]: https://github.com/phcdevworks/spectre-init/compare/v1.5.0...HEAD
+[unreleased]: https://github.com/phcdevworks/spectre-init/compare/v1.6.0...HEAD
+[1.6.0]: https://github.com/phcdevworks/spectre-init/compare/v1.5.0...v1.6.0
 [1.5.0]: https://github.com/phcdevworks/spectre-init/compare/v1.4.0...v1.5.0
 [1.4.0]: https://github.com/phcdevworks/spectre-init/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/phcdevworks/spectre-init/compare/v1.2.0...v1.3.0
