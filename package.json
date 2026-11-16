@@ -3,7 +3,7 @@
   "version": "1.6.0",
   "description": "@phcdevworks/spectre-init is the project-initialization tool for the Spectre platform. It creates new applications from PHCDevworks' established architecture, conventions, and package contracts.",
   "type": "module",
-  "packageManager": "npm@12.2.1",
+  "packageManager": "npm@12.2.2",
   "bin": {
     "spectre-init": "dist/index.js"
   },
@@ -58,16 +58,16 @@
   "devDependencies": {
     "@phcdevworks/spectre-manifest": "^2.0.0",
     "@types/fs-extra": "^11.0.4",
-    "@types/node": "^26.6.5",
+    "@types/node": "^26.6.6",
     "@typescript/native": "npm:typescript@^7.0.2",
-    "eslint": "^10.13.0",
+    "eslint": "^10.15.0",
     "jiti": "^2.7.0",
-    "prettier": "^3.9.10",
+    "prettier": "^3.10.1",
     "typescript": "npm:@typescript/typescript6@^6.0.2",
-    "typescript-eslint": "^8.72.0"
+    "typescript-eslint": "^8.73.0"
   },
   "dependencies": {
-    "@inquirer/prompts": "^8.7.4",
+    "@inquirer/prompts": "^8.8.0",
     "fs-extra": "^11.4.1"
   }
 }

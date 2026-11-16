@@ -295,7 +295,7 @@ Templates must pin these current versions. Update this table when upstream packa
 | `@phcdevworks/spectre-shell-router` | 1.6.0 |
 | `@phcdevworks/spectre-shell-signals` | 1.6.1 |
 | `@phcdevworks/spectre-tokens` | 4.15.0 |
-| `@phcdevworks/spectre-ui` | 5.8.0 |
+| `@phcdevworks/spectre-ui` | 5.9.0 |
 | `@phcdevworks/spectre-components` | 1.25.0 |
 | `@phcdevworks/spectre-ui-astro` | 4.14.0 |
 

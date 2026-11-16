@@ -10,9 +10,9 @@
   },
   "dependencies": {
     "@phcdevworks/spectre-tokens": "^4.15.0",
-    "@phcdevworks/spectre-ui": "^5.8.0",
+    "@phcdevworks/spectre-ui": "^5.9.0",
     "@phcdevworks/spectre-ui-astro": "^4.14.0",
-    "astro": "^7.4.2"
+    "astro": "^7.4.12"
   },
   "devDependencies": {
     "@phcdevworks/spectre-manifest": "^2.0.0",

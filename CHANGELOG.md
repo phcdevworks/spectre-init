@@ -4,6 +4,12 @@ All notable changes to this project will be documented here. The format follows 
 
 ## [Unreleased]
 
+### Changed
+
+- Refreshed generated templates to `@phcdevworks/spectre-ui` 5.9.0, Astro
+  7.4.12, and Vite 8.3.8.
+- Updated the CLI development toolchain and npm package-manager declaration.
+
 ## [1.6.0] - 2026-10-25
 
 **Release Title:** Template Validation and Ecosystem Refresh
