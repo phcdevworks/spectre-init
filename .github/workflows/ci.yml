@@ -23,8 +23,9 @@ jobs:
       fail-fast: false
       matrix:
         node-version:
-          - 22.13.0
+          - 22.22.2
           - 22.x
+          - 24.15.0
           - 24.x
 
     steps:
@@ -37,6 +38,12 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: npm
           cache-dependency-path: package-lock.json
+
+      # The lockfile is written by the npm version pinned in package.json
+      # "packageManager". Older bundled npm releases (e.g. npm 10 on Node 22)
+      # resolve optional peer edges differently and reject the lockfile.
+      - name: Install pinned npm
+        run: npm install -g "$(node -p "require('./package.json').packageManager")"
 
       - name: Install dependencies
         run: npm ci

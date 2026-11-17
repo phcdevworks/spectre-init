@@ -9,6 +9,15 @@ All notable changes to this project will be documented here. The format follows 
 - Refreshed generated templates to `@phcdevworks/spectre-ui` 5.9.0, Astro
   7.4.12, and Vite 8.3.8.
 - Updated the CLI development toolchain and npm package-manager declaration.
+- Raised the supported Node.js range to `^22.22.2 || ^24.15.0 || >=26.0.0`
+  to match the runtime `@inquirer/prompts` 8.x dependency tree and npm 12.
+  Node 22.13–22.22.1 and 24.0–24.14 are no longer supported.
+
+### Fixed
+
+- CI now installs the npm version pinned in `packageManager` before
+  `npm ci`, so Node 22 jobs no longer fail on the npm 12 lockfile, and tests
+  the new Node 22.22.2 and 24.15.0 floors.
 
 ## [1.6.0] - 2026-10-25
 
