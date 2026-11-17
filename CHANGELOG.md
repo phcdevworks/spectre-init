@@ -16,8 +16,8 @@ All notable changes to this project will be documented here. The format follows 
 ### Fixed
 
 - CI now installs the npm version pinned in `packageManager` before
-  `npm ci`, so Node 22 jobs no longer fail on the npm 12 lockfile, and tests
-  the new Node 22.22.2 and 24.15.0 floors.
+  `npm ci`, so Node 22 jobs no longer fail on the npm 12 lockfile. The
+  matrix is now Node `22.x` and `24.x`.
 
 ## [1.6.0] - 2026-10-25
 
